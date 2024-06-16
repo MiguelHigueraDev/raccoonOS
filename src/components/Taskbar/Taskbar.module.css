@@ -1,5 +1,5 @@
 .taskbarContainer {
-    background-color: rgb(66, 54, 54);
+    background-color: rgba(66, 54, 54, 0.917);
     position: fixed;
     bottom: 0;
     width: 100vw;
