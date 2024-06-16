@@ -1,0 +1,11 @@
+.taskbarContainer {
+    background-color: rgb(66, 54, 54);
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 8px 8px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
