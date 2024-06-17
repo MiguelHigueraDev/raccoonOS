@@ -1,6 +1,6 @@
 import Window from "../Window/Window";
 
-const TestApplication = ({
+const MusicApplication = ({
   isOpen,
   isHidden,
   handleClose,
@@ -13,7 +13,7 @@ const TestApplication = ({
 }) => {
   return (
     isOpen && (
-      <Window name="Test application" isHidden={isHidden} handleClose={handleClose} handleHide={handleHide} width={800} height={400}>
+      <Window name="Music" isHidden={isHidden} handleClose={handleClose} handleHide={handleHide} width={800} height={400}>
         <div style={{ padding: 16 }}>
           <p style={{ margin: 0 }}>Testing!</p>
         </div>
@@ -22,4 +22,4 @@ const TestApplication = ({
   );
 };
 
-export default TestApplication;
+export default MusicApplication;

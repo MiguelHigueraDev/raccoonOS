@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AppIcon from "../AppIcon/AppIcon";
 import classes from "./Desktop.module.css";
-import TestApplication from "../Applications/TestApplication";
 import Taskbar from "../Taskbar/Taskbar";
 import TaskbarIcon from "../TaskbarIcon/TaskbarIcon";
+import MusicApplication from "../Applications/MusicApplication";
 
 const Desktop = () => {
   const [testAppOpen, setTestAppOpen] = useState(false);
@@ -38,7 +38,7 @@ const Desktop = () => {
           iconUrl="./app-icons/music.png"
           name="Music"
         />
-        <TestApplication
+        <MusicApplication
           isOpen={testAppOpen}
           isHidden={testAppHidden}
           handleClose={() => setTestAppOpen(false)}
