@@ -15,6 +15,7 @@ const Desktop = () => {
 
   const [resumeAppOpen, setResumeAppOpen] = useState(false);
   const [resumeAppHidden, setResumeAppHidden] = useState(false);
+
   // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
     incZIndex();
@@ -61,6 +62,7 @@ const Desktop = () => {
           name="Resume"
         />
 
+        {/* Applications */}
         <MusicApplication
           isOpen={musicAppOpen}
           isHidden={musicAppHidden}
@@ -75,6 +77,7 @@ const Desktop = () => {
         />
       </div>
       <Taskbar>
+        {/* Taskbar Icons */}
         <TaskbarIcon
           iconUrl="./app-icons/music.png"
           isAppOpen={musicAppOpen}
