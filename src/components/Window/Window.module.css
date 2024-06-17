@@ -1,23 +1,30 @@
 .window {
     border-radius: 8px;
     border: 2px solid purple;
-    background-color: #ffffff80;
+    background-color: #ffffff;
     user-select: none;
+    position: absolute;
 }
 
 .windowHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px;
     border-bottom: 2px solid purple;
     border-radius: 8px 8px 0 0;
     background-color: rgb(42, 211, 245);
 }
 
 .windowName {
+    flex-grow: 2;
+    height: 34px;
+}
+
+.windowName div {
     font-size: 16px;
-    margin-left: 6px;
+    margin-left: 10px;
+    margin-top: 6px;
+    height: 100%;
 }
 
 .windowIcons {
