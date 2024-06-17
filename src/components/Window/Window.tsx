@@ -43,14 +43,14 @@ const Window = ({
   const className = isHidden ? classes.minimized : classes.window;
 
   return (
-    <Draggable bounds="parent">
+    <Draggable bounds="parent" handle=".windowHeader">
       <div
         ref={windowRef}
         className={className}
         style={{ width: finalWidth, height: finalHeight }}
       >
         {/* Icons */}
-        <div className={classes.windowHeader}>
+        <div className={`${classes.windowHeader} windowHeader`}>
           <div>
             <div className={classes.windowName}>{name}</div>
           </div>
