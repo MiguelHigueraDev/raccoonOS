@@ -1,0 +1,30 @@
+.iconContainer {
+    position: absolute;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    width: 72px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.iconContainer:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+}
+
+.iconContainer img {
+    width: 48px;
+    height: 48px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.iconContainer > div {
+    text-align: center;
+    user-select: none;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-size: 14px;
+}

@@ -1,0 +1,56 @@
+.window {
+    border-radius: 8px;
+    border: 2px solid purple;
+    background-color: #ffffff80;
+    user-select: none;
+}
+
+.windowHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px;
+    border-bottom: 2px solid purple;
+    border-radius: 8px 8px 0 0;
+    background-color: rgb(42, 211, 245);
+}
+
+.windowName {
+    font-size: 16px;
+    margin-left: 6px;
+}
+
+.windowIcons {
+    display: flex;
+    justify-content: end;
+    padding: 4px;
+    gap: 2px;
+}
+
+.windowIcons button {
+    appearance: none;
+    padding: 4px;
+    margin: 0;
+    border: 2px solid purple;
+    border-radius: 4px;
+    display: flex;
+}
+
+.windowIcons img {
+    width: 16px;
+    height: 16px;
+}
+
+.windowIcons .closeButton:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.windowIcons button:hover {
+    cursor: pointer;
+    background-color: rgb(210, 24, 210);
+    transition: 50ms ease-in-out;
+}
+
+.minimized {
+    display: none;
+}

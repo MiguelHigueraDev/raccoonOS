@@ -1,0 +1,6 @@
+.desktop {
+    height: calc(100vh - 52px);
+    width: 100vw;
+    position: relative;
+    position: fixed;
+}

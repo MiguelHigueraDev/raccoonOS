@@ -7,5 +7,6 @@
     display: flex;
     align-content: center;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 8px;
 }

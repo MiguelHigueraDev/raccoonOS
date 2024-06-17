@@ -1,18 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import Taskbar from './components/Taskbar/Taskbar'
-import Background from './components/Background/Background'
+import "./App.css";
+import Background from "./components/Background/Background";
+import Desktop from "./components/Desktop/Desktop";
 
 function App() {
-
-  const [currentZIndex, setCurrentZIndex] = useState(0)
-
   return (
     <>
-    <Background />
-     <Taskbar />
+      <Background />
+      <Desktop />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

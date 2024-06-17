@@ -6,3 +6,7 @@ img {
 img:hover {
     cursor: pointer;
 }
+
+.hidden {
+    display: none;
+}
