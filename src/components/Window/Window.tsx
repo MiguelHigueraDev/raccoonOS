@@ -25,34 +25,45 @@ const Window = ({
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const [finalWidth, setFinalWidth] = useState<string>(width + "px");
   const [finalHeight, setFinalHeight] = useState<string>(height + "px");
-  const [position, setPosition] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
+  const [position, setPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
 
   const windowRef = useRef<HTMLDivElement>(null);
 
   const handleMaximize = () => {
     if (!isMaximized) {
-      // Store the current position before maximizing
-      const transform = windowRef.current?.style.transform;
-      const match = transform?.match(/translate\(([^,]+)px,\s*([^,]+)px\)/);
-      if (match) {
-        setPosition({ x: parseFloat(match[1]), y: parseFloat(match[2]) });
+      const currentPosition = getCurrentPosition();
+      if (currentPosition) {
+        setPosition(currentPosition);
       }
-
-      // Maximize the window
-      setFinalWidth("100vw");
-      setFinalHeight("calc(100vh - 52px)");
-      windowRef.current?.style.setProperty("transform", "none");
+      maximizeWindow();
     } else {
-      // Restore the window to original size and position
-      setFinalWidth(width + "px");
-      setFinalHeight(height + "px");
-      // Apply the stored position back
-      windowRef.current?.style.setProperty(
-        "transform",
-        `translate(${position.x}px, ${position.y}px)`
-      );
+      restoreWindow();
     }
     setIsMaximized(!isMaximized);
+  };
+
+  const getCurrentPosition = () => {
+    const transform = windowRef.current?.style.transform;
+    const match = transform?.match(/translate\(([^,]+)px,\s*([^,]+)px\)/);
+    return match ? { x: parseFloat(match[1]), y: parseFloat(match[2]) } : null;
+  };
+
+  const maximizeWindow = () => {
+    setFinalWidth("100vw");
+    setFinalHeight("calc(100vh - 52px)");
+    windowRef.current?.style.setProperty("transform", "none");
+  };
+
+  const restoreWindow = () => {
+    setFinalWidth(`${width}px`);
+    setFinalHeight(`${height}px`);
+    windowRef.current?.style.setProperty(
+      "transform",
+      `translate(${position.x}px, ${position.y}px)`
+    );
   };
 
   const putOnTop = () => {
