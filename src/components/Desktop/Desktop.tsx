@@ -55,13 +55,22 @@ const Desktop = () => {
           onDoubleClick={() => handleOpenApp("testApp")}
           iconUrl="./app-icons/music.png"
           name="Music"
+          position={{ x: 20, y: 20 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("resumeApp")}
           iconUrl="./app-icons/resume.svg"
           name="Resume"
+          position={{ x: 20, y: 120 }}
         />
 
+        {/* Hyperlinks */}
+        <AppIcon
+          onDoubleClick={() => window.open("https://github.com/MiguelHigueraDev/misfit-os/")}
+          iconUrl="./app-icons/github.svg"
+          name="Source"
+          position={{ x: 20, y: 220 }}
+        />
         {/* Applications */}
         <MusicApplication
           isOpen={musicAppOpen}
@@ -75,6 +84,7 @@ const Desktop = () => {
           handleClose={() => setResumeAppOpen(false)}
           handleHide={() => setResumeAppHidden(true)}
         />
+
       </div>
       <Taskbar>
         {/* Taskbar Icons */}
