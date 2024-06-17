@@ -3,7 +3,7 @@ import AppIcon from "../AppIcon/AppIcon";
 import classes from "./Desktop.module.css";
 import Taskbar from "../Taskbar/Taskbar";
 import TaskbarIcon from "../TaskbarIcon/TaskbarIcon";
-import MusicApplication from "../Applications/MusicApplication";
+import MusicApplication from "../Applications/MusicApplication/MusicApplication";
 
 const Desktop = () => {
   const [testAppOpen, setTestAppOpen] = useState(false);
