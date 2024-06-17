@@ -3,4 +3,5 @@
     width: 100vw;
     position: relative;
     position: fixed;
+    overflow: hidden;
 }
