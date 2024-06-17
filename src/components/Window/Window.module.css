@@ -48,14 +48,14 @@
     height: 16px;
 }
 
-.windowIcons .closeButton:hover {
-    background-color: rgb(255, 0, 0);
+.windowIcons button:nth-child(3):hover{
+    background-color: rgb(239, 93, 93);
 }
 
 .windowIcons button:hover {
     cursor: pointer;
-    background-color: rgb(210, 24, 210);
-    transition: 50ms ease-in-out;
+    background-color: rgb(235, 91, 235);
+    transition: 100ms ease-in-out;
 }
 
 .minimized {
