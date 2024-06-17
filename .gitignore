@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Music because of copyright
+public/songs/*.mp3
+public/covers/*.png
+public/covers/*.jpg
+
+src/components/Applications/MusicApplication/TrackList.ts
