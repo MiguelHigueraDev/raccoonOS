@@ -22,6 +22,7 @@ const MusicApplication = ({
         handleHide={handleHide}
         width={600}
         height={600}
+        nonResizable
       >
         <div style={{ padding: 16, height: "95%" }}>
           <AudioPlayer trackList={TrackList} />
