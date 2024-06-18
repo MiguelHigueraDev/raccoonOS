@@ -2,5 +2,37 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
 
+.controls button, .volume button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    text-align: start;
+}
+
+.controls button {
+    margin-top: 3px;
+}
+
+.volume {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.volume button {
+    margin-top: 3px;
+}
+
+input {
+    accent-color: rgb(38, 180, 232);
 }

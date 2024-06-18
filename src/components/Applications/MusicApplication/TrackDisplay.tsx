@@ -1,3 +1,4 @@
+import classes from "./TrackDisplay.module.css";
 import { RefObject } from "react";
 import { Track } from "./TrackList";
 import { IconFileMusic } from "@tabler/icons-react";
@@ -29,21 +30,21 @@ const TrackDisplay = ({
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="audioInfo">
-        <div className="coverArt">
+      <div className={classes.trackInfo}>
+        <div className={classes.trackCoverArt}>
           {currentTrack.coverArt ? (
             <img src={currentTrack.coverArt} alt={currentTrack.name} />
           ) : (
-            <div className="iconWrapper">
-              <span className="noCoverArtIcon">
+            <div>
+              <span className={classes.noTrackCoverArt}>
                 <IconFileMusic />
               </span>
             </div>
           )}
         </div>
-        <div className="text">
-          <div className="title">{currentTrack.name}</div>
-          <div className="artist">{currentTrack.artist}</div>
+        <div className={classes.text}>
+          <div className={classes.title}>{currentTrack.name}</div>
+          <div className={classes.artist}>{currentTrack.artist}</div>
         </div>
       </div>
     </div>
