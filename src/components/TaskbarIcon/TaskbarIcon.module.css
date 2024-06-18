@@ -10,3 +10,18 @@ img:hover {
 .hidden {
     display: none;
 }
+
+.taskbarButton {
+    appearance: none;
+    margin: 0;
+    border-radius: 4px;
+    padding: 4px !important;
+    margin: 4px !important;
+    display: flex;
+}
+
+.taskbarButton:hover {
+    cursor: pointer;
+    background-color: rgba(91, 223, 235, 0.39);
+    transition: 70ms ease-in-out;
+}

@@ -11,8 +11,13 @@ const TaskbarIcon = ({
   iconUrl: string;
   alt: string;
 }) => {
-
-  return isAppOpen && <img src={iconUrl} alt={alt} onClick={handleClick} className={classes.taskbarIcon} />;
+  return (
+    isAppOpen && (
+      <button className={classes.taskbarButton} onClick={handleClick}>
+        <img src={iconUrl} alt={alt} className={classes.taskbarIcon} />
+      </button>
+    )
+  );
 };
 
 export default TaskbarIcon;
