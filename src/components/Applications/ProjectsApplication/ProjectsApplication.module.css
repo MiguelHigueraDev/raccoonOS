@@ -1,0 +1,12 @@
+.window {
+    padding: 16px;
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+}
+
+.projectsContainer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    padding: 20px;
+}

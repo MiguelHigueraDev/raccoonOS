@@ -7,6 +7,7 @@ import MusicApplication from "../Applications/MusicApplication/MusicApplication"
 import ResumeApplication from "../Applications/ResumeApplication/ResumeApplication";
 import WindowStore from "../../stores/WindowStore";
 import DiscordApplication from "../Applications/DiscordApplication/DiscordApplication";
+import ProjectsApplication from "../Applications/ProjectsApplication/ProjectsApplication";
 
 const Desktop = () => {
   const { incZIndex } = WindowStore();
@@ -19,6 +20,9 @@ const Desktop = () => {
 
   const [discordAppOpen, setDiscordAppOpen] = useState(false);
   const [discordAppHidden, setDiscordAppHidden] = useState(false);
+
+  const [projectsAppOpen, setProjectsAppOpen] = useState(false);
+  const [projectsAppHidden, setProjectsAppHidden] = useState(false);
 
   // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
@@ -36,6 +40,10 @@ const Desktop = () => {
         setDiscordAppOpen(true);
         setDiscordAppHidden(false);
         break;
+      case "projectsApp":
+        setProjectsAppOpen(true);
+        setProjectsAppHidden(false);
+        break;
       default:
         break;
     }
@@ -52,6 +60,9 @@ const Desktop = () => {
         break;
       case "discordApp":
         setDiscordAppHidden(!discordAppHidden);
+        break;
+      case "projectsApp":
+        setProjectsAppHidden(!projectsAppHidden);
         break;
       default:
         break;
@@ -80,6 +91,12 @@ const Desktop = () => {
           name="Discord"
           position={{ x: 20, y: 320 }}
         />
+        <AppIcon
+          onDoubleClick={() => handleOpenApp("projectsApp")}
+          iconUrl="./app-icons/projects.svg"
+          name="Projects"
+          position={{ x: 20, y: 420 }}
+        />
 
         {/* Hyperlinks */}
         <AppIcon
@@ -107,7 +124,12 @@ const Desktop = () => {
           handleClose={() => setDiscordAppOpen(false)}
           handleHide={() => setDiscordAppHidden(true)}
         />
-
+        <ProjectsApplication
+          isOpen={projectsAppOpen}
+          isHidden={projectsAppHidden}
+          handleClose={() => setProjectsAppOpen(false)}
+          handleHide={() => setProjectsAppHidden(true)}
+        />
       </div>
       <Taskbar>
         {/* Taskbar Icons */}
@@ -131,6 +153,13 @@ const Desktop = () => {
           isAppHidden={discordAppHidden}
           handleClick={() => handleTaskbarIconClick("discordApp")}
           alt="Discord"
+        ></TaskbarIcon>
+        <TaskbarIcon
+          iconUrl="./app-icons/projects.svg"
+          isAppOpen={projectsAppOpen}
+          isAppHidden={projectsAppHidden}
+          handleClick={() => handleTaskbarIconClick("projectsApp")}
+          alt="Projects"
         ></TaskbarIcon>
       </Taskbar>
     </>
