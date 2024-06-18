@@ -1,0 +1,43 @@
+.window {
+    padding: 16px;
+    height: calc(100% - 40px);
+    line-height: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.strongText {
+    font-weight: bold;
+    color: rgb(220, 28, 204);
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.strongText2 {
+    font-weight: bold;
+    color: rgb(28, 156, 220);
+    font-style: italic;
+}
+
+.profilePicture {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+}
+
+.profilePicture > p{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(220, 28, 204);
+    font-style: italic;
+}
+
+.profilePicture img {
+    width: 300px;
+    height: 300px;
+    cursor: default;
+}

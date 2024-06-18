@@ -8,6 +8,7 @@ import ResumeApplication from "../Applications/ResumeApplication/ResumeApplicati
 import WindowStore from "../../stores/WindowStore";
 import DiscordApplication from "../Applications/DiscordApplication/DiscordApplication";
 import ProjectsApplication from "../Applications/ProjectsApplication/ProjectsApplication";
+import AboutMeApplication from "../Applications/AboutMeApplication/AboutMeApplication";
 
 const Desktop = () => {
   const { incZIndex } = WindowStore();
@@ -23,6 +24,9 @@ const Desktop = () => {
 
   const [projectsAppOpen, setProjectsAppOpen] = useState(false);
   const [projectsAppHidden, setProjectsAppHidden] = useState(false);
+
+  const [aboutMeAppOpen, setAboutMeAppOpen] = useState(false);
+  const [aboutMeAppHidden, setAboutMeAppHidden] = useState(false);
 
   // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
@@ -44,6 +48,10 @@ const Desktop = () => {
         setProjectsAppOpen(true);
         setProjectsAppHidden(false);
         break;
+      case "aboutMeApp":
+        setAboutMeAppOpen(true);
+        setAboutMeAppHidden(false);
+        break;
       default:
         break;
     }
@@ -63,6 +71,9 @@ const Desktop = () => {
         break;
       case "projectsApp":
         setProjectsAppHidden(!projectsAppHidden);
+        break;
+      case "aboutMeApp":
+        setAboutMeAppHidden(!aboutMeAppHidden);
         break;
       default:
         break;
@@ -97,20 +108,34 @@ const Desktop = () => {
           name="Projects"
           position={{ x: 20, y: 420 }}
         />
-
+        <AppIcon
+          onDoubleClick={() => handleOpenApp("aboutMeApp")}
+          iconUrl="./app-icons/aboutme.svg"
+          name="About Me"
+          position={{ x: 20, y: 520 }}
+        />
+        
         {/* Hyperlinks */}
         <AppIcon
-          onDoubleClick={() => window.open("https://github.com/MiguelHigueraDev/misfit-os/")}
+          onDoubleClick={() =>
+            window.open("https://github.com/MiguelHigueraDev/misfit-os/")
+          }
           iconUrl="./app-icons/github.svg"
           name="Source"
           position={{ x: 20, y: 220 }}
         />
         {/* Applications */}
-        <MusicApplication
-          isOpen={musicAppOpen}
-          isHidden={musicAppHidden}
-          handleClose={() => setMusicAppOpen(false)}
-          handleHide={() => setMusicAppHidden(true)}
+        <AboutMeApplication
+          isOpen={aboutMeAppOpen}
+          isHidden={aboutMeAppHidden}
+          handleClose={() => setAboutMeAppOpen(false)}
+          handleHide={() => setAboutMeAppHidden(true)}
+        />
+        <ProjectsApplication
+          isOpen={projectsAppOpen}
+          isHidden={projectsAppHidden}
+          handleClose={() => setProjectsAppOpen(false)}
+          handleHide={() => setProjectsAppHidden(true)}
         />
         <ResumeApplication
           isOpen={resumeAppOpen}
@@ -124,21 +149,22 @@ const Desktop = () => {
           handleClose={() => setDiscordAppOpen(false)}
           handleHide={() => setDiscordAppHidden(true)}
         />
-        <ProjectsApplication
-          isOpen={projectsAppOpen}
-          isHidden={projectsAppHidden}
-          handleClose={() => setProjectsAppOpen(false)}
-          handleHide={() => setProjectsAppHidden(true)}
+
+        <MusicApplication
+          isOpen={musicAppOpen}
+          isHidden={musicAppHidden}
+          handleClose={() => setMusicAppOpen(false)}
+          handleHide={() => setMusicAppHidden(true)}
         />
       </div>
       <Taskbar>
         {/* Taskbar Icons */}
         <TaskbarIcon
-          iconUrl="./app-icons/music.png"
-          isAppOpen={musicAppOpen}
-          isAppHidden={musicAppHidden}
-          handleClick={() => handleTaskbarIconClick("testApp")}
-          alt="Music"
+          iconUrl="./app-icons/aboutme.svg"
+          isAppOpen={aboutMeAppOpen}
+          isAppHidden={aboutMeAppHidden}
+          handleClick={() => handleTaskbarIconClick("aboutMeApp")}
+          alt="About Me"
         ></TaskbarIcon>
         <TaskbarIcon
           iconUrl="./app-icons/resume.svg"
@@ -148,6 +174,13 @@ const Desktop = () => {
           alt="Resume"
         ></TaskbarIcon>
         <TaskbarIcon
+          iconUrl="./app-icons/projects.svg"
+          isAppOpen={projectsAppOpen}
+          isAppHidden={projectsAppHidden}
+          handleClick={() => handleTaskbarIconClick("projectsApp")}
+          alt="Projects"
+        ></TaskbarIcon>
+        <TaskbarIcon
           iconUrl="./app-icons/discord.svg"
           isAppOpen={discordAppOpen}
           isAppHidden={discordAppHidden}
@@ -155,11 +188,11 @@ const Desktop = () => {
           alt="Discord"
         ></TaskbarIcon>
         <TaskbarIcon
-          iconUrl="./app-icons/projects.svg"
-          isAppOpen={projectsAppOpen}
-          isAppHidden={projectsAppHidden}
-          handleClick={() => handleTaskbarIconClick("projectsApp")}
-          alt="Projects"
+          iconUrl="./app-icons/music.png"
+          isAppOpen={musicAppOpen}
+          isAppHidden={musicAppHidden}
+          handleClick={() => handleTaskbarIconClick("testApp")}
+          alt="Music"
         ></TaskbarIcon>
       </Taskbar>
     </>
