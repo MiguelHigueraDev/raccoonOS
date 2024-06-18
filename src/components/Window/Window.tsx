@@ -73,7 +73,7 @@ const Window = ({
     windowRef.current?.style.setProperty("z-index", zIndex.toString());
   };
 
-  const handleDrag = (e, data) => {
+  const handleDrag = (_e: unknown, data: { x: number; y: number }) => {
     // Update position state during drag
     setPosition({ x: data.x, y: data.y });
   };
