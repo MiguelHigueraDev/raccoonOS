@@ -23,7 +23,6 @@ const ProjectsApplication = ({
         handleHide={handleHide}
         width={1100}
         height={800}
-        nonResizable
       >
         <div className={classes.window}>
           <ul className={classes.projectsContainer}>

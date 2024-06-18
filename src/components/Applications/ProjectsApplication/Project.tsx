@@ -5,7 +5,7 @@ import { Project as ProjectProps } from "./Projects";
 const Project = ({ project }: { project: ProjectProps }) => {
   const { name, description, image, technologies, liveUrl, repoUrl } = project;
   return (
-    <li className={classes.projectList}>
+    <li className={classes.project}>
       <div style={{ flexGrow: 2 }}>
         {liveUrl || repoUrl ? (
           <>
