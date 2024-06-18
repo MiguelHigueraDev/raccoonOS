@@ -1,0 +1,42 @@
+.window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  height: calc(100% - 42px);
+  text-align: center;
+}
+
+.window h1 {
+  font-size: 32px;
+  font-weight: 700;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.window p {
+  font-size: 16px;
+}
+
+.window a {
+  font-size: 24px;
+  color: rgb(232, 33, 232);
+  transition: color 0.1s ease-in;
+}
+
+.window a:hover {
+  color: rgb(54, 167, 186);
+  text-decoration: underline;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.links svg {
+  width: 48px;
+  height: 48px;
+}
