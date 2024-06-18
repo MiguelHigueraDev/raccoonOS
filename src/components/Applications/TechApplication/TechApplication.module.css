@@ -1,0 +1,22 @@
+.window {
+    padding: 16px;
+    height: calc(100% - 40px);
+    line-height: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.techStack img {
+    width: 75px;
+    height: 75px;
+    cursor: default;
+}
