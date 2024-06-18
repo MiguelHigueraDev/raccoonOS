@@ -114,18 +114,21 @@ const Desktop = () => {
         <TaskbarIcon
           iconUrl="./app-icons/music.png"
           isAppOpen={musicAppOpen}
+          isAppHidden={musicAppHidden}
           handleClick={() => handleTaskbarIconClick("testApp")}
           alt="Music"
         ></TaskbarIcon>
         <TaskbarIcon
           iconUrl="./app-icons/resume.svg"
           isAppOpen={resumeAppOpen}
+          isAppHidden={resumeAppHidden}
           handleClick={() => handleTaskbarIconClick("resumeApp")}
           alt="Resume"
         ></TaskbarIcon>
         <TaskbarIcon
           iconUrl="./app-icons/discord.svg"
           isAppOpen={discordAppOpen}
+          isAppHidden={discordAppHidden}
           handleClick={() => handleTaskbarIconClick("discordApp")}
           alt="Discord"
         ></TaskbarIcon>

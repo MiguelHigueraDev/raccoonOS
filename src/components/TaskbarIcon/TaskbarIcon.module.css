@@ -18,10 +18,32 @@ img:hover {
     padding: 4px !important;
     margin: 4px !important;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
 .taskbarButton:hover {
     cursor: pointer;
     background-color: rgba(91, 223, 235, 0.39);
     transition: 70ms ease-in-out;
+}
+
+.indicator {
+    width: 0;
+    height: 4px;
+    background-color: rgba(63, 174, 253, 0.485);
+    position: absolute;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.hiddenIndicator {
+    width: 12px;
+    background-color: rgba(63, 174, 253, 0.485);
+}
+
+.visibleIndicator {
+    width: 24px;
+    background-color: rgba(63, 174, 253, 0.961);
 }

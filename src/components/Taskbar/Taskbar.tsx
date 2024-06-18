@@ -7,8 +7,10 @@ const Taskbar = ({ children }: { children: ReactElement[] | ReactElement }) => {
       <TaskbarIcon
         handleClick={() => {}}
         isAppOpen={true}
+        isAppHidden={false}
         iconUrl="./taskbar-icons/misfitos-logo.png"
         alt="Start Menu"
+        showIndicator={false}
       />
       {children}
     </nav>
