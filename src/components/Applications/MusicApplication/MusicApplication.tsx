@@ -1,4 +1,6 @@
 import Window from "../../Window/Window";
+import AudioPlayer from "./AudioPlayer";
+import { TrackList } from "./TrackList";
 
 const MusicApplication = ({
   isOpen,
@@ -13,9 +15,16 @@ const MusicApplication = ({
 }) => {
   return (
     isOpen && (
-      <Window name="Music" isHidden={isHidden} handleClose={handleClose} handleHide={handleHide} width={800} height={400}>
-        <div style={{ padding: 16 }}>
-          <p style={{ margin: 0 }}>Testing!</p>
+      <Window
+        name="Music"
+        isHidden={isHidden}
+        handleClose={handleClose}
+        handleHide={handleHide}
+        width={600}
+        height={600}
+      >
+        <div style={{ padding: 16, height: "100%" }}>
+          <AudioPlayer trackList={TrackList} />
         </div>
       </Window>
     )
