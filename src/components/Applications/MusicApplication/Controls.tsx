@@ -21,6 +21,8 @@ const Controls = ({
   duration,
   setCurrentTime,
   handleNext,
+  isPlaying,
+  setIsPlaying,
 }: {
   tracks: Track[];
   trackIndex: number;
@@ -31,8 +33,9 @@ const Controls = ({
   duration: number;
   setCurrentTime: (time: number) => void;
   handleNext: () => void;
+  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
 }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(65);
   const [muteVolume, setMuteVolume] = useState(false);
 
@@ -69,7 +72,7 @@ const Controls = ({
   }, [isPlaying, audioRef, repeat]);
 
   const togglePlayPause = () => {
-    setIsPlaying((prev) => !prev);
+    setIsPlaying(!isPlaying);
   };
 
   const handlePrevious = () => {

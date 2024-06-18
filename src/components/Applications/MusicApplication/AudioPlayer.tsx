@@ -11,6 +11,7 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
   const [currentTrack, setCurrentTrack] = useState(trackList[trackIndex]);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressRef = useRef<HTMLInputElement>(null);
@@ -30,7 +31,7 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
   const handleSeek = (time: number) => {
     audioRef.current!.currentTime = time;
     setCurrentTime(time);
-    // Play song
+    setIsPlaying(true);
     audioRef.current!.play();
   };
 
@@ -54,6 +55,8 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
           duration={duration}
           setCurrentTime={setCurrentTime}
           handleNext={handleNext}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
         />
         <SeekBar
           audioRef={audioRef}
@@ -66,6 +69,7 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
           currentTime={currentTime}
           handleSeek={handleSeek}
           lyricsContainerRef={lyricsContainerRef}
+          setIsPlaying={setIsPlaying}
         />
       </div>
     </div>
