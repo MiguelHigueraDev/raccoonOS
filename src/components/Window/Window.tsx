@@ -11,6 +11,7 @@ const Window = ({
   handleHide,
   isHidden = false,
   children,
+  nonResizable = false,
 }: {
   name: string;
   width: number;
@@ -19,6 +20,7 @@ const Window = ({
   handleHide: () => void;
   isHidden: boolean;
   children?: ReactElement[] | ReactElement;
+  nonResizable?: boolean;
 }) => {
   const { zIndex, incZIndex } = WindowStore();
 
@@ -100,15 +102,19 @@ const Window = ({
             <button onClick={handleHide}>
               <img src="./ui-icons/hide.svg" />
             </button>
-            <button onClick={handleMaximize}>
-              <img
-                src={
-                  isMaximized
-                    ? "./ui-icons/minimize.svg"
-                    : "./ui-icons/maximize.svg"
-                }
-              />
-            </button>
+
+            {!nonResizable && (
+              <button onClick={handleMaximize}>
+                <img
+                  src={
+                    isMaximized
+                      ? "./ui-icons/minimize.svg"
+                      : "./ui-icons/maximize.svg"
+                  }
+                />
+              </button>
+            )}
+
             <button className="closeButton" onClick={handleClose}>
               <img src="./ui-icons/close.svg" />
             </button>
