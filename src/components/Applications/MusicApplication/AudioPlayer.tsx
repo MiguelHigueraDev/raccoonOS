@@ -26,7 +26,6 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
   };
 
   const handleSeek = (time: number) => {
-    console.log(time);
     audioRef.current!.currentTime = time;
     setCurrentTime(time);
     // Play song
