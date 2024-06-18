@@ -5,21 +5,25 @@ const LyricsDisplay = ({
   currentTrack,
   currentTime,
   handleSeek,
+  lyricsContainerRef,
 }: {
   currentTrack: Track;
   currentTime: number;
   handleSeek: (time: number) => void;
+  lyricsContainerRef: React.RefObject<HTMLOListElement>;
 }) => {
   const currentTimeMs = currentTime * 1000;
 
   return (
-    <ol className={classes.lyricsContainer}>
+    <ol className={classes.lyricsContainer} ref={lyricsContainerRef}>
       {currentTrack.lyrics!.map((lyric, index) => {
         const isActive = currentTimeMs >= lyric.startTimeMs;
         const className = isActive ? classes.activeLyrics : undefined;
         return (
           <li key={index} className={className}>
-            <button onClick={() => handleSeek(lyric.startTimeMs / 1000)}>{lyric.text}</button>
+            <button onClick={() => handleSeek(lyric.startTimeMs / 1000)}>
+              {lyric.text}
+            </button>
           </li>
         );
       })}

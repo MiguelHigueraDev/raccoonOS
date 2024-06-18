@@ -14,6 +14,7 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressRef = useRef<HTMLInputElement>(null);
+  const lyricsContainerRef = useRef<HTMLOListElement | null>(null);
 
   const handleNext = () => {
     if (trackIndex >= trackList.length - 1) {
@@ -23,6 +24,7 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
       setTrackIndex(trackIndex + 1);
       setCurrentTrack(trackList[trackIndex + 1]);
     }
+    lyricsContainerRef.current!.scrollTop = 0;
   };
 
   const handleSeek = (time: number) => {
@@ -63,6 +65,7 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
           currentTrack={currentTrack}
           currentTime={currentTime}
           handleSeek={handleSeek}
+          lyricsContainerRef={lyricsContainerRef}
         />
       </div>
     </div>
