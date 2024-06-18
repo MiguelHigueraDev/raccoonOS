@@ -4,6 +4,7 @@ import TrackDisplay from "./TrackDisplay";
 import Controls from "./Controls";
 import SeekBar from "./SeekBar";
 import { useRef, useState } from "react";
+import LyricsDisplay from "./LyricsDisplay";
 
 const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
   const [trackIndex, setTrackIndex] = useState(0);
@@ -24,9 +25,17 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
     }
   };
 
+  const handleSeek = (time: number) => {
+    console.log(time);
+    audioRef.current!.currentTime = time;
+    setCurrentTime(time);
+    // Play song
+    audioRef.current!.play();
+  };
+
   return (
-    <div className="audioPlayer">
-      <div className="inner">
+    <div className={classes.audioPlayer}>
+      <div className={classes.inner}>
         <TrackDisplay
           currentTrack={currentTrack}
           audioRef={audioRef}
@@ -50,6 +59,11 @@ const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
           progressRef={progressRef}
           currentTime={currentTime}
           duration={duration}
+        />
+        <LyricsDisplay
+          currentTrack={currentTrack}
+          currentTime={currentTime}
+          handleSeek={handleSeek}
         />
       </div>
     </div>

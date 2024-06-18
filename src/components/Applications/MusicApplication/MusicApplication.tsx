@@ -23,7 +23,7 @@ const MusicApplication = ({
         width={600}
         height={600}
       >
-        <div style={{ padding: 16, height: "100%" }}>
+        <div style={{ padding: 16, height: "95%" }}>
           <AudioPlayer trackList={TrackList} />
         </div>
       </Window>

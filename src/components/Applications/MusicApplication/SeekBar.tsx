@@ -1,3 +1,4 @@
+import classes from "./SeekBar.module.css";
 import { RefObject } from "react";
 
 const SeekBar = ({
@@ -26,15 +27,15 @@ const SeekBar = ({
   };
 
   return (
-    <div className="progressBar">
-      <span className="currentTime">{formatTime(currentTime)}</span>
+    <div className={classes.seekBar}>
+      <span>{formatTime(currentTime)}</span>
       <input
         type="range"
         ref={progressRef}
         defaultValue={0}
         onChange={handleProgressChange}
       />
-      <span className="duration">{formatTime(duration)}</span>
+      <span>{formatTime(duration)}</span>
     </div>
   );
 };

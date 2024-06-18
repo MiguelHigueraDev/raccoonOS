@@ -1,3 +1,4 @@
+import classes from "./Controls.module.css";
 import {
   IconPlayerPause,
   IconPlayerPlay,
@@ -89,8 +90,8 @@ const Controls = ({
   }, [volume, audioRef, muteVolume]);
 
   return (
-    <div className="controlsWrapper">
-      <div className="controls">
+    <div className={classes.controlsContainer}>
+      <div className={classes.controls}>
         <button>
           <IconPlayerSkipBack onClick={handlePrevious} />
         </button>
@@ -103,7 +104,7 @@ const Controls = ({
           <IconPlayerSkipForward onClick={handleNext} />
         </button>
       </div>
-      <div className="volume">
+      <div className={classes.volume}>
         <input
           type="range"
           min={0}

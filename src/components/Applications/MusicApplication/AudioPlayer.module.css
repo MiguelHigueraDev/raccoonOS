@@ -1,46 +1,12 @@
 .audioPlayer {
   display: flex;
   flex-direction: column;
-}
-
-.audioContainer {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-.audioContainer img {
-  width: 75px;
-  height: 75px;
-}
-
-.audioContainer div:nth-child(2) {
-  flex-grow: 2;
-}
-
-.audioContainer h3,
-.audioContainer h4 {
-  margin: 0;
-}
-
-.controlsContainer {
-  flex-grow: 2;
-}
-
-.seekBar {
-  margin-top: 16px;
-  margin-bottom: 16px;
-
   width: 100%;
-  background-color: black;
-  height: 4px;
-  border-radius: 16px;
-  position: relative;
-  cursor: pointer;
+  height: 100%;
 }
 
-.seekBarProgress {
-  background-color: white;
-  height: 4px;
-  width: 0;
+.inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
