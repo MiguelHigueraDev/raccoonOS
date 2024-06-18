@@ -1,6 +1,6 @@
 import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import classes from "./Project.module.css";
-import { Project as ProjectProps } from "./Projects";
+import { Project as ProjectProps } from "./projects";
 
 const Project = ({ project }: { project: ProjectProps }) => {
   const { name, description, image, technologies, liveUrl, repoUrl } = project;
