@@ -6,6 +6,7 @@ import TaskbarIcon from "../TaskbarIcon/TaskbarIcon";
 import MusicApplication from "../Applications/MusicApplication/MusicApplication";
 import ResumeApplication from "../Applications/ResumeApplication/ResumeApplication";
 import WindowStore from "../../stores/WindowStore";
+import DiscordApplication from "../Applications/DiscordApplication/DiscordApplication";
 
 const Desktop = () => {
   const { incZIndex } = WindowStore();
@@ -15,6 +16,9 @@ const Desktop = () => {
 
   const [resumeAppOpen, setResumeAppOpen] = useState(false);
   const [resumeAppHidden, setResumeAppHidden] = useState(false);
+
+  const [discordAppOpen, setDiscordAppOpen] = useState(false);
+  const [discordAppHidden, setDiscordAppHidden] = useState(false);
 
   // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
@@ -27,6 +31,10 @@ const Desktop = () => {
       case "resumeApp":
         setResumeAppOpen(true);
         setResumeAppHidden(false);
+        break;
+      case "discordApp":
+        setDiscordAppOpen(true);
+        setDiscordAppHidden(false);
         break;
       default:
         break;
@@ -41,6 +49,9 @@ const Desktop = () => {
         break;
       case "resumeApp":
         setResumeAppHidden(!resumeAppHidden);
+        break;
+      case "discordApp":
+        setDiscordAppHidden(!discordAppHidden);
         break;
       default:
         break;
@@ -63,6 +74,12 @@ const Desktop = () => {
           name="Resume"
           position={{ x: 20, y: 120 }}
         />
+        <AppIcon
+          onDoubleClick={() => handleOpenApp("discordApp")}
+          iconUrl="./app-icons/discord.svg"
+          name="Discord"
+          position={{ x: 20, y: 320 }}
+        />
 
         {/* Hyperlinks */}
         <AppIcon
@@ -84,6 +101,12 @@ const Desktop = () => {
           handleClose={() => setResumeAppOpen(false)}
           handleHide={() => setResumeAppHidden(true)}
         />
+        <DiscordApplication
+          isOpen={discordAppOpen}
+          isHidden={discordAppHidden}
+          handleClose={() => setDiscordAppOpen(false)}
+          handleHide={() => setDiscordAppHidden(true)}
+        />
 
       </div>
       <Taskbar>
@@ -99,6 +122,12 @@ const Desktop = () => {
           isAppOpen={resumeAppOpen}
           handleClick={() => handleTaskbarIconClick("resumeApp")}
           alt="Resume"
+        ></TaskbarIcon>
+        <TaskbarIcon
+          iconUrl="./app-icons/discord.svg"
+          isAppOpen={discordAppOpen}
+          handleClick={() => handleTaskbarIconClick("discordApp")}
+          alt="Discord"
         ></TaskbarIcon>
       </Taskbar>
     </>
