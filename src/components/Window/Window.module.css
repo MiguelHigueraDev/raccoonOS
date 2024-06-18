@@ -1,6 +1,6 @@
 .window {
     border-radius: 8px;
-    border: 2px solid purple;
+    border: 2px solid rgb(174, 19, 164);
     background-color: #ffffff;
     user-select: none;
     position: absolute;
@@ -10,9 +10,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid purple;
+    border-bottom: 2px solid rgb(174, 19, 164);
     border-radius: 8px 8px 0 0;
-    background-color: rgb(42, 211, 245);
+    background: linear-gradient(to right, rgb(236, 87, 236), cyan);
 }
 
 .windowName {
