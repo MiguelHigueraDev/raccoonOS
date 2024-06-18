@@ -12,6 +12,8 @@ const Window = ({
   isHidden = false,
   children,
   nonResizable = false,
+  appName,
+  zIndex,
 }: {
   name: string;
   width: number;
@@ -21,8 +23,10 @@ const Window = ({
   isHidden: boolean;
   children?: ReactElement[] | ReactElement;
   nonResizable?: boolean;
+  appName: string;
+  zIndex: number;
 }) => {
-  const { zIndex, incZIndex } = WindowStore();
+  const { incZIndex } = WindowStore();
 
   const [isMaximized, setIsMaximized] = useState<boolean>(false);
   const [finalWidth, setFinalWidth] = useState<string>(width + "px");
@@ -69,8 +73,7 @@ const Window = ({
   };
 
   const putOnTop = () => {
-    incZIndex();
-    windowRef.current?.style.setProperty("z-index", zIndex.toString());
+    incZIndex(appName);
   };
 
   const handleDrag = (_e: unknown, data: { x: number; y: number }) => {
@@ -91,7 +94,7 @@ const Window = ({
       <div
         ref={windowRef}
         className={className}
-        style={{ width: finalWidth, height: finalHeight }}
+        style={{ width: finalWidth, height: finalHeight, zIndex }}
       >
         {/* Icons */}
         <div className={`${classes.windowHeader}`}>

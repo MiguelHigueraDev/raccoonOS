@@ -4,7 +4,8 @@
 // And rename this file to TrackList.ts
 
 // Export this TrackList to use it in the MusicApplication component
-const TrackList: Track[] = [
+// Replace unknown type by the Track interface
+const TrackList: unknown[] = [
     {
         name: "Cradles",
         artist: "Sub Urban",

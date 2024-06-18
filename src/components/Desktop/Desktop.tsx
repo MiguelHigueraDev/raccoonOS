@@ -12,7 +12,7 @@ import AboutMeApplication from "../Applications/AboutMeApplication/AboutMeApplic
 import TechApplication from "../Applications/TechApplication/TechApplication";
 
 const Desktop = () => {
-  const { incZIndex } = WindowStore();
+  const { incZIndex, getZIndex } = WindowStore();
 
   const [musicAppOpen, setMusicAppOpen] = useState(false);
   const [musicAppHidden, setMusicAppHidden] = useState(false);
@@ -34,9 +34,9 @@ const Desktop = () => {
 
   // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
-    incZIndex();
+    incZIndex(appName);
     switch (appName) {
-      case "testApp":
+      case "musicApp":
         setMusicAppOpen(true);
         setMusicAppHidden(false);
         break;
@@ -66,9 +66,9 @@ const Desktop = () => {
   };
 
   const handleTaskbarIconClick = (appName: string) => {
-    incZIndex();
+    incZIndex(appName);
     switch (appName) {
-      case "testApp":
+      case "musicApp":
         setMusicAppHidden(!musicAppHidden);
         break;
       case "resumeApp":
@@ -96,7 +96,7 @@ const Desktop = () => {
       <div className={classes.desktop}>
         {/* Desktop Icons */}
         <AppIcon
-          onDoubleClick={() => handleOpenApp("testApp")}
+          onDoubleClick={() => handleOpenApp("musicApp")}
           iconUrl="./app-icons/music.png"
           name="Music"
           position={{ x: 20, y: 20 }}
@@ -143,40 +143,64 @@ const Desktop = () => {
         />
         {/* Applications */}
         <AboutMeApplication
-          isOpen={aboutMeAppOpen}
-          isHidden={aboutMeAppHidden}
-          handleClose={() => setAboutMeAppOpen(false)}
-          handleHide={() => setAboutMeAppHidden(true)}
+          winProps={{
+            appName: "aboutMeApp",
+            isOpen: aboutMeAppOpen,
+            isHidden: aboutMeAppHidden,
+            handleClose: () => setAboutMeAppOpen(false),
+            handleHide: () => setAboutMeAppHidden(true),
+            zIndex: getZIndex("aboutMeApp"),
+          }}
         />
         <ProjectsApplication
-          isOpen={projectsAppOpen}
-          isHidden={projectsAppHidden}
-          handleClose={() => setProjectsAppOpen(false)}
-          handleHide={() => setProjectsAppHidden(true)}
+          winProps={{
+            appName: "projectsApp",
+            isOpen: projectsAppOpen,
+            isHidden: projectsAppHidden,
+            handleClose: () => setProjectsAppOpen(false),
+            handleHide: () => setProjectsAppHidden(true),
+            zIndex: getZIndex("projectsApp"),
+          }}
         />
         <ResumeApplication
-          isOpen={resumeAppOpen}
-          isHidden={resumeAppHidden}
-          handleClose={() => setResumeAppOpen(false)}
-          handleHide={() => setResumeAppHidden(true)}
+          winProps={{
+            appName: "resumeApp",
+            isOpen: resumeAppOpen,
+            isHidden: resumeAppHidden,
+            handleClose: () => setResumeAppOpen(false),
+            handleHide: () => setResumeAppHidden(true),
+            zIndex: getZIndex("resumeApp"),
+          }}
         />
         <TechApplication
-          isOpen={techAppOpen}
-          isHidden={techAppHidden}
-          handleClose={() => setTechAppOpen(false)}
-          handleHide={() => setTechAppHidden(true)}
+          winProps={{
+            appName: "techApp",
+            isOpen: techAppOpen,
+            isHidden: techAppHidden,
+            handleClose: () => setTechAppOpen(false),
+            handleHide: () => setTechAppHidden(true),
+            zIndex: getZIndex("techApp"),
+          }}
         />
         <DiscordApplication
-          isOpen={discordAppOpen}
-          isHidden={discordAppHidden}
-          handleClose={() => setDiscordAppOpen(false)}
-          handleHide={() => setDiscordAppHidden(true)}
+          winProps={{
+            appName: "discordApp",
+            isOpen: discordAppOpen,
+            isHidden: discordAppHidden,
+            handleClose: () => setDiscordAppOpen(false),
+            handleHide: () => setDiscordAppHidden(true),
+            zIndex: getZIndex("discordApp"),
+          }}
         />
         <MusicApplication
-          isOpen={musicAppOpen}
-          isHidden={musicAppHidden}
-          handleClose={() => setMusicAppOpen(false)}
-          handleHide={() => setMusicAppHidden(true)}
+          winProps={{
+            appName: "musicApp",
+            isOpen: musicAppOpen,
+            isHidden: musicAppHidden,
+            handleClose: () => setMusicAppOpen(false),
+            handleHide: () => setMusicAppHidden(true),
+            zIndex: getZIndex("musicApp"),
+          }}
         />
       </div>
       <Taskbar>
@@ -220,7 +244,7 @@ const Desktop = () => {
           iconUrl="./app-icons/music.png"
           isAppOpen={musicAppOpen}
           isAppHidden={musicAppHidden}
-          handleClick={() => handleTaskbarIconClick("testApp")}
+          handleClick={() => handleTaskbarIconClick("musicApp")}
           alt="Music"
         ></TaskbarIcon>
       </Taskbar>

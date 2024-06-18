@@ -3,28 +3,21 @@ import Window from "../../Window/Window";
 import { Canvas } from "@react-three/fiber";
 import { Float, Text3D } from "@react-three/drei";
 import { extraTechStack, mainTechStack } from "./teckStack";
+import { WindowProps } from "../../../shared/WindowProps";
 
-const TechApplication = ({
-  isOpen,
-  isHidden,
-  handleClose,
-  handleHide,
-}: {
-  isOpen: boolean;
-  isHidden: boolean;
-  handleClose: () => void;
-  handleHide: () => void;
-}) => {
+const TechApplication = ({ winProps }: { winProps: WindowProps }) => {
   return (
-    isOpen && (
+    winProps.isOpen && (
       <Window
         name="Tech Stack"
-        isHidden={isHidden}
-        handleClose={handleClose}
-        handleHide={handleHide}
+        isHidden={winProps.isHidden}
+        handleClose={winProps.handleClose}
+        handleHide={winProps.handleHide}
         width={800}
         height={800}
         nonResizable
+        appName={winProps.appName}
+        zIndex={winProps.zIndex}
       >
         <div className={classes.window}>
           <Canvas style={{ height: 100 }}>

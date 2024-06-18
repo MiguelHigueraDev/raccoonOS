@@ -2,32 +2,25 @@ import { LanyardDiscordCard } from "discord-card-react";
 import React, { useState } from "react";
 import Window from "../../Window/Window";
 import "discord-card-react/styles";
+import { WindowProps } from "../../../shared/WindowProps";
 
-const DiscordApplication = ({
-  isOpen,
-  isHidden,
-  handleClose,
-  handleHide,
-}: {
-  isOpen: boolean;
-  isHidden: boolean;
-  handleClose: () => void;
-  handleHide: () => void;
-}) => {
+const DiscordApplication = ({ winProps }: { winProps: WindowProps }) => {
   const [message, setMessage] = useState("");
 
   function handleMessageChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
     setMessage(event.target.value);
   }
   return (
-    isOpen && (
+    winProps.isOpen && (
       <Window
         name="Discord"
-        isHidden={isHidden}
-        handleClose={handleClose}
-        handleHide={handleHide}
+        isHidden={winProps.isHidden}
+        handleClose={winProps.handleClose}
+        handleHide={winProps.handleHide}
         width={332}
         height={653}
+        appName={winProps.appName}
+        zIndex={winProps.zIndex}
         nonResizable
       >
         <div style={{ display: "flex", backgroundColor: "purple" }}>

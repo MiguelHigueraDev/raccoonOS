@@ -1,26 +1,19 @@
+import { WindowProps } from "../../../shared/WindowProps";
 import Window from "../../Window/Window";
 import classes from "./ResumeApplication.module.css";
 
-const ResumeApplication = ({
-  isOpen,
-  isHidden,
-  handleClose,
-  handleHide,
-}: {
-  isOpen: boolean;
-  isHidden: boolean;
-  handleClose: () => void;
-  handleHide: () => void;
-}) => {
+const ResumeApplication = ({ winProps }: { winProps: WindowProps }) => {
   return (
-    isOpen && (
+    winProps.isOpen && (
       <Window
         name="Resume"
-        isHidden={isHidden}
-        handleClose={handleClose}
-        handleHide={handleHide}
+        isHidden={winProps.isHidden}
+        handleClose={winProps.handleClose}
+        handleHide={winProps.handleHide}
         width={800}
         height={700}
+        appName={winProps.appName}
+        zIndex={winProps.zIndex}
       >
         <div className={classes.window}>
           <iframe

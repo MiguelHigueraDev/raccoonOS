@@ -2,27 +2,20 @@ import classes from "./AboutMeApplication.module.css";
 import Window from "../../Window/Window";
 import { Canvas } from "@react-three/fiber";
 import { Float, Text3D } from "@react-three/drei";
+import { WindowProps } from "../../../shared/WindowProps";
 
-const AboutMeApplication = ({
-  isOpen,
-  isHidden,
-  handleClose,
-  handleHide,
-}: {
-  isOpen: boolean;
-  isHidden: boolean;
-  handleClose: () => void;
-  handleHide: () => void;
-}) => {
+const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
   return (
-    isOpen && (
+    winProps.isOpen && (
       <Window
         name="About me"
-        isHidden={isHidden}
-        handleClose={handleClose}
-        handleHide={handleHide}
+        isHidden={winProps.isHidden}
+        handleClose={winProps.handleClose}
+        handleHide={winProps.handleHide}
         width={800}
         height={800}
+        appName={winProps.appName}
+        zIndex={winProps.zIndex}
         nonResizable
       >
         <div className={classes.window}>
@@ -37,7 +30,7 @@ const AboutMeApplication = ({
                 <meshNormalMaterial />
               </mesh>
               <mesh position-x={-13} position-y={2}>
-              <torusGeometry args={[1, 0.4, 16, 16]} />
+                <torusGeometry args={[1, 0.4, 16, 16]} />
                 <meshNormalMaterial />
               </mesh>
             </Float>
