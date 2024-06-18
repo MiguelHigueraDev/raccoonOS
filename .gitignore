@@ -29,3 +29,5 @@ public/covers/*.png
 public/covers/*.jpg
 
 src/components/Applications/MusicApplication/TrackList.ts
+
+.vercel
