@@ -39,11 +39,11 @@ img:hover {
 }
 
 .hiddenIndicator {
-    width: 12px;
+    width: 8px;
     background-color: rgba(63, 174, 253, 0.485);
 }
 
 .visibleIndicator {
-    width: 24px;
+    width: 18px;
     background-color: rgba(63, 174, 253, 0.961);
 }
