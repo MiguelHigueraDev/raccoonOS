@@ -171,7 +171,7 @@ const Desktop = () => {
         {/* Hyperlinks */}
         <AppIcon
           onDoubleClick={() =>
-            window.open("https://github.com/MiguelHigueraDev/misfit-os/")
+            window.open("https://github.com/MiguelHigueraDev/raccoonOS")
           }
           iconUrl="./app-icons/github.svg"
           name="Source"
