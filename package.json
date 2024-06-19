@@ -14,6 +14,7 @@
     "@react-three/fiber": "^8.16.8",
     "@tabler/icons-react": "^3.6.0",
     "@types/three": "^0.165.0",
+    "@vercel/analytics": "^1.3.1",
     "discord-card-react": "^2.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
