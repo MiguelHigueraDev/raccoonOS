@@ -12,6 +12,7 @@ import AboutMeApplication from "../Applications/AboutMeApplication/AboutMeApplic
 import TechApplication from "../Applications/TechApplication/TechApplication";
 import ContactApplication from "../Applications/ContactApplication/ContactApplication";
 import CreditsApplication from "../Applications/CreditsApplication/CreditsApplication";
+import MobileWarning from "../MobileWarning/MobileWarning";
 
 const Desktop = () => {
   const { incZIndex, getZIndex } = WindowStore();
@@ -115,6 +116,7 @@ const Desktop = () => {
 
   return (
     <>
+      <MobileWarning />
       <div className={classes.desktop}>
         {/* Desktop Icons */}
         <AppIcon

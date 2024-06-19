@@ -5,3 +5,16 @@
     position: fixed;
     overflow: hidden;
 }
+
+.startMenu {
+    position: absolute;
+    bottom: 52px;
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 52px;
+    background-color: rgb(39, 140, 235);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
