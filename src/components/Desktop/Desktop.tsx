@@ -10,6 +10,8 @@ import DiscordApplication from "../Applications/DiscordApplication/DiscordApplic
 import ProjectsApplication from "../Applications/ProjectsApplication/ProjectsApplication";
 import AboutMeApplication from "../Applications/AboutMeApplication/AboutMeApplication";
 import TechApplication from "../Applications/TechApplication/TechApplication";
+import ContactApplication from "../Applications/ContactApplication/ContactApplication";
+import CreditsApplication from "../Applications/CreditsApplication/CreditsApplication";
 
 const Desktop = () => {
   const { incZIndex, getZIndex } = WindowStore();
@@ -31,6 +33,12 @@ const Desktop = () => {
 
   const [techAppOpen, setTechAppOpen] = useState(false);
   const [techAppHidden, setTechAppHidden] = useState(false);
+
+  const [contactAppOpen, setContactAppOpen] = useState(false);
+  const [contactAppHidden, setContactAppHidden] = useState(false);
+
+  const [creditsAppOpen, setCreditsAppOpen] = useState(false);
+  const [creditsAppHidden, setCreditsAppHidden] = useState(false);
 
   // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
@@ -60,6 +68,14 @@ const Desktop = () => {
         setTechAppOpen(true);
         setTechAppHidden(false);
         break;
+      case "contactApp":
+        setContactAppOpen(true);
+        setContactAppHidden(false);
+        break;
+      case "creditsApp":
+        setCreditsAppOpen(true);
+        setCreditsAppHidden(false);
+        break;
       default:
         break;
     }
@@ -85,6 +101,12 @@ const Desktop = () => {
         break;
       case "techApp":
         setTechAppHidden(!techAppHidden);
+        break;
+      case "contactApp":
+        setContactAppHidden(!contactAppHidden);
+        break;
+      case "creditsApp":
+        setCreditsAppHidden(!creditsAppHidden);
         break;
       default:
         break;
@@ -131,6 +153,18 @@ const Desktop = () => {
           name="Tech"
           position={{ x: 20, y: 620 }}
         />
+        <AppIcon
+          onDoubleClick={() => handleOpenApp("contactApp")}
+          iconUrl="./app-icons/contact.svg"
+          name="Contact"
+          position={{ x: 20, y: 720 }}
+        />
+        <AppIcon
+          onDoubleClick={() => handleOpenApp("creditsApp")}
+          iconUrl="./app-icons/credits.svg"
+          name="Credits"
+          position={{ x: 20, y: 820 }}
+        />
 
         {/* Hyperlinks */}
         <AppIcon
@@ -172,6 +206,16 @@ const Desktop = () => {
             zIndex: getZIndex("resumeApp"),
           }}
         />
+        <ContactApplication
+          winProps={{
+            appName: "contactApp",
+            isOpen: contactAppOpen,
+            isHidden: contactAppHidden,
+            handleClose: () => setContactAppOpen(false),
+            handleHide: () => setContactAppHidden(true),
+            zIndex: getZIndex("contactApp"),
+          }}
+        />
         <TechApplication
           winProps={{
             appName: "techApp",
@@ -202,6 +246,16 @@ const Desktop = () => {
             zIndex: getZIndex("musicApp"),
           }}
         />
+        <CreditsApplication
+          winProps={{
+            appName: "creditsApp",
+            isOpen: creditsAppOpen,
+            isHidden: creditsAppHidden,
+            handleClose: () => setCreditsAppOpen(false),
+            handleHide: () => setCreditsAppHidden(true),
+            zIndex: getZIndex("creditsApp"),
+          }}
+        />
       </div>
       <Taskbar>
         {/* Taskbar Icons */}
@@ -218,6 +272,13 @@ const Desktop = () => {
           isAppHidden={resumeAppHidden}
           handleClick={() => handleTaskbarIconClick("resumeApp")}
           alt="Resume"
+        ></TaskbarIcon>
+        <TaskbarIcon
+          iconUrl="./app-icons/contact.svg"
+          isAppOpen={contactAppOpen}
+          isAppHidden={contactAppHidden}
+          handleClick={() => handleTaskbarIconClick("contactApp")}
+          alt="Contact"
         ></TaskbarIcon>
         <TaskbarIcon
           iconUrl="./app-icons/projects.svg"
@@ -247,6 +308,13 @@ const Desktop = () => {
           handleClick={() => handleTaskbarIconClick("musicApp")}
           alt="Music"
         ></TaskbarIcon>
+        <TaskbarIcon
+          iconUrl="./app-icons/credits.svg"
+          isAppOpen={creditsAppOpen}
+          isAppHidden={creditsAppHidden}
+          handleClick={() => handleOpenApp("creditsApp")}
+          alt="Credits"
+        />
       </Taskbar>
     </>
   );

@@ -1,0 +1,47 @@
+.window {
+  margin: 16px;
+  height: calc(100% - 40px);
+}
+
+.creditsTitle {
+  text-align: center;
+  font-weight: 500;
+  color: rgb(189, 7, 186);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 16px;
+}
+
+.button.active {
+  background-color: rgb(45, 222, 245);
+}
+
+.button {
+  padding: 8px;
+  background-color: rgb(255, 113, 236);
+  border-radius: 8px;
+}
+
+.creditsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+.creditsContainer a {
+    color: rgb(189, 7, 186);
+}
+
+.creditsList {
+  font-size: 24px;
+}
+
+.creditsList a:hover {
+  color: rgb(26, 165, 184);
+}
