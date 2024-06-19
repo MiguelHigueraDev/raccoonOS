@@ -76,7 +76,7 @@ const DiscordApplication = ({ winProps }: { winProps: WindowProps }) => {
               handleInput: handleMessageChange,
               message: message,
               accentColor: "#8500d3",
-              placeholder: "Message @miguelhigueradev",
+              placeholder: "Message @misfitdude",
             }}
           />
         </div>
