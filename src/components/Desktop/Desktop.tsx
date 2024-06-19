@@ -121,49 +121,49 @@ const Desktop = () => {
           onDoubleClick={() => handleOpenApp("musicApp")}
           iconUrl="./app-icons/music.png"
           name="Music"
-          position={{ x: 20, y: 20 }}
+          position={{ x: 20, y: 520 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("resumeApp")}
           iconUrl="./app-icons/resume.svg"
           name="Resume"
-          position={{ x: 20, y: 120 }}
+          position={{ x: 20, y: 320 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("discordApp")}
           iconUrl="./app-icons/discord.svg"
           name="Discord"
-          position={{ x: 20, y: 320 }}
+          position={{ x: 20, y: 620 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("projectsApp")}
           iconUrl="./app-icons/projects.svg"
           name="Projects"
-          position={{ x: 20, y: 420 }}
+          position={{ x: 20, y: 120 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("aboutMeApp")}
           iconUrl="./app-icons/aboutme.svg"
           name="About Me"
-          position={{ x: 20, y: 520 }}
+          position={{ x: 20, y: 20 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("techApp")}
           iconUrl="./app-icons/tech.svg"
           name="Tech"
-          position={{ x: 20, y: 620 }}
+          position={{ x: 20, y: 420 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("contactApp")}
           iconUrl="./app-icons/contact.svg"
           name="Contact"
-          position={{ x: 20, y: 720 }}
+          position={{ x: 20, y: 220 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("creditsApp")}
           iconUrl="./app-icons/credits.svg"
           name="Credits"
-          position={{ x: 20, y: 820 }}
+          position={{ x: 100, y: 20 }}
         />
 
         {/* Hyperlinks */}
@@ -173,7 +173,7 @@ const Desktop = () => {
           }
           iconUrl="./app-icons/github.svg"
           name="Source"
-          position={{ x: 20, y: 220 }}
+          position={{ x: 100, y: 120 }}
         />
         {/* Applications */}
         <AboutMeApplication
