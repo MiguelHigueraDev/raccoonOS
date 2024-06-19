@@ -1,6 +1,6 @@
 .window {
     padding: 16px;
-    height: calc(100% - 40px);
+    max-height: calc(100% - 40px);
     line-height: 2rem;
     display: flex;
     flex-direction: column;
@@ -24,9 +24,14 @@
 
 .profilePicture {
     display: flex;
-    justify-content: end;
     align-items: center;
-    gap: 20px;
+    width: 100%;
+    gap: 30px;
+}
+
+.profilePicture > div {
+    flex-grow: 2;
+
 }
 
 .profilePicture > p{
@@ -37,7 +42,8 @@
 }
 
 .profilePicture img {
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     cursor: default;
+    margin-right: 20px         ;
 }

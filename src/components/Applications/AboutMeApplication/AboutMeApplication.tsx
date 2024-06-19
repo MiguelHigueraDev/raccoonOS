@@ -13,28 +13,32 @@ const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
         width={800}
-        height={800}
+        height={510}
         appName={winProps.appName}
         zIndex={winProps.zIndex}
         nonResizable
       >
         <div className={classes.window}>
-          <Canvas>
-            <Float speed={4}>
-              <Text3D font="./typefaces/notosans.json">
-                Miguel Higuera
-                <meshNormalMaterial />
-              </Text3D>
-              <mesh position-x={-7}>
-                <coneGeometry args={[1, 2, 4]} />
-                <meshNormalMaterial />
-              </mesh>
-              <mesh position-x={-13} position-y={2}>
-                <torusGeometry args={[1, 0.4, 16, 16]} />
-                <meshNormalMaterial />
-              </mesh>
-            </Float>
-          </Canvas>
+          <div className={classes.profilePicture}>
+            <Canvas>
+              <Float speed={4}>
+                <Text3D font="./typefaces/notosans.json">
+                  Miguel Higuera
+                  <meshNormalMaterial />
+                </Text3D>
+                <mesh position-x={-7}>
+                  <coneGeometry args={[1, 2, 4]} />
+                  <meshNormalMaterial />
+                </mesh>
+                <mesh position-x={-13} position-y={2}>
+                  <torusGeometry args={[1, 0.4, 16, 16]} />
+                  <meshNormalMaterial />
+                </mesh>
+              </Float>
+            </Canvas>
+            <img src="./miguelhigueradev.webp" />
+          </div>
+
           <div>
             <p>I'm Miguel Higuera, a Chilean 🇨🇱 software developer.</p>
             <p>
@@ -59,11 +63,6 @@ const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
               , but I have worked with other languages as well and I'm
               interested in learning new ones.
             </p>
-          </div>
-
-          <div className={classes.profilePicture}>
-            <p>Here's a picture of me -&gt;</p>
-            <img src="./miguelhigueradev.webp" />
           </div>
         </div>
       </Window>
