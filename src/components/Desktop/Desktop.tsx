@@ -314,7 +314,7 @@ const Desktop = () => {
           iconUrl="./app-icons/credits.svg"
           isAppOpen={creditsAppOpen}
           isAppHidden={creditsAppHidden}
-          handleClick={() => handleOpenApp("creditsApp")}
+          handleClick={() => handleTaskbarIconClick("creditsApp")}
           alt="Credits"
         />
       </Taskbar>
