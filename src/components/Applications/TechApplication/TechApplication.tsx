@@ -14,7 +14,7 @@ const TechApplication = ({ winProps }: { winProps: WindowProps }) => {
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
         width={800}
-        height={800}
+        height={600}
         nonResizable
         appName={winProps.appName}
         zIndex={winProps.zIndex}

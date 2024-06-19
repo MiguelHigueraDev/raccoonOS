@@ -123,7 +123,7 @@ const Desktop = () => {
           onDoubleClick={() => handleOpenApp("musicApp")}
           iconUrl="./app-icons/music.png"
           name="Music"
-          position={{ x: 20, y: 520 }}
+          position={{ x: 100, y: 220 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("resumeApp")}
@@ -135,7 +135,7 @@ const Desktop = () => {
           onDoubleClick={() => handleOpenApp("discordApp")}
           iconUrl="./app-icons/discord.svg"
           name="Discord"
-          position={{ x: 20, y: 620 }}
+          position={{ x: 100, y: 320 }}
         />
         <AppIcon
           onDoubleClick={() => handleOpenApp("projectsApp")}
