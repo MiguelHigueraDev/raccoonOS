@@ -14,6 +14,7 @@
   justify-content: center;
   margin-top: 16px;
   gap: 16px;
+  font-weight: 600;
 }
 
 .button.active {
