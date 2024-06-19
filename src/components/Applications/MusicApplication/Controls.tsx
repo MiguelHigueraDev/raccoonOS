@@ -36,7 +36,7 @@ const Controls = ({
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
 }) => {
-  const [volume, setVolume] = useState(65);
+  const [volume, setVolume] = useState(45);
   const [muteVolume, setMuteVolume] = useState(false);
 
   const playAnimationRef = useRef<number>();
