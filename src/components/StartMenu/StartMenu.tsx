@@ -18,7 +18,7 @@ const StartMenu = ({
   handleToggleStartMenu: () => void;
 }) => {
   // Just eyeballed this but it works by calculating the left position of the start menu based on the number of opened apps
-  const leftPosition = `calc((${numberOfOpenedApps} * -20px - ${numberOfOpenedApps}px * 5) + (50% - 41px))`;
+  const leftPosition = `calc((${numberOfOpenedApps} * -20px - ${numberOfOpenedApps}px * 5) + (50% - 250px))`;
 
   const handleOpenAppHidingStartMenu = (appName: string) => {
     handleToggleStartMenu();
