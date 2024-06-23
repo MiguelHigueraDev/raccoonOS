@@ -13,9 +13,8 @@ import TechApplication from "../Applications/TechApplication/TechApplication";
 import ContactApplication from "../Applications/ContactApplication/ContactApplication";
 import CreditsApplication from "../Applications/CreditsApplication/CreditsApplication";
 import MobileWarning from "../MobileWarning/MobileWarning";
-import StartMenu from "../StartMenu/StartMenu";
 
-interface App {
+export interface App {
   name: string;
   icon: string;
   title: string;
@@ -199,9 +198,11 @@ const Desktop = () => {
         ))}
       </div>
       <Taskbar
+        appList={apps}
         numberOfOpenedApps={numberOfOpenedApps}
         isStartMenuOpen={isStartMenuOpen}
         handleToggleStartMenu={toggleStartMenu}
+        handleOpenApp={handleOpenApp}
       >
         {/* Taskbar Icons */}
         {apps.map(({ name, icon, title }) => (
