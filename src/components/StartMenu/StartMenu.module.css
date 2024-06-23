@@ -12,21 +12,24 @@
   z-index: 2147483647;
   background-color: rgba(69, 69, 69, 0.942);
   width: 500px;
-  padding: 16px;
   border-radius: 8px;
   color: #fff;
 }
 
 .raccoonOsTitle {
   font-family: monospace;
+  margin-bottom: 16px;
+  display: block;
 }
 
 .shutdownSection {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   justify-items: center;
   align-items: center;
   padding: 10px 0 0 0;
+  background-color: rgba(0, 0, 0, 0.293);
+  padding: 16px;
 }
 
 .shutdownButton {

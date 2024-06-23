@@ -17,7 +17,7 @@ const SearchBar = () => {
         type="text"
         value={searchValue}
         placeholder="Search apps, settings, documents..."
-        onChange={updateInputValue} // Directly pass the function
+        onChange={updateInputValue}
       />
     </div>
   );

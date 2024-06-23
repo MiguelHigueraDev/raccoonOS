@@ -34,11 +34,15 @@ const StartMenu = ({
           onClick={handleToggleStartMenu}
         />
         <div style={{ left: leftPosition }} className={classes.startMenu}>
-          <span className={classes.raccoonOsTitle}>raccoonOS v1.0</span>
-          <SearchBar />
-          <PinnedApplications appList={appList} handleOpenApp={handleOpenAppHidingStartMenu} />
+          <div style={{ padding: 16 }}>
+            <span className={classes.raccoonOsTitle}>raccoonOS v1.0</span>
+            <SearchBar />
+          </div>
+          <PinnedApplications
+            appList={appList}
+            handleOpenApp={handleOpenAppHidingStartMenu}
+          />
           <div className={classes.shutdownSection}>
-            <div>RaccoonDude</div>
             <div className={classes.shutdownButton}>
               <IconPower />
             </div>
