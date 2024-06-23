@@ -1,0 +1,5 @@
+.startMenu {
+    position: fixed;
+    bottom: 64px;
+    z-index: 99999999;
+}
