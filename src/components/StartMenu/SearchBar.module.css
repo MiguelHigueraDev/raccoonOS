@@ -18,4 +18,9 @@
 
 .searchBar {
   flex-grow: 2;
+  outline: none;
+}
+
+.searchBar:focus {
+  outline: none;
 }
