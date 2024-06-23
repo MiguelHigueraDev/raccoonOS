@@ -22,8 +22,8 @@ const StartMenu = ({
 
   return (
     isOpen && (
-      /* This background enables closing the start menu when clicking outside of it */
       <>
+        {/* This is the background that will close the start menu when clicked */}
         <div
           className={classes.startMenuBackground}
           onClick={handleToggleStartMenu}
