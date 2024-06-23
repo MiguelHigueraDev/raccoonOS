@@ -1,5 +1,5 @@
 .startMenuBackground {
-  z-index: 99999998;
+  z-index: 2147483646;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -9,7 +9,7 @@
 .startMenu {
   position: fixed;
   bottom: 62px;
-  z-index: 99999999;
+  z-index: 2147483647;
   background-color: rgba(69, 69, 69, 0.942);
   width: 500px;
   padding: 16px;
