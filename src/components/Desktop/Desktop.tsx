@@ -14,104 +14,125 @@ import ContactApplication from "../Applications/ContactApplication/ContactApplic
 import CreditsApplication from "../Applications/CreditsApplication/CreditsApplication";
 import MobileWarning from "../MobileWarning/MobileWarning";
 
+interface App {
+  name: string;
+  icon: string;
+  title: string;
+  position: Position;
+  Component: React.ComponentType<AppComponentProps>;
+}
+
+interface Position {
+  x: number;
+  y: number;
+}
+
+interface AppState {
+  isOpen: boolean;
+  isHidden: boolean;
+}
+
+interface AppStates {
+  [key: string]: AppState;
+}
+
+interface AppComponentProps {
+  winProps: {
+    appName: string;
+    isOpen: boolean;
+    isHidden: boolean;
+    handleClose: () => void;
+    handleHide: () => void;
+    zIndex: number;
+  };
+}
+
+const apps: App[] = [
+  {
+    name: "musicApp",
+    Component: MusicApplication,
+    icon: "./app-icons/music.png",
+    title: "Music",
+    position: { x: 100, y: 220 },
+  },
+  {
+    name: "resumeApp",
+    Component: ResumeApplication,
+    icon: "./app-icons/resume.svg",
+    title: "Resume",
+    position: { x: 20, y: 320 },
+  },
+  {
+    name: "discordApp",
+    Component: DiscordApplication,
+    icon: "./app-icons/discord.svg",
+    title: "Discord",
+    position: { x: 100, y: 320 },
+  },
+  {
+    name: "projectsApp",
+    Component: ProjectsApplication,
+    icon: "./app-icons/projects.svg",
+    title: "Projects",
+    position: { x: 20, y: 120 },
+  },
+  {
+    name: "aboutMeApp",
+    Component: AboutMeApplication,
+    icon: "./app-icons/aboutme.svg",
+    title: "About Me",
+    position: { x: 20, y: 20 },
+  },
+  {
+    name: "techApp",
+    Component: TechApplication,
+    icon: "./app-icons/tech.svg",
+    title: "Tech",
+    position: { x: 20, y: 420 },
+  },
+  {
+    name: "contactApp",
+    Component: ContactApplication,
+    icon: "./app-icons/contact.svg",
+    title: "Contact",
+    position: { x: 20, y: 220 },
+  },
+  {
+    name: "creditsApp",
+    Component: CreditsApplication,
+    icon: "./app-icons/credits.svg",
+    title: "Credits",
+    position: { x: 100, y: 20 },
+  },
+];
+
 const Desktop = () => {
   const { incZIndex, getZIndex } = WindowStore();
 
-  const [musicAppOpen, setMusicAppOpen] = useState(false);
-  const [musicAppHidden, setMusicAppHidden] = useState(false);
+  const [appStates, setAppStates] = useState<AppStates>(() =>
+    apps.reduce((acc, app) => {
+      acc[app.name] = { isOpen: false, isHidden: false };
+      return acc;
+    }, {})
+  );
 
-  const [resumeAppOpen, setResumeAppOpen] = useState(false);
-  const [resumeAppHidden, setResumeAppHidden] = useState(false);
-
-  const [discordAppOpen, setDiscordAppOpen] = useState(false);
-  const [discordAppHidden, setDiscordAppHidden] = useState(false);
-
-  const [projectsAppOpen, setProjectsAppOpen] = useState(false);
-  const [projectsAppHidden, setProjectsAppHidden] = useState(false);
-
-  const [aboutMeAppOpen, setAboutMeAppOpen] = useState(false);
-  const [aboutMeAppHidden, setAboutMeAppHidden] = useState(false);
-
-  const [techAppOpen, setTechAppOpen] = useState(false);
-  const [techAppHidden, setTechAppHidden] = useState(false);
-
-  const [contactAppOpen, setContactAppOpen] = useState(false);
-  const [contactAppHidden, setContactAppHidden] = useState(false);
-
-  const [creditsAppOpen, setCreditsAppOpen] = useState(false);
-  const [creditsAppHidden, setCreditsAppHidden] = useState(false);
-
-  // Make sure to increase the z index when opening an app
   const handleOpenApp = (appName: string) => {
     incZIndex(appName);
-    switch (appName) {
-      case "musicApp":
-        setMusicAppOpen(true);
-        setMusicAppHidden(false);
-        break;
-      case "resumeApp":
-        setResumeAppOpen(true);
-        setResumeAppHidden(false);
-        break;
-      case "discordApp":
-        setDiscordAppOpen(true);
-        setDiscordAppHidden(false);
-        break;
-      case "projectsApp":
-        setProjectsAppOpen(true);
-        setProjectsAppHidden(false);
-        break;
-      case "aboutMeApp":
-        setAboutMeAppOpen(true);
-        setAboutMeAppHidden(false);
-        break;
-      case "techApp":
-        setTechAppOpen(true);
-        setTechAppHidden(false);
-        break;
-      case "contactApp":
-        setContactAppOpen(true);
-        setContactAppHidden(false);
-        break;
-      case "creditsApp":
-        setCreditsAppOpen(true);
-        setCreditsAppHidden(false);
-        break;
-      default:
-        break;
-    }
+    setAppStates((prevState) => ({
+      ...prevState,
+      [appName]: { isOpen: true, isHidden: false },
+    }));
   };
 
   const handleTaskbarIconClick = (appName: string) => {
     incZIndex(appName);
-    switch (appName) {
-      case "musicApp":
-        setMusicAppHidden(!musicAppHidden);
-        break;
-      case "resumeApp":
-        setResumeAppHidden(!resumeAppHidden);
-        break;
-      case "discordApp":
-        setDiscordAppHidden(!discordAppHidden);
-        break;
-      case "projectsApp":
-        setProjectsAppHidden(!projectsAppHidden);
-        break;
-      case "aboutMeApp":
-        setAboutMeAppHidden(!aboutMeAppHidden);
-        break;
-      case "techApp":
-        setTechAppHidden(!techAppHidden);
-        break;
-      case "contactApp":
-        setContactAppHidden(!contactAppHidden);
-        break;
-      case "creditsApp":
-        setCreditsAppHidden(!creditsAppHidden);
-        break;
-      default:
-        break;
-    }
+    setAppStates((prevState) => ({
+      ...prevState,
+      [appName]: {
+        ...prevState[appName],
+        isHidden: !prevState[appName].isHidden,
+      },
+    }));
   };
 
   return (
@@ -119,54 +140,15 @@ const Desktop = () => {
       <MobileWarning />
       <div className={classes.desktop}>
         {/* Desktop Icons */}
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("musicApp")}
-          iconUrl="./app-icons/music.png"
-          name="Music"
-          position={{ x: 100, y: 220 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("resumeApp")}
-          iconUrl="./app-icons/resume.svg"
-          name="Resume"
-          position={{ x: 20, y: 320 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("discordApp")}
-          iconUrl="./app-icons/discord.svg"
-          name="Discord"
-          position={{ x: 100, y: 320 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("projectsApp")}
-          iconUrl="./app-icons/projects.svg"
-          name="Projects"
-          position={{ x: 20, y: 120 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("aboutMeApp")}
-          iconUrl="./app-icons/aboutme.svg"
-          name="About Me"
-          position={{ x: 20, y: 20 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("techApp")}
-          iconUrl="./app-icons/tech.svg"
-          name="Tech"
-          position={{ x: 20, y: 420 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("contactApp")}
-          iconUrl="./app-icons/contact.svg"
-          name="Contact"
-          position={{ x: 20, y: 220 }}
-        />
-        <AppIcon
-          onDoubleClick={() => handleOpenApp("creditsApp")}
-          iconUrl="./app-icons/credits.svg"
-          name="Credits"
-          position={{ x: 100, y: 20 }}
-        />
+        {apps.map(({ name, icon, title, position }) => (
+          <AppIcon
+            key={name}
+            onDoubleClick={() => handleOpenApp(name)}
+            iconUrl={icon}
+            name={title}
+            position={position}
+          />
+        ))}
 
         {/* Hyperlinks */}
         <AppIcon
@@ -177,146 +159,42 @@ const Desktop = () => {
           name="Source"
           position={{ x: 100, y: 120 }}
         />
+
         {/* Applications */}
-        <AboutMeApplication
-          winProps={{
-            appName: "aboutMeApp",
-            isOpen: aboutMeAppOpen,
-            isHidden: aboutMeAppHidden,
-            handleClose: () => setAboutMeAppOpen(false),
-            handleHide: () => setAboutMeAppHidden(true),
-            zIndex: getZIndex("aboutMeApp"),
-          }}
-        />
-        <ProjectsApplication
-          winProps={{
-            appName: "projectsApp",
-            isOpen: projectsAppOpen,
-            isHidden: projectsAppHidden,
-            handleClose: () => setProjectsAppOpen(false),
-            handleHide: () => setProjectsAppHidden(true),
-            zIndex: getZIndex("projectsApp"),
-          }}
-        />
-        <ResumeApplication
-          winProps={{
-            appName: "resumeApp",
-            isOpen: resumeAppOpen,
-            isHidden: resumeAppHidden,
-            handleClose: () => setResumeAppOpen(false),
-            handleHide: () => setResumeAppHidden(true),
-            zIndex: getZIndex("resumeApp"),
-          }}
-        />
-        <ContactApplication
-          winProps={{
-            appName: "contactApp",
-            isOpen: contactAppOpen,
-            isHidden: contactAppHidden,
-            handleClose: () => setContactAppOpen(false),
-            handleHide: () => setContactAppHidden(true),
-            zIndex: getZIndex("contactApp"),
-          }}
-        />
-        <TechApplication
-          winProps={{
-            appName: "techApp",
-            isOpen: techAppOpen,
-            isHidden: techAppHidden,
-            handleClose: () => setTechAppOpen(false),
-            handleHide: () => setTechAppHidden(true),
-            zIndex: getZIndex("techApp"),
-          }}
-        />
-        <DiscordApplication
-          winProps={{
-            appName: "discordApp",
-            isOpen: discordAppOpen,
-            isHidden: discordAppHidden,
-            handleClose: () => setDiscordAppOpen(false),
-            handleHide: () => setDiscordAppHidden(true),
-            zIndex: getZIndex("discordApp"),
-          }}
-        />
-        <MusicApplication
-          winProps={{
-            appName: "musicApp",
-            isOpen: musicAppOpen,
-            isHidden: musicAppHidden,
-            handleClose: () => setMusicAppOpen(false),
-            handleHide: () => setMusicAppHidden(true),
-            zIndex: getZIndex("musicApp"),
-          }}
-        />
-        <CreditsApplication
-          winProps={{
-            appName: "creditsApp",
-            isOpen: creditsAppOpen,
-            isHidden: creditsAppHidden,
-            handleClose: () => setCreditsAppOpen(false),
-            handleHide: () => setCreditsAppHidden(true),
-            zIndex: getZIndex("creditsApp"),
-          }}
-        />
+        {apps.map(({ name, Component }) => (
+          <Component
+            key={name}
+            winProps={{
+              appName: name,
+              isOpen: appStates[name].isOpen,
+              isHidden: appStates[name].isHidden,
+              handleClose: () =>
+                setAppStates((prevState) => ({
+                  ...prevState,
+                  [name]: { ...prevState[name], isOpen: false },
+                })),
+              handleHide: () =>
+                setAppStates((prevState) => ({
+                  ...prevState,
+                  [name]: { ...prevState[name], isHidden: true },
+                })),
+              zIndex: getZIndex(name),
+            }}
+          />
+        ))}
       </div>
       <Taskbar>
         {/* Taskbar Icons */}
-        <TaskbarIcon
-          iconUrl="./app-icons/aboutme.svg"
-          isAppOpen={aboutMeAppOpen}
-          isAppHidden={aboutMeAppHidden}
-          handleClick={() => handleTaskbarIconClick("aboutMeApp")}
-          alt="About Me"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/resume.svg"
-          isAppOpen={resumeAppOpen}
-          isAppHidden={resumeAppHidden}
-          handleClick={() => handleTaskbarIconClick("resumeApp")}
-          alt="Resume"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/contact.svg"
-          isAppOpen={contactAppOpen}
-          isAppHidden={contactAppHidden}
-          handleClick={() => handleTaskbarIconClick("contactApp")}
-          alt="Contact"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/projects.svg"
-          isAppOpen={projectsAppOpen}
-          isAppHidden={projectsAppHidden}
-          handleClick={() => handleTaskbarIconClick("projectsApp")}
-          alt="Projects"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/tech.svg"
-          isAppOpen={techAppOpen}
-          isAppHidden={techAppHidden}
-          handleClick={() => handleTaskbarIconClick("techApp")}
-          alt="Tech"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/discord.svg"
-          isAppOpen={discordAppOpen}
-          isAppHidden={discordAppHidden}
-          handleClick={() => handleTaskbarIconClick("discordApp")}
-          alt="Discord"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/music.png"
-          isAppOpen={musicAppOpen}
-          isAppHidden={musicAppHidden}
-          handleClick={() => handleTaskbarIconClick("musicApp")}
-          alt="Music"
-        ></TaskbarIcon>
-        <TaskbarIcon
-          iconUrl="./app-icons/credits.svg"
-          isAppOpen={creditsAppOpen}
-          isAppHidden={creditsAppHidden}
-          handleClick={() => handleTaskbarIconClick("creditsApp")}
-          alt="Credits"
-        />
+        {apps.map(({ name, icon, title }) => (
+          <TaskbarIcon
+            key={name}
+            iconUrl={icon}
+            isAppOpen={appStates[name].isOpen}
+            isAppHidden={appStates[name].isHidden}
+            handleClick={() => handleTaskbarIconClick(name)}
+            alt={title}
+          />
+        ))}
       </Taskbar>
     </>
   );
