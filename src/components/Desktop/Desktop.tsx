@@ -114,6 +114,7 @@ const Desktop = () => {
 
   const [appStates, setAppStates] = useState<AppStates>(() =>
     apps.reduce((acc, app) => {
+      // @ts-expect-error - Fix type later
       acc[app.name] = { isOpen: false, isHidden: false };
       return acc;
     }, {})
