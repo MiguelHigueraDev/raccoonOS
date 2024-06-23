@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppIcon from "../AppIcon/AppIcon";
 import classes from "./Desktop.module.css";
 import Taskbar from "../Taskbar/Taskbar";
@@ -14,7 +14,7 @@ import ContactApplication from "../Applications/ContactApplication/ContactApplic
 import CreditsApplication from "../Applications/CreditsApplication/CreditsApplication";
 import MobileWarning from "../MobileWarning/MobileWarning";
 
-interface App {
+export interface App {
   name: string;
   icon: string;
   title: string;
@@ -109,6 +109,9 @@ const apps: App[] = [
 const Desktop = () => {
   const { incZIndex, getZIndex } = WindowStore();
 
+  const [numberOfOpenedApps, setNumberOfOpenedApps] = useState(0);
+  const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+
   const [appStates, setAppStates] = useState<AppStates>(() =>
     apps.reduce((acc, app) => {
       acc[app.name] = { isOpen: false, isHidden: false };
@@ -134,6 +137,17 @@ const Desktop = () => {
       },
     }));
   };
+
+  const toggleStartMenu = () => {
+    setIsStartMenuOpen(!isStartMenuOpen);
+  };
+
+  // Update the number of opened apps to display the start menu in the correct position
+  useEffect(() => {
+    setNumberOfOpenedApps(
+      Object.values(appStates).filter((app) => app.isOpen).length
+    );
+  }, [setNumberOfOpenedApps, appStates]);
 
   return (
     <>
@@ -183,7 +197,13 @@ const Desktop = () => {
           />
         ))}
       </div>
-      <Taskbar>
+      <Taskbar
+        appList={apps}
+        numberOfOpenedApps={numberOfOpenedApps}
+        isStartMenuOpen={isStartMenuOpen}
+        handleToggleStartMenu={toggleStartMenu}
+        handleOpenApp={handleOpenApp}
+      >
         {/* Taskbar Icons */}
         {apps.map(({ name, icon, title }) => (
           <TaskbarIcon

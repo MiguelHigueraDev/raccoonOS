@@ -1,0 +1,26 @@
+.searchWrapper {
+  background-color: white;
+  gap: 12px;
+  width: 100%;
+  margin: 12px 0;
+  border-radius: 12px;
+  padding: 2px 8px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.searchBar {
+  flex-grow: 2;
+  outline: none;
+}
+
+.searchBar:focus {
+  outline: none;
+}
