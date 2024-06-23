@@ -20,7 +20,13 @@ const Taskbar = ({
 }) => {
   return (
     <nav className={classes.taskbarContainer}>
-      <StartMenu numberOfOpenedApps={numberOfOpenedApps} isOpen={isStartMenuOpen} appList={appList} handleOpenApp={handleOpenApp} />
+      <StartMenu
+        numberOfOpenedApps={numberOfOpenedApps}
+        isOpen={isStartMenuOpen}
+        appList={appList}
+        handleOpenApp={handleOpenApp}
+        handleToggleStartMenu={handleToggleStartMenu}
+      />
       <TaskbarIcon
         handleClick={handleToggleStartMenu}
         isAppOpen={true}

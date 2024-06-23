@@ -1,3 +1,11 @@
+.startMenuBackground {
+  z-index: 99999998;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+}
+
 .startMenu {
   position: fixed;
   bottom: 62px;
