@@ -13,6 +13,7 @@ import TechApplication from "../Applications/TechApplication/TechApplication";
 import ContactApplication from "../Applications/ContactApplication/ContactApplication";
 import CreditsApplication from "../Applications/CreditsApplication/CreditsApplication";
 import MobileWarning from "../MobileWarning/MobileWarning";
+import GamesApplication from "../Applications/GamesApplication/GamesApplication";
 
 export interface App {
   name: string;
@@ -49,25 +50,11 @@ interface AppComponentProps {
 
 const apps: App[] = [
   {
-    name: "musicApp",
-    Component: MusicApplication,
-    icon: "./app-icons/music.png",
-    title: "Music",
-    position: { x: 100, y: 220 },
-  },
-  {
-    name: "resumeApp",
-    Component: ResumeApplication,
-    icon: "./app-icons/resume.svg",
-    title: "Resume",
-    position: { x: 20, y: 320 },
-  },
-  {
-    name: "discordApp",
-    Component: DiscordApplication,
-    icon: "./app-icons/discord.svg",
-    title: "Discord",
-    position: { x: 100, y: 320 },
+    name: "aboutMeApp",
+    Component: AboutMeApplication,
+    icon: "./app-icons/aboutme.svg",
+    title: "About Me",
+    position: { x: 20, y: 20 },
   },
   {
     name: "projectsApp",
@@ -77,11 +64,18 @@ const apps: App[] = [
     position: { x: 20, y: 120 },
   },
   {
-    name: "aboutMeApp",
-    Component: AboutMeApplication,
-    icon: "./app-icons/aboutme.svg",
-    title: "About Me",
-    position: { x: 20, y: 20 },
+    name: "resumeApp",
+    Component: ResumeApplication,
+    icon: "./app-icons/resume.svg",
+    title: "Resume",
+    position: { x: 20, y: 320 },
+  },
+  {
+    name: "contactApp",
+    Component: ContactApplication,
+    icon: "./app-icons/contact.svg",
+    title: "Contact",
+    position: { x: 20, y: 220 },
   },
   {
     name: "techApp",
@@ -91,11 +85,25 @@ const apps: App[] = [
     position: { x: 20, y: 420 },
   },
   {
-    name: "contactApp",
-    Component: ContactApplication,
-    icon: "./app-icons/contact.svg",
-    title: "Contact",
-    position: { x: 20, y: 220 },
+    name: "musicApp",
+    Component: MusicApplication,
+    icon: "./app-icons/music.png",
+    title: "Music",
+    position: { x: 100, y: 220 },
+  },
+  {
+    name: "discordApp",
+    Component: DiscordApplication,
+    icon: "./app-icons/discord.svg",
+    title: "Discord",
+    position: { x: 100, y: 320 },
+  },
+  {
+    name: "gamesApp",
+    Component: GamesApplication,
+    icon: "./app-icons/games.svg",
+    title: "Games",
+    position: { x: 100, y: 420 },
   },
   {
     name: "creditsApp",
