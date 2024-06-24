@@ -1,0 +1,47 @@
+.gamesTitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.window {
+    padding: 16px;
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+}
+
+.gameContainer {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.gameContainer img {
+    width: 324px;
+    height: 151px;
+    cursor: default;
+}
+
+.gameInfo {
+    border: 1px solid rgb(207, 34, 237);
+    padding: 8px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 2;
+}
+
+.gameInfo h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.gameInfo p {
+    font-size: 16spx;
+    margin-bottom: 4px;
+}
+
+.steamIcon:hover {
+    cursor: pointer;
+    color: rgb(243, 74, 246);
+}
