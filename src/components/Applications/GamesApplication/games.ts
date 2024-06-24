@@ -30,7 +30,7 @@ export const games: Game[] = [
     },
     {
         title: "Celeste",
-        review: "A challenging platformer with a touching story about depression and anxiety. The game is hard but fair, and it has a great soundtrack. The game's challenges and collectibles make it quite replayable, and it encourages speed runs.",
+        review: "A challenging platformer with a touching story about anxiety and depression. The game is hard but fair, and it has a great soundtrack. The game's challenges and collectibles make it quite replayable, and it encourages speed runs.",
         genres: ["Platformer", "2D"],
         url: "https://store.steampowered.com/app/504230/Celeste/",
         image: "./games/celeste.webp",
