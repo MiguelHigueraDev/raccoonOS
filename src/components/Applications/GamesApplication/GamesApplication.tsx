@@ -20,7 +20,7 @@ const GamesApplication = ({ winProps }: { winProps: WindowProps }) => {
         <div className={classes.window}>
           <h1 className={classes.gamesTitle}>These are some of my favorite video games</h1>
           {games.map((game, index) => (
-            <div key={index} className={classes.gameContainer}>
+            <article key={index} className={classes.gameContainer}>
               <img src={game.image} alt={game.title} />
 
               <div key={index} className={classes.gameInfo}>
@@ -30,7 +30,7 @@ const GamesApplication = ({ winProps }: { winProps: WindowProps }) => {
                   <IconBrandSteam className={classes.steamIcon} />
                 </a>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </Window>
