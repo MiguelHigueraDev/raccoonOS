@@ -9,7 +9,7 @@ export interface Game {
 export const games: Game[] = [
     {
         title: "The Talos Principle",
-        review: "A challenging first-person puzzle game with a philosophical story. The game has a lot of challenging but satisfying puzzles that require creative thinking. It's a game that presents a lot of interesting ideas and makes you think about the nature of reality and existence.",
+        review: "A first-person puzzle game with a philosophical story. The game has a lot of challenging but satisfying puzzles that require creative thinking. It's a game that presents a lot of interesting ideas and makes you think about the nature of reality and existence.",
         genres: ["Puzzle"],
         url: "https://store.steampowered.com/app/257510/The_Talos_Principle/",
         image: "./games/the-talos-principle.webp",
@@ -53,7 +53,7 @@ export const games: Game[] = [
     */
     {
         title: "Hades",
-        review: "A roguelike dungeon crawler themed around Greek mythology with a great story and characters, something that's not the norm in the genre. The game has a lot of variety in its weapons and upgrades, which makes it very replayable.",
+        review: "A roguelike dungeon crawler themed around Greek mythology with a great story and characters, something that's not common in the genre. The game has a lot of variety in its weapons and upgrades, which makes it very replayable.",
         genres: ["Roguelike"],
         url: "https://store.steampowered.com/app/1145360/Hades/",
         image: "./games/hades.webp",
