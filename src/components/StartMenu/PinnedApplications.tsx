@@ -1,5 +1,5 @@
-import classes from "./PinnedApplications.module.css";
-import { App } from "../Desktop/Desktop";
+import classes from './PinnedApplications.module.css';
+import { App } from '../Desktop/Desktop';
 
 const PinnedApplications = ({
   appList,
@@ -11,6 +11,9 @@ const PinnedApplications = ({
   return (
     <div className={classes.pinnedApplicationsContainer}>
       <h3 className={classes.pinnedText}>Pinned</h3>
+      {appList.length === 0 && (
+        <p className={classes.noAppsFound}>No apps found</p>
+      )}
       <div className={classes.pinnedApplicationsGrid}>
         {appList.map(({ name, icon, title }) => (
           <div
