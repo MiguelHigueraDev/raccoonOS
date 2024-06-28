@@ -17,6 +17,7 @@ const SearchBar = ({
         value={searchTerm}
         placeholder="Search apps, settings, documents..."
         onChange={updateInputValue}
+        autoFocus
       />
     </div>
   );
