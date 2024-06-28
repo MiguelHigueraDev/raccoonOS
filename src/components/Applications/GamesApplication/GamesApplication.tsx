@@ -26,8 +26,9 @@ const GamesApplication = ({ winProps }: { winProps: WindowProps }) => {
               <div key={index} className={classes.gameInfo}>
                 <h2>{game.title}</h2>
                 <p>{game.review}</p>
-                <a href={game.url} target="_blank" rel="noreferrer" style={{width: 24}}>
-                  <IconBrandSteam className={classes.steamIcon} />
+                <a href={game.url} target="_blank" rel="noreferrer" className={classes.gameUrl}>
+                  <IconBrandSteam />
+                  <span>Check out on Steam</span>
                 </a>
               </div>
             </article>
