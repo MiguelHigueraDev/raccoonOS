@@ -1,8 +1,9 @@
-import classes from "./StartMenu.module.css";
-import { IconPower } from "@tabler/icons-react";
-import SearchBar from "./SearchBar";
-import PinnedApplications from "./PinnedApplications";
-import { App } from "../Desktop/Desktop";
+import classes from './StartMenu.module.css';
+import { IconPower } from '@tabler/icons-react';
+import SearchBar from './SearchBar';
+import PinnedApplications from './PinnedApplications';
+import { App } from '../Desktop/Desktop';
+import { useEffect, useState } from 'react';
 
 const StartMenu = ({
   appList,
@@ -17,6 +18,9 @@ const StartMenu = ({
   handleOpenApp: (appName: string) => void;
   handleToggleStartMenu: () => void;
 }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredAppList, setFilteredAppList] = useState<App[]>(appList);
+
   // Just eyeballed this but it works by calculating the left position of the start menu based on the number of opened apps
   const leftPosition = `calc((${numberOfOpenedApps} * -20px - ${numberOfOpenedApps}px * 5) + (50% - 250px))`;
 
@@ -24,6 +28,19 @@ const StartMenu = ({
     handleToggleStartMenu();
     handleOpenApp(appName);
   };
+
+  const updateSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Update filtered apps on user input
+  useEffect(() => {
+    setFilteredAppList(
+      appList.filter((app) =>
+        app.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+  }, [searchTerm, appList]);
 
   return (
     isOpen && (
@@ -36,10 +53,13 @@ const StartMenu = ({
         <div style={{ left: leftPosition }} className={classes.startMenu}>
           <div style={{ padding: 16 }}>
             <span className={classes.raccoonOsTitle}>raccoonOS v1.0</span>
-            <SearchBar />
+            <SearchBar
+              searchTerm={searchTerm}
+              updateInputValue={updateSearchTerm}
+            />
           </div>
           <PinnedApplications
-            appList={appList}
+            appList={filteredAppList}
             handleOpenApp={handleOpenAppHidingStartMenu}
           />
           <div className={classes.shutdownSection}>

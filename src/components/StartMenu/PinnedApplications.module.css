@@ -35,3 +35,8 @@
     font-size: 14px;
     margin-left: 16px;
 }
+
+.noAppsFound {
+    text-align: center;
+    margin: 30.5px 0;
+}
