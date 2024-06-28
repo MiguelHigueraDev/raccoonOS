@@ -3,6 +3,7 @@ import { IconPower } from "@tabler/icons-react";
 import SearchBar from "./SearchBar";
 import PinnedApplications from "./PinnedApplications";
 import { App } from "../Desktop/Desktop";
+import { useState } from "react";
 
 const StartMenu = ({
   appList,
@@ -17,6 +18,8 @@ const StartMenu = ({
   handleOpenApp: (appName: string) => void;
   handleToggleStartMenu: () => void;
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   // Just eyeballed this but it works by calculating the left position of the start menu based on the number of opened apps
   const leftPosition = `calc((${numberOfOpenedApps} * -20px - ${numberOfOpenedApps}px * 5) + (50% - 250px))`;
 
@@ -24,6 +27,10 @@ const StartMenu = ({
     handleToggleStartMenu();
     handleOpenApp(appName);
   };
+
+  const updateSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  }
 
   return (
     isOpen && (
@@ -36,7 +43,7 @@ const StartMenu = ({
         <div style={{ left: leftPosition }} className={classes.startMenu}>
           <div style={{ padding: 16 }}>
             <span className={classes.raccoonOsTitle}>raccoonOS v1.0</span>
-            <SearchBar />
+            <SearchBar searchTerm={searchTerm} updateInputValue={updateSearchTerm} />
           </div>
           <PinnedApplications
             appList={appList}
