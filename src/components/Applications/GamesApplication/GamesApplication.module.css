@@ -22,7 +22,6 @@
 }
 
 .gameInfo {
-    border: 1px solid rgb(207, 34, 237);
     padding: 8px 20px;
     display: flex;
     flex-direction: column;
@@ -44,4 +43,17 @@
 .steamIcon:hover {
     cursor: pointer;
     color: rgb(243, 74, 246);
+}
+
+.gameUrl {
+    display: flex;
+    gap: 4px;
+    background-color: rgb(163, 226, 244);
+    width: 188px;
+    padding: 4px;
+}
+
+.gameUrl:hover {
+    background-color: rgb(250, 154, 250);
+    transition: background-color ease-in 0.1s;
 }
