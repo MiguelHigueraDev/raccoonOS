@@ -37,7 +37,7 @@ const StartMenu = ({
   useEffect(() => {
     setFilteredAppList(
       appList.filter((app) =>
-        app.name.toLowerCase().includes(searchTerm.toLowerCase())
+        app.title.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
   }, [searchTerm, appList]);
