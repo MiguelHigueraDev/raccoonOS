@@ -12,6 +12,7 @@ export default create<Store>((set) => ({
   playPedroAudio: () => {
     set((state) => {
       state.pedroAudio.play();
+      state.pedroAudio.loop = true;
       return state;
     });
   },
