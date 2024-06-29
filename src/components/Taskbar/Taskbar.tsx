@@ -33,7 +33,7 @@ const Taskbar = ({
           handleClick={handleToggleStartMenu}
           isAppOpen={true}
           isAppHidden={false}
-          iconUrl="./taskbar-icons/misfitos-logo.png"
+          iconUrl="./taskbar-icons/raccoonos-logo.webp"
           alt="Start Menu"
           showIndicator={false}
         />
