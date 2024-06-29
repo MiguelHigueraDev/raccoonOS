@@ -3,6 +3,7 @@ import Window from "../../Window/Window";
 import { Canvas } from "@react-three/fiber";
 import { Float, Text3D } from "@react-three/drei";
 import { WindowProps } from "../../../shared/WindowProps";
+import { IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp } from "@tabler/icons-react";
 
 const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
   return (
@@ -63,6 +64,18 @@ const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
               , but I have worked with other languages as well and I'm
               interested in learning new ones.
             </p>
+            <div className={classes.konamiSection}>
+              <IconArrowUp />
+              <IconArrowUp />
+              <IconArrowDown />
+              <IconArrowDown />
+              <IconArrowLeft />
+              <IconArrowRight />
+              <IconArrowLeft />
+              <IconArrowRight />
+              <span>B</span>
+              <span>A</span>
+            </div>
           </div>
         </div>
       </Window>
