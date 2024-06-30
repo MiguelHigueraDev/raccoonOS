@@ -18,7 +18,7 @@ const DiscordApplication = ({ winProps }: { winProps: WindowProps }) => {
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
         width={332}
-        height={653}
+        height={500}
         appName={winProps.appName}
         zIndex={winProps.zIndex}
         nonResizable
@@ -56,10 +56,6 @@ const DiscordApplication = ({ winProps }: { winProps: WindowProps }) => {
                   text: "👨‍💻🖥️",
                 },
               ],
-            }}
-            memberSince={{
-              title: "Alive since",
-              discordJoinDate: "Feb 9th 1999",
             }}
             roles={{
               roles: [
