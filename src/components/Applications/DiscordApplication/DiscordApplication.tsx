@@ -18,7 +18,7 @@ const DiscordApplication = ({ winProps }: { winProps: WindowProps }) => {
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
         width={332}
-        height={500}
+        height={648}
         appName={winProps.appName}
         zIndex={winProps.zIndex}
         nonResizable
