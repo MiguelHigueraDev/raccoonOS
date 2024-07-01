@@ -9,6 +9,10 @@
     gap: 20px;
 }
 
+.text {
+    flex-grow: 2;
+}
+
 .strongText {
     font-weight: bold;
     color: rgb(220, 28, 204);
@@ -49,11 +53,18 @@
 }
 
 .konamiSection {
+    margin-left: 480px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 1px;
-    margin: 2px;
+    transform: rotate(-4deg);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.konamiSection:hover {
+    background-color: rgb(255, 23, 228);
 }
 
 .konamiSection span {
