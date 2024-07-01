@@ -1,5 +1,6 @@
 import { IconX } from '@tabler/icons-react';
 import classes from './Notification.module.css';
+import { ReactNode } from 'react';
 
 const Notification = ({
   title,
@@ -7,7 +8,7 @@ const Notification = ({
   handleRemoveNotification,
 }: {
   title: string;
-  message: string;
+  message: ReactNode;
   handleRemoveNotification: () => void;
 }) => {
   return (
