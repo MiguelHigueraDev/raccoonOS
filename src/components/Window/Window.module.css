@@ -1,9 +1,9 @@
 .window {
-    border-radius: 8px;
     border: 2px solid rgb(174, 19, 164);
     background-color: #ffffff;
     user-select: none;
     position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 
 .windowHeader {
@@ -11,7 +11,6 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(174, 19, 164);
-    border-radius: 8px 8px 0 0;
     background: linear-gradient(to right, rgb(236, 87, 236), cyan);
 }
 
