@@ -19,7 +19,19 @@ function App() {
     addNotification(
       'welcome-notification',
       'Welcome to RaccoonOS!',
-      'Double click apps to open them or use the start menu.'
+      <p>
+        <strong>Double click</strong> apps to open them or use the
+        <img
+          style={{
+            width: 20,
+            display: 'inline',
+            margin: '0 6px',
+            cursor: 'default',
+          }}
+          src="./raccoonos-logo.webp"
+        />
+        <strong>start menu</strong> below.
+      </p>
     );
   }, [addNotification]);
 
