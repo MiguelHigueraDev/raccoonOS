@@ -88,7 +88,7 @@ const apps: App[] = [
   {
     name: 'musicApp',
     Component: MusicApplication,
-    icon: './app-icons/music.png',
+    icon: './app-icons/music.svg',
     title: 'Music',
     position: { x: 100, y: 220 },
   },
