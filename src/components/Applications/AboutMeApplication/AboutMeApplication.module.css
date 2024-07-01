@@ -75,3 +75,8 @@
 .konamiSection svg, .konamiSection span {
     color: #e3e3e3;
 }
+
+.timeElapsed {
+    color:rgb(220, 28, 204);
+    font-weight: 600;
+}

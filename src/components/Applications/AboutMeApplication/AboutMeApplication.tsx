@@ -9,6 +9,7 @@ import {
   IconArrowRight,
   IconArrowUp,
 } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
 
 const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
   return (
@@ -57,8 +58,8 @@ const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
 
             <p>
               Computers and tech have always been an interest of mine, but when
-              I discovered coding around 4 years ago I found it to be extremely
-              fascinating and rewarding.
+              I discovered coding around <YearsElapsed /> years ago I found it to
+              be extremely fascinating and rewarding.
             </p>
 
             <p>
@@ -97,6 +98,32 @@ const KonamiSection = () => {
       <span>A</span>
     </div>
   );
+};
+
+const YearsElapsed = () => {
+  const [yearsElapsed, setYearsElapsed] = useState(0);
+
+  useEffect(() => {
+    const calculateTimeElapsed = () => {
+      const currentTime = Date.now();
+      // October 2020
+      const timestamp = 1601584745 * 1000;
+      const difference = currentTime - timestamp;
+      
+      // Number of milliseconds in a year
+      const millisecondsInAYear = 365.25 * 24 * 60 * 60 * 1000;
+      
+      const years = difference / millisecondsInAYear;
+      setYearsElapsed(years);
+    };
+
+    calculateTimeElapsed();
+    const interval = setInterval(calculateTimeElapsed, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span className={classes.timeElapsed}>{yearsElapsed.toFixed(8)}</span>;
 };
 
 export default AboutMeApplication;
