@@ -28,6 +28,7 @@ function App() {
             margin: '0 6px',
             cursor: 'default',
           }}
+          alt=""
           src="./raccoonos-logo.webp"
         />
         <strong>start menu</strong> at the bottom.
