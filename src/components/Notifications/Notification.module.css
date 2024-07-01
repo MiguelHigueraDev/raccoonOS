@@ -3,6 +3,7 @@
     padding: 6px;
     border-left: 3px solid rgb(239, 72, 239);
     max-width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .notification div {
