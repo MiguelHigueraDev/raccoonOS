@@ -14,7 +14,7 @@ const Notification = ({
     <li className={classes.notification}>
       <div>
         <h2>{title}</h2>
-        <button onClick={handleRemoveNotification}><IconX size={16} /></button>
+        <button aria-label="Close notification" onClick={handleRemoveNotification}><IconX size={16} /></button>
       </div>
       <p>{message}</p>
     </li>
