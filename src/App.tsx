@@ -30,7 +30,7 @@ function App() {
           }}
           src="./raccoonos-logo.webp"
         />
-        <strong>start menu</strong> below.
+        <strong>start menu</strong> at the bottom.
       </p>
     );
   }, [addNotification]);
