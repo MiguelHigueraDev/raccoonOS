@@ -10,7 +10,7 @@ const NotificationsContainer = () => {
   }
 
   return (
-    <div className={classes.notificationsContainer}>
+    <ol className={classes.notificationsContainer}>
       {notifications.map((notification) => (
         <Notification
           key={notification.id}
@@ -19,7 +19,7 @@ const NotificationsContainer = () => {
           handleRemoveNotification={() => handleRemoveNotification(notification.id)}
         />
       ))}
-    </div>
+    </ol>
   );
 };
 
