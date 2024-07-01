@@ -7,19 +7,23 @@ const NotificationsContainer = () => {
 
   const handleRemoveNotification = (id: string) => {
     removeNotification(id);
-  }
+  };
 
   return (
-    <ol className={classes.notificationsContainer}>
-      {notifications.map((notification) => (
-        <Notification
-          key={notification.id}
-          message={notification.message}
-          title={notification.title}
-          handleRemoveNotification={() => handleRemoveNotification(notification.id)}
-        />
-      ))}
-    </ol>
+    notifications.length > 0 && (
+      <ol className={classes.notificationsContainer}>
+        {notifications.map((notification) => (
+          <Notification
+            key={notification.id}
+            message={notification.message}
+            title={notification.title}
+            handleRemoveNotification={() =>
+              handleRemoveNotification(notification.id)
+            }
+          />
+        ))}
+      </ol>
+    )
   );
 };
 
