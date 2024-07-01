@@ -19,7 +19,7 @@ function App() {
     addNotification(
       'welcome-notification',
       'Welcome to RaccoonOS!',
-      <p>
+      <>
         <strong>Double click</strong> apps to open them or use the
         <img
           style={{
@@ -30,8 +30,8 @@ function App() {
           }}
           src="./raccoonos-logo.webp"
         />
-        <strong>start menu</strong> below.
-      </p>
+        <strong>start menu</strong> at the bottom.
+      </>
     );
   }, [addNotification]);
 
