@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import TaskbarIcon from '../TaskbarIcon/TaskbarIcon';
 import classes from './Taskbar.module.css';
 import StartMenu from '../StartMenu/StartMenu';
-import { App } from '../Desktop/Desktop';
+import { App } from '../Desktop/apps';
 import TaskbarClock from './TaskbarClock';
 const Taskbar = ({
   appList,

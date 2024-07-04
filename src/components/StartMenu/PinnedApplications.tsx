@@ -1,5 +1,5 @@
 import classes from './PinnedApplications.module.css';
-import { App } from '../Desktop/Desktop';
+import { App } from '../Desktop/apps';
 
 const PinnedApplications = ({
   appList,

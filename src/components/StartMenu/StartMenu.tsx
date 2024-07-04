@@ -2,7 +2,7 @@ import classes from './StartMenu.module.css';
 import { IconPower } from '@tabler/icons-react';
 import SearchBar from './SearchBar';
 import PinnedApplications from './PinnedApplications';
-import { App } from '../Desktop/Desktop';
+import { App } from '../Desktop/apps';
 import { useEffect, useState } from 'react';
 
 const StartMenu = ({
