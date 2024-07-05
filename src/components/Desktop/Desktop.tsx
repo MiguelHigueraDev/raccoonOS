@@ -7,6 +7,7 @@ import WindowStore from '../../stores/WindowStore';
 import MobileWarning from '../MobileWarning/MobileWarning';
 import PedroStore from '../../stores/PedroStore';
 import { apps } from './apps';
+import DiscordApplication from '../Applications/DiscordApplication/DiscordApplication';
 
 interface AppState {
   isOpen: boolean;
@@ -133,6 +134,7 @@ const Desktop = () => {
           />
         ))}
       </Taskbar>
+      <DiscordApplication winProps={{appName: 'discord', isOpen: false, isHidden: true, handleClose: () => {}, handleHide: () => {}, zIndex: 0}} />
     </>
   );
 };

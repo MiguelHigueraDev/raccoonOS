@@ -1,4 +1,3 @@
-import DiscordApplication from '../Applications/DiscordApplication/DiscordApplication';
 import ProjectsApplication from '../Applications/ProjectsApplication/ProjectsApplication';
 import AboutMeApplication from '../Applications/AboutMeApplication/AboutMeApplication';
 import TechApplication from '../Applications/TechApplication/TechApplication';
@@ -51,6 +50,7 @@ export const apps: App[] = [
     title: 'Music',
     position: { x: 100, y: 220 },
   },
+  /*
   {
     name: 'discordApp',
     Component: DiscordApplication,
@@ -58,12 +58,13 @@ export const apps: App[] = [
     title: 'Discord',
     position: { x: 100, y: 320 },
   },
+  */
   {
     name: 'gamesApp',
     Component: GamesApplication,
     icon: './app-icons/games.svg',
     title: 'Games',
-    position: { x: 100, y: 420 },
+    position: { x: 100, y: 320 },
   },
   {
     name: 'creditsApp',
