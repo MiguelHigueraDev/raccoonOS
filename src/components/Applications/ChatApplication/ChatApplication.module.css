@@ -1,0 +1,52 @@
+.chatUi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.messages {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+.input {
+    display: flex;
+    gap: 12px;
+}
+
+.input input {
+    padding: 4px;
+    border: 1px solid #ef51ef;
+}
+
+.input button {
+    padding: 4px;
+    border: 1px solid #ef51ef;
+    background-color: #ef51ef;
+    color: white;
+    cursor: pointer;
+}
+
+.chatInput {
+    width: 100%;
+}
+
+.aiMessage {
+    color: red;
+}
+
+.selfMessage {
+    color: magenta;
+}
+
+.aiMessage, .selfMessage {
+    font-weight: 500;
+}
+
+.typing::content {
+    content: 'Typing...';
+}

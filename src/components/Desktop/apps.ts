@@ -6,6 +6,7 @@ import CreditsApplication from '../Applications/CreditsApplication/CreditsApplic
 import MusicApplication from '../Applications/MusicApplication/MusicApplication';
 import ResumeApplication from '../Applications/ResumeApplication/ResumeApplication';
 import GamesApplication from '../Applications/GamesApplication/GamesApplication';
+import ChatApplication from '../Applications/ChatApplication/ChatApplication';
 
 export const apps: App[] = [
   {
@@ -21,6 +22,13 @@ export const apps: App[] = [
     icon: './app-icons/projects.svg',
     title: 'Projects',
     position: { x: 20, y: 120 },
+  },
+  {
+    name: 'chatApp',
+    Component: ChatApplication,
+    icon: './app-icons/chat.svg',
+    title: 'Chat',
+    position: { x: 100, y: 120 },
   },
   {
     name: 'resumeApp',

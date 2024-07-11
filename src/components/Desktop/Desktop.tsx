@@ -89,7 +89,7 @@ const Desktop = () => {
           }
           iconUrl="./app-icons/github.svg"
           name="Source"
-          position={{ x: 100, y: 120 }}
+          position={{ x: 100, y: 420 }}
         />
 
         {/* Applications */}
