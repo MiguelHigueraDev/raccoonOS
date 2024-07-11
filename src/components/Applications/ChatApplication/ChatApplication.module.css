@@ -20,15 +20,22 @@
 
 .input input {
     padding: 4px;
-    border: 1px solid #ef51ef;
+    border: 2px solid #ef51ef;
+}
+
+.input input:focus, .input button:focus {
+    outline: 2px solid #169fc8;
 }
 
 .input button {
-    padding: 4px;
-    border: 1px solid #ef51ef;
-    background-color: #ef51ef;
-    color: white;
+    padding: 4px 6px;
+    background-color: #be3ebe;
+    color: rgb(255, 255, 255);
     cursor: pointer;
+}
+
+.input button:hover {
+    background-color: #d13ad1;
 }
 
 .chatInput {
@@ -36,17 +43,13 @@
 }
 
 .aiMessage {
-    color: red;
+    color: rgb(21, 116, 127);
 }
 
 .selfMessage {
-    color: magenta;
+    color: rgb(185, 28, 185);
 }
 
 .aiMessage, .selfMessage {
-    font-weight: 500;
-}
-
-.typing::content {
-    content: 'Typing...';
+    font-weight: 600;
 }
