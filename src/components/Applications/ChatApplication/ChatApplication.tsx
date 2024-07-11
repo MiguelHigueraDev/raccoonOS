@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import classes from './ChatApplication.module.css';
 import NotificationStore from '../../../stores/NotificationStore';
 
-const CHAT_URL = 'https://raccoonos-ai.vercel.app/chat'
+const CHAT_URL = 'https://raccoonos-ai.vercel.app/chat';
 
 const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
   const { addNotification } = NotificationStore();
@@ -22,6 +22,8 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
   };
 
   const sendMessage = async () => {
+    if (input === '') return;
+
     setInput('');
     setIsTyping(true);
     addMessage({
@@ -62,9 +64,9 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
   // Scroll to the bottom after a new message is added
   useEffect(() => {
     if (messagesDiv.current) {
-        messagesDiv.current.scrollTop = messagesDiv.current.scrollHeight;
+      messagesDiv.current.scrollTop = messagesDiv.current.scrollHeight;
     }
-  }, [messages])
+  }, [messages]);
 
   return (
     winProps.isOpen && (
@@ -96,7 +98,9 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
               placeholder="Enter your message here"
               autoFocus
             />
-            <button onClick={sendMessage}>Send</button>
+            <button onClick={sendMessage} disabled={(isTyping || input === '') ? true : false}>
+              Send
+            </button>
           </div>
         </div>
       </Window>
