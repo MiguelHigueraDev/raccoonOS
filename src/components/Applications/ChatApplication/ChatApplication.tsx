@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import classes from './ChatApplication.module.css';
 import NotificationStore from '../../../stores/NotificationStore';
 
-const CHAT_URL = 'http://165.232.158.50:3001/chat'
+const CHAT_URL = 'https://raccoonos-ai.vercel.app/chat'
 
 const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
   const { addNotification } = NotificationStore();
