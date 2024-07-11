@@ -1,0 +1,55 @@
+.chatUi {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.messages {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+}
+
+.input {
+    display: flex;
+    gap: 12px;
+}
+
+.input input {
+    padding: 4px;
+    border: 2px solid #ef51ef;
+}
+
+.input input:focus, .input button:focus {
+    outline: 2px solid #169fc8;
+}
+
+.input button {
+    padding: 4px 6px;
+    background-color: #be3ebe;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.input button:hover {
+    background-color: #d13ad1;
+}
+
+.chatInput {
+    width: 100%;
+}
+
+.aiMessage {
+    color: rgb(21, 116, 127);
+}
+
+.selfMessage {
+    color: rgb(185, 28, 185);
+}
+
+.aiMessage, .selfMessage {
+    font-weight: 600;
+}
