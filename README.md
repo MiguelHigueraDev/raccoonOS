@@ -11,6 +11,7 @@ Built using React + TypeScript.
 - About Me
 - Projects
 - Contact
+- AI Chat
 - Resume
 - Tech (stack)
 - Music
