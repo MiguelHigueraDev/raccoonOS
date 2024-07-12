@@ -14,7 +14,7 @@ interface AiResponse {
 
 const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
   const { addNotification } = NotificationStore();
-  const { messages, addMessage } = ChatStore();
+  const { messages, addMessage, removeIsTypingMessage } = ChatStore();
 
   const [input, setInput] = useState<string>('');
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -29,6 +29,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
     if (input === '') return;
 
     addUserMessage(input);
+    await addIsTypingMessage();
 
     const response = await getOutput(input);
 
@@ -39,6 +40,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
     }
 
     const data: AiResponse = await response.json();
+    removeIsTypingMessage();
     addAiMessage(data);
   };
 
@@ -50,6 +52,18 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
       sender: 'user',
     });
   }
+
+  const addIsTypingMessage = async () => {
+    // Wait a bit before adding the "Typing..." message
+    // so it doesn't have same timestamp as the user message
+    await new Promise((resolve) => setTimeout(resolve, 10));
+
+    addMessage({
+      content: 'Typing...',
+      sender: 'ai',
+    });
+  }
+
 
   const getOutput = async (prompt: string) => {
     return await fetch(CHAT_URL, {
@@ -100,7 +114,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
         <div className={`window ${classes.chatUi}`}>
           <div className={classes.messages} ref={messagesDiv}>
             {messages.map((message) => (
-              <ChatMessage key={message.id} message={message} />
+              <ChatMessage key={message.timestamp} message={message} />
             ))}
           </div>
 
@@ -111,7 +125,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
               onChange={handleInput}
               disabled={isTyping}
               onKeyDown={(e) => e.key === 'Enter' && sendMessages()}
-              placeholder="Enter your message here"
+              placeholder="Enter your message here (press ENTER to send)"
               autoFocus
             />
             <button onClick={sendMessages} disabled={(isTyping || input === '') ? true : false}>
