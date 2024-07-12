@@ -8,6 +8,10 @@ import NotificationStore from '../../../stores/NotificationStore';
 
 const CHAT_URL = 'https://raccoonos-ai.vercel.app/chat';
 
+interface AiResponse {
+  output: string;
+}
+
 const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
   const { addNotification } = NotificationStore();
   const { messages, addMessage } = ChatStore();
@@ -21,23 +25,12 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
     setInput(e.target.value);
   };
 
-  const sendMessage = async () => {
+  const sendMessages = async () => {
     if (input === '') return;
 
-    setInput('');
-    setIsTyping(true);
-    addMessage({
-      content: input,
-      sender: 'user',
-    });
+    addUserMessage(input);
 
-    const response = await fetch(CHAT_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prompt: input }),
-    });
+    const response = await getOutput(input);
 
     if (!response.ok) {
       sendErrorNotification();
@@ -45,13 +38,36 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
       return;
     }
 
-    const data = await response.json();
+    const data: AiResponse = await response.json();
+    addAiMessage(data);
+  };
+
+  const addUserMessage = (message: string) => {
+    setInput('');
+    setIsTyping(true);
+    addMessage({
+      content: message,
+      sender: 'user',
+    });
+  }
+
+  const getOutput = async (prompt: string) => {
+    return await fetch(CHAT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt }),
+    });
+  }
+
+  const addAiMessage = async (data: AiResponse) => {
     setIsTyping(false);
     addMessage({
       content: data.output,
       sender: 'ai',
     });
-  };
+  }
 
   const sendErrorNotification = () => {
     addNotification(
@@ -94,11 +110,11 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
               value={input}
               onChange={handleInput}
               disabled={isTyping}
-              onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+              onKeyDown={(e) => e.key === 'Enter' && sendMessages()}
               placeholder="Enter your message here"
               autoFocus
             />
-            <button onClick={sendMessage} disabled={(isTyping || input === '') ? true : false}>
+            <button onClick={sendMessages} disabled={(isTyping || input === '') ? true : false}>
               Send
             </button>
           </div>
