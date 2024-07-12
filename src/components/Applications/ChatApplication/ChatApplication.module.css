@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 6px;
     overflow-y: auto;
+    padding-right: 12px;
 }
 
 .input {
@@ -42,14 +43,41 @@
     width: 100%;
 }
 
+.message {
+    font-weight: 400;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.message img {
+    cursor: default;
+    width: 24px;
+}
+
 .aiMessage {
-    color: rgb(21, 116, 127);
+    align-self: flex-start;
+    text-align: start;
+    background-color: #d9eaf8;
 }
 
 .selfMessage {
+    align-self: flex-end;
+    text-align: end;
+    background-color: #fde1fd;
+}
+
+.selfMessage div {
+    justify-content: flex-end;
+}
+
+.aiMessage span {
+    color: rgb(21, 116, 127);
+}
+
+.selfMessage span {
     color: rgb(185, 28, 185);
 }
 
-.aiMessage, .selfMessage {
+.aiMessage span, .selfMessage span {
     font-weight: 600;
 }
