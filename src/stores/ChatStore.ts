@@ -6,7 +6,7 @@ type Store = {
 };
 
 export interface Message {
-  id?: string;
+  timestamp?: number;
   content: string;
   sender: 'ai' | 'user';
 }
@@ -14,13 +14,13 @@ export interface Message {
 export default create<Store>((set) => ({
   messages: [
     {
-      id: '1',
+      timestamp: Date.now(),
       sender: 'ai',
       content: 'Hello! I\'m an AI clone of Miguel. Feel free to ask any questions, I\'ll try my best to answer them!',
     },
   ],
   addMessage: (message) =>
     set((state) => ({
-      messages: [...state.messages, { ...message, id: Date.now().toString() }],
+      messages: [...state.messages, { ...message, timestamp: Date.now() }],
     })),
 }));

@@ -100,7 +100,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
         <div className={`window ${classes.chatUi}`}>
           <div className={classes.messages} ref={messagesDiv}>
             {messages.map((message) => (
-              <ChatMessage key={message.id} message={message} />
+              <ChatMessage key={message.timestamp} message={message} />
             ))}
           </div>
 
