@@ -20,8 +20,9 @@
 }
 
 .input input {
-    padding: 4px;
-    border: 2px solid #ef51ef;
+    padding: 8px;
+    background-color: #daa4df3e;
+    border-radius: 12px;
 }
 
 .input input:focus, .input button:focus {
@@ -29,14 +30,20 @@
 }
 
 .input button {
-    padding: 4px 6px;
-    background-color: #be3ebe;
-    color: rgb(255, 255, 255);
+    padding: 2px 6px;
+    background-color: #e0a4e0;
+    color: rgb(0, 0, 0);
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .input button:hover {
-    background-color: #d13ad1;
+    background-color: #f4c5f4;
+}
+
+.input button:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
 }
 
 .chatInput {

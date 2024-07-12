@@ -111,7 +111,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
               onChange={handleInput}
               disabled={isTyping}
               onKeyDown={(e) => e.key === 'Enter' && sendMessages()}
-              placeholder="Enter your message here"
+              placeholder="Enter your message here (press ENTER to send)"
               autoFocus
             />
             <button onClick={sendMessages} disabled={(isTyping || input === '') ? true : false}>
