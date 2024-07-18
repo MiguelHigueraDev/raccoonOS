@@ -197,6 +197,12 @@ Notifications are displayed in the top right corner of the screen:
 
 ![Notification example](github/notification.png)
 
+### Start menu
+
+The start menu is an alternative way of opening apps. It works exactly the same as opening them by double clicking but it is more accesible because it doesn't require a double click to open them.
+
+![Start menu](github/start-menu.png)
+
 ### Easter eggs
 
 There is an easter egg if you press the Konami Code. This is handled by using a `useKonamiCode` custom React hook that detects when a key combination is entered and triggers a callback. The code can be customized to your needs.
