@@ -2,9 +2,17 @@
 
 My personal website and portfolio that resembles a desktop operating system.
 
+#### Video Demo: https://www.youtube.com/watch?v=go-UDKVAav4
+
 ![raccoonOS Demo](github/raccoon-os-preview.png)
 
 Built with React + TypeScript.
+
+## How to run
+
+First, install NodeJS if not already installed.
+
+Run `npm install` and then `npm run dev` to start the development server.
 
 ## How it works
 
