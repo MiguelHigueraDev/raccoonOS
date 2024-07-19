@@ -15,6 +15,14 @@ export const projects: Project[] = [
         image: "/projects/ferreteria.webp",
     },
     {
+        name: "Reviewizer",
+        description: "Web Application that lets you search Steam games so it summarizes their reviews for you and shows a list of positive and negative points about them.",
+        technologies: ["React", "TypeScript", "NextJS", "HTML", "CSS"],
+        image: "/projects/reviewizer.webp",
+        liveUrl: "https://reviewizer.miguelhiguera.dev",
+        repoUrl: "https://github.com/MiguelHigueraDev/reviewizer"
+    },
+    {
         name: "URL Shortener",
         description: "URL shortener. Uses Spring Boot and Angular, providing a separation between backend and frontend. Links are stored in a Postgres database. Containerized in a Docker container.",
         technologies: ["Spring Boot", "Java", "Angular", "TypeScript", "Docker"],
