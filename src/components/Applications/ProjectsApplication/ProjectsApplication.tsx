@@ -17,7 +17,7 @@ const ProjectsApplication = ({ winProps }: { winProps: WindowProps }) => {
         appName={winProps.appName}
         zIndex={winProps.zIndex}
       >
-        <div className={classes.window}>
+        <div className="window">
           <ul className={classes.projectsContainer}>
             {projects.map((project, index) => (
               <Project project={project} key={index} />
