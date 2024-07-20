@@ -16,7 +16,7 @@ export const projects: Project[] = [
     },
     {
         name: "Reviewizer",
-        description: "Web Application that lets you search Steam games so it summarizes their reviews for you and shows a list of positive and negative points about them.",
+        description: "Web Application that lets you search Steam games to get an AI-generated summary of their reviews, listing their positives and negatives.",
         technologies: ["React", "TypeScript", "NextJS", "HTML", "CSS"],
         image: "/projects/reviewizer.webp",
         liveUrl: "https://reviewizer.miguelhiguera.dev",

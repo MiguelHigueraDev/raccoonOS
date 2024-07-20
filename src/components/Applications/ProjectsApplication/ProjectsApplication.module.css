@@ -5,8 +5,8 @@
 }
 
 .projectsContainer {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 24px;
     padding: 20px;
 }

@@ -1,63 +1,56 @@
-import { IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
-import classes from "./Project.module.css";
-import { Project as ProjectProps } from "./projects";
+import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
+import classes from './Project.module.css';
+import { Project as ProjectProps } from './projects';
 
 const Project = ({ project }: { project: ProjectProps }) => {
   const { name, description, image, technologies, liveUrl, repoUrl } = project;
   return (
     <li className={classes.project}>
-      <div style={{ flexGrow: 2 }}>
-        {liveUrl || repoUrl ? (
-          <>
-            <a target="_blank" href={liveUrl ? liveUrl : repoUrl}>
-              <img
-                height={226}
-                width={402}
-                src={image}
-                alt={name}
-                className={classes.image}
-              />
-            </a>
-          </>
-        ) : (
-          <img
-            height={226}
-            width={402}
-            src={image}
-            alt={name}
-            className={classes.image}
-          />
-        )}
-        <div style={{ display: "flex", gap: 8 }}>
-          <h3 className={classes.projectTitle}>{name}</h3>
-          {liveUrl && (
-            <a
-              aria-label={`Visit ${name}`}
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconExternalLink />
-            </a>
-          )}
-          {repoUrl && (
-            <a
-              aria-label={`Visit ${name}'s GitHub repository`}
-              href={repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconBrandGithub />
-            </a>
-          )}
+      <div className={classes.projectTop}>
+        <img
+          height={226}
+          width={402}
+          src={image}
+          alt={name}
+          className={classes.image}
+        />
+        <div className={classes.projectInner}>
+          <h2 className={classes.projectTitle}>{name}</h2>
+          <p style={{ marginTop: 2 }}>{description}</p>
+          <ul className={classes.techStack}>
+            {technologies.map((technology, index) => (
+              <li className={classes.tech} key={index}>
+                {technology}
+              </li>
+            ))}
+          </ul>
+          <div className={classes.projectLinks}>
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={classes.link}
+              >
+                <IconExternalLink size={20} />
+                Live Demo
+              </a>
+            )}
+
+            {repoUrl && (
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={classes.link}
+              >
+                <IconBrandGithub size={20} />
+                Repository
+              </a>
+            )}
+          </div>
         </div>
-        <p style={{ marginTop: 2 }}>{description}</p>
       </div>
-      <ul className={classes.techStack}>
-        {technologies.map((technology, index) => (
-          <li className={classes.tech} key={index}>{technology}</li>
-        ))}
-      </ul>
     </li>
   );
 };
