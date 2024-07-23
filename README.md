@@ -2,8 +2,6 @@
 
 My personal website and portfolio that resembles a desktop operating system.
 
-#### Video Demo: https://www.youtube.com/watch?v=go-UDKVAav4
-
 ![raccoonOS Demo](github/raccoon-os-preview.png)
 
 Built with React + TypeScript.
