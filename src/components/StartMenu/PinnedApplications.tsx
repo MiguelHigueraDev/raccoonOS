@@ -1,5 +1,5 @@
-import classes from './PinnedApplications.module.css';
-import { App } from '../Desktop/apps';
+import classes from "./PinnedApplications.module.css";
+import { App } from "../Desktop/apps";
 
 const PinnedApplications = ({
   appList,
@@ -16,14 +16,15 @@ const PinnedApplications = ({
       )}
       <div className={classes.pinnedApplicationsGrid}>
         {appList.map(({ name, icon, title }) => (
-          <div
+          <button
             key={name}
             className={classes.pinnedApp}
             onClick={() => handleOpenApp(name)}
+            aria-label={`Open ${title}`}
           >
             <img src={icon} alt={title} />
             <span>{title}</span>
-          </div>
+          </button>
         ))}
       </div>
     </div>
