@@ -1,3 +1,4 @@
+import Markdown from 'marked-react';
 import { Message } from '../../../stores/ChatStore';
 import classes from './ChatApplication.module.css';
 
@@ -27,7 +28,7 @@ const ChatMessage = ({ message }: { message: Message }) => {
           />
           <span>Miguel</span>
         </div>
-        <p>{message.content}</p>
+        <Markdown>{message.content}</Markdown>
       </div>
     );
   }
