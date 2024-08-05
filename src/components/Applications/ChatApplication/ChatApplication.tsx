@@ -19,7 +19,6 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
 
   const [input, setInput] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
-  const [discordMessage, setDiscordMessage] = useState<string>("");
 
   const messagesDiv = useRef<HTMLDivElement>(null);
 
@@ -184,12 +183,6 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
                 ],
               }}
               priority="spotify"
-              message={{
-                handleInput: (e) => setDiscordMessage(e.target.value),
-                message: discordMessage,
-                accentColor: "#8500d3",
-                placeholder: "Message @misfitdude",
-              }}
             />
           </div>
         </div>
