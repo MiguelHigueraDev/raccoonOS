@@ -139,7 +139,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
             </div>
           </div>
 
-          <div style={{ display: "flex", alignSelf: "center" }}>
+          <div style={{ display: "flex", alignSelf: "flex-start" }}>
             <LanyardDiscordCard
               userId="205519765312241665"
               imageUrl="pfp.webp"

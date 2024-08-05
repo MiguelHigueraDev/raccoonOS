@@ -32,6 +32,11 @@
   border-radius: 12px;
 }
 
+.input input,
+.input button {
+  margin-bottom: 12px;
+}
+
 .input input:focus,
 .input button:focus {
   outline: 2px solid #169fc8;
