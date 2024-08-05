@@ -1,90 +1,99 @@
 .chatUi {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .messages {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    overflow-y: auto;
-    padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  height: 100%;
+}
+
+.messagesInner {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 2px;
 }
 
 .input {
-    display: flex;
-    gap: 12px;
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 .input input {
-    padding: 8px;
-    background-color: #daa4df3e;
-    border-radius: 12px;
+  padding: 8px;
+  background-color: #daa4df3e;
+  border-radius: 12px;
 }
 
-.input input:focus, .input button:focus {
-    outline: 2px solid #169fc8;
+.input input:focus,
+.input button:focus {
+  outline: 2px solid #169fc8;
 }
 
 .input button {
-    padding: 2px 6px;
-    background-color: #e0a4e0;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    border-radius: 4px;
+  padding: 2px 6px;
+  background-color: #e0a4e0;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .input button:hover {
-    background-color: #f4c5f4;
+  background-color: #f4c5f4;
 }
 
 .input button:disabled {
-    opacity: 50%;
-    cursor: not-allowed;
+  opacity: 50%;
+  cursor: not-allowed;
 }
 
 .chatInput {
-    width: 100%;
+  width: 100%;
 }
 
 .message {
-    font-weight: 400;
-    border-radius: 8px;
-    padding: 8px;
+  font-weight: 400;
+  border-radius: 8px;
+  padding: 8px;
 }
 
 .message img {
-    cursor: default;
-    width: 24px;
+  cursor: default;
+  width: 24px;
 }
 
 .aiMessage {
-    align-self: flex-start;
-    text-align: start;
-    background-color: #d9eaf8;
+  align-self: flex-start;
+  text-align: start;
+  background-color: #d9eaf8;
 }
 
 .selfMessage {
-    align-self: flex-end;
-    text-align: end;
-    background-color: #fde1fd;
+  align-self: flex-end;
+  text-align: end;
+  background-color: #fde1fd;
 }
 
 .selfMessage div {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .aiMessage span {
-    color: rgb(21, 116, 127);
+  color: rgb(21, 116, 127);
 }
 
 .selfMessage span {
-    color: rgb(185, 28, 185);
+  color: rgb(185, 28, 185);
 }
 
-.aiMessage span, .selfMessage span {
-    font-weight: 600;
+.aiMessage span,
+.selfMessage span {
+  font-weight: 600;
 }

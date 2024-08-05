@@ -1,34 +1,38 @@
 .window {
-    padding: 16px;
-    height: calc(100% - 40px);
-    overflow-y: auto;
+  padding: 16px;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+}
+
+.window img {
+  cursor: default !important;
 }
 
 @keyframes pedro {
-    0% {
-        transform: rotateZ(360deg);
-    }
-    100% {
-        transform: rotateZ(0deg);
-    }
+  0% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
 }
 
 .pedro {
-    animation: pedro 6s linear infinite;
-    border-radius: 50%;
-    width: calc(100vw / 2) !important;
-    height: calc(100vw / 2) !important;
-    position: static !important;
-    margin: 0 auto;
-    overflow: hidden;
+  animation: pedro 6s linear infinite;
+  border-radius: 50%;
+  width: calc(100vw / 2) !important;
+  height: calc(100vw / 2) !important;
+  position: static !important;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
 .pedro-hides-desktop {
-    display: none;
+  display: none;
 }
 
 #root {
-    background-color: black;
-    height: 100vh;
-    overflow: hidden;
+  background-color: black;
+  height: 100vh;
+  overflow: hidden;
 }
