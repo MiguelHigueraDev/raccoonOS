@@ -106,7 +106,7 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
         width={1000}
-        height={830}
+        height={860}
         appName={winProps.appName}
         zIndex={winProps.zIndex}
         nonResizable
