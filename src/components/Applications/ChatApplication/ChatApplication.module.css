@@ -1,6 +1,6 @@
 .chatUi {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   gap: 24px;
 }
@@ -8,16 +8,7 @@
 .messages {
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
   height: 100%;
-}
-
-.messagesInner {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 2px;
 }
 
 .input {
@@ -30,11 +21,6 @@
   padding: 8px;
   background-color: #daa4df3e;
   border-radius: 12px;
-}
-
-.input input,
-.input button {
-  margin-bottom: 12px;
 }
 
 .input input:focus,

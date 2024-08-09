@@ -5,7 +5,6 @@ import ChatMessage from "./ChatMessage";
 import { useEffect, useRef, useState } from "react";
 import classes from "./ChatApplication.module.css";
 import NotificationStore from "../../../stores/NotificationStore";
-import { LanyardDiscordCard } from "discord-card-react";
 
 const CHAT_URL = "https://raccoonos-ai.vercel.app/chat";
 
@@ -105,85 +104,35 @@ const ChatApplication = ({ winProps }: { winProps: WindowProps }) => {
         isHidden={winProps.isHidden}
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
-        width={1000}
-        height={860}
+        width={800}
+        height={600}
         appName={winProps.appName}
         zIndex={winProps.zIndex}
         nonResizable
       >
         <div className={`window ${classes.chatUi}`}>
-          <div className={classes.messages}>
-            <div className={classes.messagesInner} ref={messagesDiv}>
-              {messages.map((message) => (
-                <ChatMessage key={message.timestamp} message={message} />
-              ))}
-            </div>
-
-            <div className={classes.input}>
-              <input
-                className={`${classes.chatInput} ${isTyping && classes.typing}`}
-                value={input}
-                onChange={handleInput}
-                disabled={isTyping}
-                onKeyDown={(e) => e.key === "Enter" && sendMessages()}
-                placeholder="Enter your message here (press ENTER to send)"
-                autoFocus
-              />
-              <button
-                onClick={sendMessages}
-                disabled={isTyping || input === "" ? true : false}
-              >
-                Send
-              </button>
-            </div>
+          <div className={classes.messages} ref={messagesDiv}>
+            {messages.map((message) => (
+              <ChatMessage key={message.timestamp} message={message} />
+            ))}
           </div>
 
-          <div style={{ display: "flex", alignSelf: "flex-start" }}>
-            <LanyardDiscordCard
-              userId="205519765312241665"
-              imageUrl="pfp.webp"
-              bannerUrl="banner.webp"
-              primaryColor="#007777"
-              accentColor="#8500d3"
-              basicInfo={{
-                displayname: "Misfit",
-                username: "misfitdude",
-              }}
-              badges={[
-                { name: "Active Developer", iconUrl: "developer-badge.png" },
-              ]}
-              status={{
-                status: "Tech nerd",
-              }}
-              aboutMe={{
-                items: [
-                  {
-                    text: "Passionate about technology",
-                  },
-                  {
-                    text: "and coding especially",
-                  },
-                  {
-                    text: "INTP",
-                    marginBottom: 8,
-                  },
-                  {
-                    text: "👨‍💻🖥️",
-                  },
-                ],
-              }}
-              roles={{
-                roles: [
-                  { name: "JavaScript", color: "#f7df1e" },
-                  { name: "TypeScript", color: "#007acc" },
-                  { name: "Java", color: "#f89820" },
-                  { name: "PHP", color: "#4f3e66" },
-                  { name: "React", color: "#61DBFB" },
-                  { name: "Vue", color: "#41B883" },
-                ],
-              }}
-              priority="spotify"
+          <div className={classes.input}>
+            <input
+              className={`${classes.chatInput} ${isTyping && classes.typing}`}
+              value={input}
+              onChange={handleInput}
+              disabled={isTyping}
+              onKeyDown={(e) => e.key === "Enter" && sendMessages()}
+              placeholder="Enter your message here (press ENTER to send)"
+              autoFocus
             />
+            <button
+              onClick={sendMessages}
+              disabled={isTyping || input === "" ? true : false}
+            >
+              Send
+            </button>
           </div>
         </div>
       </Window>
