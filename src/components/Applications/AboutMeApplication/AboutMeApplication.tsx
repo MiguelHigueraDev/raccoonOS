@@ -1,15 +1,15 @@
-import classes from './AboutMeApplication.module.css';
-import Window from '../../Window/Window';
-import { Canvas } from '@react-three/fiber';
-import { Float, Text3D } from '@react-three/drei';
-import { WindowProps } from '../../../shared/WindowProps';
+import classes from "./AboutMeApplication.module.css";
+import Window from "../../Window/Window";
+import { Canvas } from "@react-three/fiber";
+import { Float, Text3D } from "@react-three/drei";
+import { WindowProps } from "../../../shared/WindowProps";
 import {
   IconArrowDown,
   IconArrowLeft,
   IconArrowRight,
   IconArrowUp,
-} from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+} from "@tabler/icons-react";
+import { useEffect, useState } from "react";
 
 const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
   return (
@@ -20,7 +20,7 @@ const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
         handleClose={winProps.handleClose}
         handleHide={winProps.handleHide}
         width={800}
-        height={560}
+        height={580}
         appName={winProps.appName}
         zIndex={winProps.zIndex}
         nonResizable
@@ -48,27 +48,29 @@ const AboutMeApplication = ({ winProps }: { winProps: WindowProps }) => {
 
           <div className={classes.text}>
             <p>
-              I'm Miguel Higuera, a Chilean{' '}
+              I'm Miguel Higuera, a Chilean{" "}
               <img
-                style={{ display: 'inline', width: 20, cursor: 'default' }}
+                style={{ display: "inline", width: 20, cursor: "default" }}
                 src="./chile-flag.svg"
-              />{' '}
+              />{" "}
               software developer.
             </p>
 
             <p>
               Computers and tech have always been an interest of mine, but when
-              I discovered coding around <YearsElapsed /> years ago I found it to
-              be extremely fascinating and rewarding.
+              I discovered coding around <YearsElapsed /> years ago I found it
+              to be extremely fascinating and rewarding.
             </p>
 
             <p>
-              Since then, I have been tirelessly learning for years, seeking new
-              knowledge to improve and expand my skillset.
+              Even though I have learned a lot since I started, I still think
+              there's a ton of new things to learn and improve on. I consider
+              myself a lifelong learner and I'm always looking for new
+              challenges and to experiment with new technologies.
             </p>
 
             <p>
-              My main programming languages are{' '}
+              My main programming languages are{" "}
               <strong className={classes.strongText2}>
                 JavaScript, TypeScript, and Java
               </strong>
@@ -109,10 +111,10 @@ const YearsElapsed = () => {
       // October 2020
       const timestamp = 1601584745 * 1000;
       const difference = currentTime - timestamp;
-      
+
       // Number of milliseconds in a year
       const millisecondsInAYear = 365.25 * 24 * 60 * 60 * 1000;
-      
+
       const years = difference / millisecondsInAYear;
       setYearsElapsed(years);
     };
