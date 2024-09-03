@@ -102,12 +102,12 @@ const Window = ({
             <div>{name}</div>
           </div>
           <div className={classes.windowIcons}>
-            <button onClick={handleHide}>
+            <button onClick={handleHide} aria-label={`Hide ${name}`}>
               <img src="./ui-icons/hide.svg" />
             </button>
 
             {!nonResizable && (
-              <button onClick={handleMaximize}>
+              <button onClick={handleMaximize} aria-label={`Show ${name}`}>
                 <img
                   src={
                     isMaximized
@@ -118,7 +118,11 @@ const Window = ({
               </button>
             )}
 
-            <button className="closeButton" onClick={handleClose}>
+            <button
+              className="closeButton"
+              onClick={handleClose}
+              aria-label={`Close ${name}`}
+            >
               <img src="./ui-icons/close.svg" />
             </button>
           </div>
