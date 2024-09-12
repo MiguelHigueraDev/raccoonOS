@@ -21,7 +21,10 @@ const ContactApplication = ({ winProps }: { winProps: WindowProps }) => {
           <h1>
             Have an interesting idea? A job offer? Just want to reach out to me?
           </h1>
-          <p>Email me at</p>
+          <p>
+            I'm currently employed,
+            <br /> but you can still email me at
+          </p>
           <a href="mailto:me@miguelhiguera.dev">me@miguelhiguera.dev</a>
 
           <p>You can also find me at:</p>
