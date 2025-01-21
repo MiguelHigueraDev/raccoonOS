@@ -1,5 +1,5 @@
-import classes from './SearchBar.module.css';
-import { IconSearch } from '@tabler/icons-react';
+import classes from "./SearchBar.module.css";
+import { IconSearch } from "@tabler/icons-react";
 
 const SearchBar = ({
   searchTerm,
@@ -15,7 +15,7 @@ const SearchBar = ({
         className={classes.searchBar}
         type="text"
         value={searchTerm}
-        placeholder="Search apps, settings, documents..."
+        placeholder="Search apps, settings, and files..."
         onChange={updateInputValue}
         autoFocus
       />
