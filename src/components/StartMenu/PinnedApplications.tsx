@@ -1,12 +1,14 @@
 import classes from "./PinnedApplications.module.css";
 import { App } from "../Desktop/apps";
 
-const PinnedApplications = ({
-  appList,
-  handleOpenApp,
-}: {
+interface PinnedApplicationsProps {
   appList: App[];
   handleOpenApp: (appName: string) => void;
+}
+
+const PinnedApplications: React.FC<PinnedApplicationsProps> = ({
+  appList,
+  handleOpenApp,
 }) => {
   return (
     <div className={classes.pinnedApplicationsContainer}>

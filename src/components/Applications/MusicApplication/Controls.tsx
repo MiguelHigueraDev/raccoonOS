@@ -11,19 +11,7 @@ import {
 import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { Track } from "./TrackList";
 
-const Controls = ({
-  tracks,
-  trackIndex,
-  setTrackIndex,
-  setCurrentTrack,
-  audioRef,
-  progressRef,
-  duration,
-  setCurrentTime,
-  handleNext,
-  isPlaying,
-  setIsPlaying,
-}: {
+interface ControlsProps {
   tracks: Track[];
   trackIndex: number;
   setTrackIndex: (index: number) => void;
@@ -35,6 +23,20 @@ const Controls = ({
   handleNext: () => void;
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
+}
+
+const Controls: React.FC<ControlsProps> = ({
+  tracks,
+  trackIndex,
+  setTrackIndex,
+  setCurrentTrack,
+  audioRef,
+  progressRef,
+  duration,
+  setCurrentTime,
+  handleNext,
+  isPlaying,
+  setIsPlaying,
 }) => {
   const [volume, setVolume] = useState(45);
   const [muteVolume, setMuteVolume] = useState(false);

@@ -1,8 +1,8 @@
-import NotificationStore from '../../stores/NotificationStore';
-import Notification from './Notification';
-import classes from './NotificationsContainer.module.css';
+import NotificationStore from "../../stores/NotificationStore";
+import Notification from "./Notification";
+import classes from "./NotificationsContainer.module.css";
 
-const NotificationsContainer = () => {
+const NotificationsContainer: React.FC = () => {
   const { notifications, removeNotification } = NotificationStore();
 
   const handleRemoveNotification = (id: string) => {

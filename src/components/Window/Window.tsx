@@ -3,18 +3,7 @@ import classes from "./Window.module.css";
 import Draggable from "react-draggable";
 import WindowStore from "../../stores/WindowStore";
 
-const Window = ({
-  name = "Window",
-  width = 600,
-  height = 400,
-  handleClose,
-  handleHide,
-  isHidden = false,
-  children,
-  nonResizable = false,
-  appName,
-  zIndex,
-}: {
+interface WindowProps {
   name: string;
   width: number;
   height: number;
@@ -25,6 +14,19 @@ const Window = ({
   nonResizable?: boolean;
   appName: string;
   zIndex: number;
+}
+
+const Window: React.FC<WindowProps> = ({
+  name = "Window",
+  width = 600,
+  height = 400,
+  handleClose,
+  handleHide,
+  isHidden = false,
+  children,
+  nonResizable = false,
+  appName,
+  zIndex,
 }) => {
   const { incZIndex } = WindowStore();
 

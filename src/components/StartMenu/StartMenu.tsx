@@ -1,24 +1,26 @@
-import classes from './StartMenu.module.css';
-import { IconPower } from '@tabler/icons-react';
-import SearchBar from './SearchBar';
-import PinnedApplications from './PinnedApplications';
-import { App } from '../Desktop/apps';
-import { useEffect, useState } from 'react';
+import classes from "./StartMenu.module.css";
+import { IconPower } from "@tabler/icons-react";
+import SearchBar from "./SearchBar";
+import PinnedApplications from "./PinnedApplications";
+import { App } from "../Desktop/apps";
+import { useEffect, useState } from "react";
 
-const StartMenu = ({
-  appList,
-  numberOfOpenedApps,
-  isOpen,
-  handleOpenApp,
-  handleToggleStartMenu,
-}: {
+interface StartMenuProps {
   appList: App[];
   numberOfOpenedApps: number;
   isOpen: boolean;
   handleOpenApp: (appName: string) => void;
   handleToggleStartMenu: () => void;
+}
+
+const StartMenu: React.FC<StartMenuProps> = ({
+  appList,
+  numberOfOpenedApps,
+  isOpen,
+  handleOpenApp,
+  handleToggleStartMenu,
 }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [filteredAppList, setFilteredAppList] = useState<App[]>(appList);
 
   // Just eyeballed this but it works by calculating the left position of the start menu based on the number of opened apps

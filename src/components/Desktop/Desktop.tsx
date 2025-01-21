@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import AppIcon from '../AppIcon/AppIcon';
-import classes from './Desktop.module.css';
-import Taskbar from '../Taskbar/Taskbar';
-import TaskbarIcon from '../TaskbarIcon/TaskbarIcon';
-import WindowStore from '../../stores/WindowStore';
-import MobileWarning from '../MobileWarning/MobileWarning';
-import PedroStore from '../../stores/PedroStore';
-import { apps } from './apps';
-import DiscordApplication from '../Applications/DiscordApplication/DiscordApplication';
+import { useEffect, useState } from "react";
+import AppIcon from "../AppIcon/AppIcon";
+import classes from "./Desktop.module.css";
+import Taskbar from "../Taskbar/Taskbar";
+import TaskbarIcon from "../TaskbarIcon/TaskbarIcon";
+import WindowStore from "../../stores/WindowStore";
+import MobileWarning from "../MobileWarning/MobileWarning";
+import PedroStore from "../../stores/PedroStore";
+import { apps } from "./apps";
+import DiscordApplication from "../Applications/DiscordApplication/DiscordApplication";
 
 interface AppState {
   isOpen: boolean;
@@ -18,7 +18,7 @@ interface AppStates {
   [key: string]: AppState;
 }
 
-const Desktop = () => {
+const Desktop: React.FC = () => {
   const { incZIndex, getZIndex } = WindowStore();
   const { stopPedroAudio } = PedroStore();
 
@@ -53,8 +53,8 @@ const Desktop = () => {
 
   const toggleStartMenu = () => {
     // Disable the "Pedro" easter egg when clicking on this if it's active
-    document.getElementById('background')?.classList.remove('pedro');
-    document.getElementById('desktop')?.classList.remove('pedro-hides-desktop');
+    document.getElementById("background")?.classList.remove("pedro");
+    document.getElementById("desktop")?.classList.remove("pedro-hides-desktop");
     stopPedroAudio();
 
     setIsStartMenuOpen(!isStartMenuOpen);
@@ -85,7 +85,7 @@ const Desktop = () => {
         {/* Hyperlinks */}
         <AppIcon
           onDoubleClick={() =>
-            window.open('https://github.com/MiguelHigueraDev/raccoonOS')
+            window.open("https://github.com/MiguelHigueraDev/raccoonOS")
           }
           iconUrl="./app-icons/github.svg"
           name="Source"
@@ -134,7 +134,16 @@ const Desktop = () => {
           />
         ))}
       </Taskbar>
-      <DiscordApplication winProps={{appName: 'discord', isOpen: false, isHidden: true, handleClose: () => {}, handleHide: () => {}, zIndex: 0}} />
+      <DiscordApplication
+        winProps={{
+          appName: "discord",
+          isOpen: false,
+          isHidden: true,
+          handleClose: () => {},
+          handleHide: () => {},
+          zIndex: 0,
+        }}
+      />
     </>
   );
 };

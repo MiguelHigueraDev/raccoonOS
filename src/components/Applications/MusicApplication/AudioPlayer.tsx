@@ -6,7 +6,7 @@ import SeekBar from "./SeekBar";
 import { useRef, useState } from "react";
 import LyricsDisplay from "./LyricsDisplay";
 
-const AudioPlayer = ({ trackList }: { trackList: Track[] }) => {
+const AudioPlayer: React.FC<{ trackList: Track[] }> = ({ trackList }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [currentTrack, setCurrentTrack] = useState(trackList[trackIndex]);
   const [currentTime, setCurrentTime] = useState(0);

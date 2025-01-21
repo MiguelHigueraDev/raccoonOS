@@ -1,16 +1,18 @@
 import classes from "./SeekBar.module.css";
 import { RefObject } from "react";
 
-const SeekBar = ({
-  audioRef,
-  progressRef,
-  currentTime,
-  duration,
-}: {
+interface SeekBarProps {
   audioRef: RefObject<HTMLAudioElement>;
   progressRef: RefObject<HTMLInputElement>;
   currentTime: number;
   duration: number;
+}
+
+const SeekBar: React.FC<SeekBarProps> = ({
+  audioRef,
+  progressRef,
+  currentTime,
+  duration,
 }) => {
   const handleProgressChange = () => {
     audioRef.current!.currentTime = +progressRef.current!.value;
@@ -18,8 +20,12 @@ const SeekBar = ({
 
   const formatTime = (time: number) => {
     if (time && !isNaN(time)) {
-      const minutes = Math.floor(time / 60).toString().padStart(1, "0");
-      const seconds = Math.floor(time % 60).toString().padStart(2, "0");
+      const minutes = Math.floor(time / 60)
+        .toString()
+        .padStart(1, "0");
+      const seconds = Math.floor(time % 60)
+        .toString()
+        .padStart(2, "0");
       return `${minutes}:${seconds}`;
     }
 

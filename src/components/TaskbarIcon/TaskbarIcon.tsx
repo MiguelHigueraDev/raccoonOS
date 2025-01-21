@@ -1,19 +1,21 @@
 import classes from "./TaskbarIcon.module.css";
 
-const TaskbarIcon = ({
-  isAppOpen,
-  isAppHidden,
-  handleClick,
-  iconUrl,
-  alt,
-  showIndicator = true,
-}: {
+interface TaskbarIconProps {
   isAppOpen: boolean;
   isAppHidden: boolean;
   handleClick: () => void;
   iconUrl: string;
   alt: string;
   showIndicator?: boolean;
+}
+
+const TaskbarIcon: React.FC<TaskbarIconProps> = ({
+  isAppOpen,
+  isAppHidden,
+  handleClick,
+  iconUrl,
+  alt,
+  showIndicator = true,
 }) => {
   return (
     isAppOpen && (

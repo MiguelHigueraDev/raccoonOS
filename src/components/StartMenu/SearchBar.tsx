@@ -1,12 +1,14 @@
 import classes from "./SearchBar.module.css";
 import { IconSearch } from "@tabler/icons-react";
 
-const SearchBar = ({
-  searchTerm,
-  updateInputValue,
-}: {
+interface SearchBarProps {
   searchTerm: string;
   updateInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  searchTerm,
+  updateInputValue,
 }) => {
   return (
     <div className={classes.searchWrapper}>

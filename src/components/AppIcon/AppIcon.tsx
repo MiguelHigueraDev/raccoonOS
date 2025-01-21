@@ -1,16 +1,23 @@
 import Draggable from "react-draggable";
 import classes from "./AppIcon.module.css";
 
-const AppIcon = ({
-  iconUrl,
-  name,
-  onDoubleClick,
-  position = { x: 20, y: 20 },
-}: {
+export interface AppIconCoordinates {
+  x: number;
+  y: number;
+}
+
+interface AppIconProps {
   iconUrl: string;
   name: string;
   onDoubleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   position?: AppIconCoordinates;
+}
+
+const AppIcon: React.FC<AppIconProps> = ({
+  iconUrl,
+  name,
+  onDoubleClick,
+  position = { x: 20, y: 20 },
 }) => {
   return (
     <Draggable bounds="parent" defaultPosition={position}>
@@ -21,10 +28,5 @@ const AppIcon = ({
     </Draggable>
   );
 };
-
-export interface AppIconCoordinates {
-  x: number;
-  y: number;
-}
 
 export default AppIcon;

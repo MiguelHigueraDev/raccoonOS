@@ -3,18 +3,20 @@ import { RefObject } from "react";
 import { Track } from "./TrackList";
 import { IconFileMusic } from "@tabler/icons-react";
 
-const TrackDisplay = ({
-  currentTrack,
-  audioRef,
-  progressRef,
-  setDuration,
-  handleNext,
-}: {
+interface TrackDisplayProps {
   currentTrack: Track;
   audioRef: RefObject<HTMLAudioElement>;
   progressRef: RefObject<HTMLInputElement>;
   setDuration: (duration: number) => void;
   handleNext: () => void;
+}
+
+const TrackDisplay: React.FC<TrackDisplayProps> = ({
+  currentTrack,
+  audioRef,
+  progressRef,
+  setDuration,
+  handleNext,
 }) => {
   const handleLoadedMetadata = () => {
     const seconds = audioRef.current!.duration;

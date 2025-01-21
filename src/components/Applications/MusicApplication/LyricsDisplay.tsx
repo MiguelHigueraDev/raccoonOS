@@ -1,18 +1,21 @@
+import React from "react";
 import classes from "./LyricsDisplay.module.css";
 import { Track } from "./TrackList";
 
-const LyricsDisplay = ({
-  currentTrack,
-  currentTime,
-  handleSeek,
-  lyricsContainerRef,
-  setIsPlaying,
-}: {
+interface LyricsDisplayProps {
   currentTrack: Track;
   currentTime: number;
   handleSeek: (time: number) => void;
   lyricsContainerRef: React.RefObject<HTMLOListElement>;
   setIsPlaying: (isPlaying: boolean) => void;
+}
+
+const LyricsDisplay: React.FC<LyricsDisplayProps> = ({
+  currentTrack,
+  currentTime,
+  handleSeek,
+  lyricsContainerRef,
+  setIsPlaying,
 }) => {
   const currentTimeMs = currentTime * 1000;
 

@@ -1,23 +1,26 @@
-import { ReactElement } from 'react';
-import TaskbarIcon from '../TaskbarIcon/TaskbarIcon';
-import classes from './Taskbar.module.css';
-import StartMenu from '../StartMenu/StartMenu';
-import { App } from '../Desktop/apps';
-import TaskbarClock from './TaskbarClock';
-const Taskbar = ({
-  appList,
-  numberOfOpenedApps,
-  isStartMenuOpen,
-  handleToggleStartMenu,
-  handleOpenApp,
-  children,
-}: {
+import React, { ReactElement } from "react";
+import TaskbarIcon from "../TaskbarIcon/TaskbarIcon";
+import classes from "./Taskbar.module.css";
+import StartMenu from "../StartMenu/StartMenu";
+import { App } from "../Desktop/apps";
+import TaskbarClock from "./TaskbarClock";
+
+interface TaskbarProps {
   appList: App[];
   numberOfOpenedApps: number;
   isStartMenuOpen: boolean;
   handleToggleStartMenu: () => void;
   handleOpenApp: (appName: string) => void;
   children: ReactElement[] | ReactElement;
+}
+
+const Taskbar: React.FC<TaskbarProps> = ({
+  appList,
+  numberOfOpenedApps,
+  isStartMenuOpen,
+  handleToggleStartMenu,
+  handleOpenApp,
+  children,
 }) => {
   return (
     <>
