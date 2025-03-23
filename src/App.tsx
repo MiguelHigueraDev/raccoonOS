@@ -6,12 +6,12 @@ import { useEffect } from "react";
 import { printConsoleEasterEggs } from "./helpers/consoleEasterEgg";
 import NotificationsContainer from "./components/Notifications/NotificationsContainer";
 import NotificationStore from "./stores/NotificationStore";
-import useWebSocket from "./helpers/useWebsocket";
+import useLiveCursors from "./helpers/useLiveCursors";
 import LiveCursors from "./components/LiveCursors/LiveCursors";
 
 function App() {
   const { addNotification } = NotificationStore();
-  const cursors = useWebSocket("ws://localhost:8000");
+  const cursors = useLiveCursors("ws://localhost:8000");
 
   useEffect(() => {
     printConsoleEasterEggs();

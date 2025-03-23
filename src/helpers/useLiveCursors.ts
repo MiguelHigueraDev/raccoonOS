@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 
 const THROTTLE_MS = 50;
 
-const useWebSocket = (url: string, throttleMs: number = THROTTLE_MS) => {
+const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
   const [cursors, setCursors] = useState({});
   const lastUpdateTimeRef = useRef(0);
   const wsRef = useRef<WebSocket | null>(null);
@@ -92,4 +92,4 @@ const useWebSocket = (url: string, throttleMs: number = THROTTLE_MS) => {
   return cursors;
 };
 
-export default useWebSocket;
+export default useLiveCursors;
