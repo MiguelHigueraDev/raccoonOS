@@ -1,24 +1,27 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import {
+  LiveCursor,
+  CursorPosition,
+  RelativeCursorPosition,
+} from "./LiveCursor";
 
 const THROTTLE_MS = 50;
 
 const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
-  const [cursors, setCursors] = useState({});
+  const [cursors, setCursors] = useState<Record<string, CursorPosition>>({});
   const lastUpdateTimeRef = useRef(0);
   const wsRef = useRef<WebSocket | null>(null);
   const pendingUpdateRef = useRef(false);
-  const positionRef = useRef({ x: 0, y: 0 });
+  const positionRef = useRef<CursorPosition>({ x: 0, y: 0 });
+  const cursorManagerRef = useRef<LiveCursor>(new LiveCursor());
   const [viewportSize, setViewportSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
   const normalizePosition = useCallback(
-    (x: number, y: number) => {
-      return {
-        xRelative: x / viewportSize.width,
-        yRelative: y / viewportSize.height,
-      };
+    (x: number, y: number): RelativeCursorPosition => {
+      return LiveCursor.absoluteToRelative({ x, y }, viewportSize);
     },
     [viewportSize]
   );
@@ -28,17 +31,12 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
 
     if (now - lastUpdateTimeRef.current >= throttleMs) {
       if (wsRef.current?.readyState === WebSocket.OPEN) {
-        const { xRelative, yRelative } = normalizePosition(
+        const relativePos = normalizePosition(
           positionRef.current.x,
           positionRef.current.y
         );
 
-        wsRef.current.send(
-          JSON.stringify({
-            xRelative,
-            yRelative,
-          })
-        );
+        wsRef.current.send(JSON.stringify(relativePos));
       }
       lastUpdateTimeRef.current = now;
       pendingUpdateRef.current = false;
@@ -56,13 +54,27 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      // Convert relative coordinates back to pixels for local use
-      const xRelative = data.xRelative || data.x;
-      const yRelative = data.yRelative || data.y;
+      if (data.disconnected) {
+        // Handle cursor disconnection
+        cursorManagerRef.current.remove(data.id);
+        setCursors(cursorManagerRef.current.getAll());
+        return;
+      }
 
-      const x = Math.round(xRelative * viewportSize.width);
-      const y = Math.round(yRelative * viewportSize.height);
-      setCursors((prev) => ({ ...prev, [data.id]: { x, y } }));
+      // Extract relative coordinates
+      const relativePos: RelativeCursorPosition = {
+        xRelative: data.xRelative || data.x,
+        yRelative: data.yRelative || data.y,
+      };
+
+      // Convert to absolute position
+      const position = LiveCursor.relativeToAbsolute(relativePos, viewportSize);
+
+      // Update the cursor manager
+      cursorManagerRef.current.addOrUpdate(data.id, position);
+
+      // Update state with all cursors
+      setCursors(cursorManagerRef.current.getAll());
     };
 
     const handleMouseMove = (e: MouseEvent) => {

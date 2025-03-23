@@ -1,5 +1,3 @@
-import React from "react";
-
 interface CursorPosition {
   x: number;
   y: number;
@@ -23,7 +21,7 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors }) => {
         width: "100vw",
         height: "100vh",
         pointerEvents: "none",
-        zIndex: 9999,
+        zIndex: 99999999999,
         overflow: "hidden",
       }}
     >
