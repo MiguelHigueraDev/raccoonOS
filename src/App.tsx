@@ -1,14 +1,17 @@
-import { Analytics } from '@vercel/analytics/react';
-import './App.css';
-import Background from './components/Background/Background';
-import Desktop from './components/Desktop/Desktop';
-import { useEffect } from 'react';
-import { printConsoleEasterEggs } from './helpers/consoleEasterEgg';
-import NotificationsContainer from './components/Notifications/NotificationsContainer';
-import NotificationStore from './stores/NotificationStore';
+import { Analytics } from "@vercel/analytics/react";
+import "./App.css";
+import Background from "./components/Background/Background";
+import Desktop from "./components/Desktop/Desktop";
+import { useEffect } from "react";
+import { printConsoleEasterEggs } from "./helpers/consoleEasterEgg";
+import NotificationsContainer from "./components/Notifications/NotificationsContainer";
+import NotificationStore from "./stores/NotificationStore";
+import useWebSocket from "./helpers/useWebsocket";
+import LiveCursors from "./components/LiveCursors/LiveCursors";
 
 function App() {
   const { addNotification } = NotificationStore();
+  const cursors = useWebSocket("ws://localhost:8000");
 
   useEffect(() => {
     printConsoleEasterEggs();
@@ -17,16 +20,16 @@ function App() {
   // Show hint notification on first load
   useEffect(() => {
     addNotification(
-      'welcome-notification',
-      'Welcome to RaccoonOS!',
+      "welcome-notification",
+      "Welcome to RaccoonOS!",
       <>
         <strong>Double click</strong> apps to open them or use the
         <img
           style={{
             width: 20,
-            display: 'inline',
-            margin: '0 6px',
-            cursor: 'default',
+            display: "inline",
+            margin: "0 6px",
+            cursor: "default",
           }}
           alt=""
           src="./raccoonos-logo.webp"
@@ -42,6 +45,7 @@ function App() {
       <Background />
       <Desktop />
       <NotificationsContainer />
+      <LiveCursors cursors={cursors} />
     </>
   );
 }
