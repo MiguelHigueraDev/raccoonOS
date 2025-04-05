@@ -13,6 +13,12 @@ enum MessageType {
   UserMovedCursor = 0x05,
 }
 
+enum ConnectionStatus {
+  Disconnected,
+  Connecting,
+  Connected,
+}
+
 const createCursorPositionMessage = (
   position: RelativeCursorPosition
 ): ArrayBuffer => {
@@ -35,6 +41,9 @@ const THROTTLE_MS = 50;
 const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
   const [cursors, setCursors] = useState<Record<number, CursorPosition>>({});
   const [clientId, setClientId] = useState<number | null>(null);
+  const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>(
+    ConnectionStatus.Disconnected
+  );
   const lastUpdateTimeRef = useRef(0);
   const wsRef = useRef<WebSocket | null>(null);
   const pendingUpdateRef = useRef(false);
@@ -76,9 +85,31 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
   }, [throttleMs, normalizePosition]);
 
   useEffect(() => {
+    setConnectionStatus(ConnectionStatus.Connecting);
     const ws = new WebSocket(url);
     wsRef.current = ws;
     ws.binaryType = "arraybuffer";
+
+    ws.onopen = () => {
+      console.log("WebSocket connection established with live cursors");
+      setConnectionStatus(ConnectionStatus.Connected);
+    };
+
+    ws.onerror = (error) => {
+      console.error(
+        "Error establishing connection with live cursors WebSocket server:",
+        error
+      );
+    };
+
+    ws.onclose = (event) => {
+      setConnectionStatus(ConnectionStatus.Disconnected);
+      cursorManagerRef.current = new LiveCursor();
+      setCursors({});
+      if (!event.wasClean) {
+        console.error("WebSocket connection closed unexpectedly:", event);
+      }
+    };
 
     ws.onmessage = (event) => {
       if (event.data instanceof ArrayBuffer) {
@@ -157,11 +188,12 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
       pendingUpdateRef.current = false;
       ws.close();
       wsRef.current = null;
+      setConnectionStatus(ConnectionStatus.Disconnected);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, throttledSendPosition, viewportSize]);
 
-  return { cursors, clientId };
+  return { cursors, clientId, connectionStatus };
 };
 
 export default useLiveCursors;
