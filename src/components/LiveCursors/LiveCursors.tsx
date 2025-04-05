@@ -1,3 +1,5 @@
+import React, { useEffect, useRef, useState } from "react";
+
 interface CursorPosition {
   x: number;
   y: number;
@@ -10,6 +12,15 @@ interface Cursors {
 interface LiveCursorsProps {
   cursors: Cursors;
   clientId?: string | number | null;
+}
+
+interface InterpolatedCursor extends CursorPosition {
+  targetX: number;
+  targetY: number;
+}
+
+interface InterpolatedCursors {
+  [id: string]: InterpolatedCursor;
 }
 
 const colorCache: Record<string, string> = {};
@@ -31,7 +42,81 @@ function getColorForId(id: number): string {
   return colorCache[idStr];
 }
 
+function lerp(start: number, end: number, factor: number): number {
+  return start + (end - start) * factor;
+}
+
 const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
+  const [smoothCursors, setSmoothCursors] = useState<InterpolatedCursors>({});
+  const animationFrameRef = useRef<number | null>(null);
+  const cursorsRef = useRef<InterpolatedCursors>({});
+
+  // Update target positions when cursors prop changes and handle disconnected cursors
+  useEffect(() => {
+    const updatedCursors: InterpolatedCursors = {};
+    const activeCursorIds = new Set(Object.keys(cursors));
+
+    // Skip cursors that are not active (disconnected)
+    Object.entries(cursorsRef.current).forEach(([id, cursor]) => {
+      if (activeCursorIds.has(id)) {
+        updatedCursors[id] = { ...cursor };
+      }
+    });
+
+    // Add or update cursors from the incoming prop
+    Object.entries(cursors).forEach(([id, pos]) => {
+      if (!updatedCursors[id]) {
+        // New cursor - initialize at target position
+        updatedCursors[id] = {
+          x: pos.x,
+          y: pos.y,
+          targetX: pos.x,
+          targetY: pos.y,
+        };
+      } else {
+        // Existing cursor - update target position only
+        updatedCursors[id].targetX = pos.x;
+        updatedCursors[id].targetY = pos.y;
+      }
+    });
+
+    cursorsRef.current = updatedCursors;
+    setSmoothCursors({ ...updatedCursors });
+  }, [cursors]);
+
+  useEffect(() => {
+    const interpolateCursors = () => {
+      const updated = { ...cursorsRef.current };
+
+      Object.keys(updated).forEach((id) => {
+        const cursor = updated[id];
+        const dx = cursor.targetX - cursor.x;
+        const dy = cursor.targetY - cursor.y;
+
+        if (Math.abs(dx) < 0.1 && Math.abs(dy) < 0.1) {
+          cursor.x = cursor.targetX;
+          cursor.y = cursor.targetY;
+        } else {
+          cursor.x = lerp(cursor.x, cursor.targetX, 0.4);
+          cursor.y = lerp(cursor.y, cursor.targetY, 0.4);
+        }
+      });
+
+      cursorsRef.current = updated;
+      setSmoothCursors({ ...updated });
+
+      animationFrameRef.current = requestAnimationFrame(interpolateCursors);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(interpolateCursors);
+
+    return () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -45,7 +130,7 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
         overflow: "hidden",
       }}
     >
-      {Object.entries(cursors).map(([id, pos]) => {
+      {Object.entries(smoothCursors).map(([id, pos]) => {
         const isCurrentClient = clientId !== undefined && id === clientId + "";
         const hasntMoved = pos.x === 0 && pos.y === 0;
 
@@ -65,6 +150,7 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
               left: pos.x,
               top: pos.y,
               transform: "translate(-50%, -50%)",
+              transition: "none",
             }}
           >
             <path
