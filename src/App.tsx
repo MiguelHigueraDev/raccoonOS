@@ -11,7 +11,7 @@ import LiveCursors from "./components/LiveCursors/LiveCursors";
 
 function App() {
   const { addNotification } = NotificationStore();
-  const cursors = useLiveCursors("ws://localhost:8080");
+  const { cursors, clientId } = useLiveCursors("ws://localhost:8080");
 
   useEffect(() => {
     printConsoleEasterEggs();
@@ -45,7 +45,7 @@ function App() {
       <Background />
       <Desktop />
       <NotificationsContainer />
-      <LiveCursors cursors={cursors} />
+      <LiveCursors cursors={cursors} clientId={clientId} />
     </>
   );
 }

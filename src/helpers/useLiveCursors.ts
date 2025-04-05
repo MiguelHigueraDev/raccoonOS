@@ -161,7 +161,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, throttledSendPosition, viewportSize]);
 
-  return cursors;
+  return { cursors, clientId };
 };
 
 export default useLiveCursors;
