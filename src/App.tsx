@@ -11,7 +11,7 @@ import LiveCursors from "./components/LiveCursors/LiveCursors";
 
 function App() {
   const { addNotification } = NotificationStore();
-  const cursors = useLiveCursors("ws://localhost:8000");
+  const cursors = useLiveCursors("ws://localhost:8080");
 
   useEffect(() => {
     printConsoleEasterEggs();

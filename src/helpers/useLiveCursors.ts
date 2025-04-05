@@ -5,10 +5,36 @@ import {
   RelativeCursorPosition,
 } from "./LiveCursor";
 
+enum MessageType {
+  InitialConnection = 0x01,
+  InitialUserList = 0x02,
+  UserJoined = 0x03,
+  UserLeft = 0x04,
+  UserMovedCursor = 0x05,
+}
+
+const createCursorPositionMessage = (
+  position: RelativeCursorPosition
+): ArrayBuffer => {
+  // Convert relative positions (0-1) to absolute positions (0-65535) (uint16 range)
+  const x = Math.floor(position.xRelative * 65535);
+  const y = Math.floor(position.yRelative * 65535);
+
+  const buffer = new ArrayBuffer(5);
+  const view = new DataView(buffer);
+
+  view.setUint8(0, MessageType.UserMovedCursor);
+  view.setUint16(1, x);
+  view.setUint16(3, y);
+
+  return buffer;
+};
+
 const THROTTLE_MS = 50;
 
 const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
-  const [cursors, setCursors] = useState<Record<string, CursorPosition>>({});
+  const [cursors, setCursors] = useState<Record<number, CursorPosition>>({});
+  const [clientId, setClientId] = useState<number | null>(null);
   const lastUpdateTimeRef = useRef(0);
   const wsRef = useRef<WebSocket | null>(null);
   const pendingUpdateRef = useRef(false);
@@ -36,7 +62,8 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
           positionRef.current.y
         );
 
-        wsRef.current.send(JSON.stringify(relativePos));
+        const binaryMessage = createCursorPositionMessage(relativePos);
+        wsRef.current.send(binaryMessage);
       }
       lastUpdateTimeRef.current = now;
       pendingUpdateRef.current = false;
@@ -51,30 +78,62 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
   useEffect(() => {
     const ws = new WebSocket(url);
     wsRef.current = ws;
+    ws.binaryType = "arraybuffer";
 
     ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.disconnected) {
-        // Handle cursor disconnection
-        cursorManagerRef.current.remove(data.id);
-        setCursors(cursorManagerRef.current.getAll());
-        return;
+      if (event.data instanceof ArrayBuffer) {
+        const view = new DataView(event.data);
+        const messageType = view.getUint8(0);
+
+        // First byte is always the message type
+        switch (messageType) {
+          case MessageType.InitialConnection:
+            setClientId(view.getUint8(1));
+            break;
+
+          case MessageType.InitialUserList:
+            for (let i = 1; i < event.data.byteLength; i++) {
+              const id = view.getUint8(i);
+              if (id !== clientId) {
+                cursorManagerRef.current.addOrUpdate(id, {
+                  x: 0,
+                  y: 0,
+                });
+              }
+            }
+            setCursors(cursorManagerRef.current.getAll());
+            break;
+          case MessageType.UserJoined: {
+            const joinedId = view.getUint8(1);
+            cursorManagerRef.current.addOrUpdate(joinedId, { x: 0, y: 0 });
+            setCursors(cursorManagerRef.current.getAll());
+            break;
+          }
+          case MessageType.UserLeft: {
+            const leftId = view.getUint8(1);
+            cursorManagerRef.current.remove(leftId);
+            setCursors(cursorManagerRef.current.getAll());
+            break;
+          }
+          case MessageType.UserMovedCursor: {
+            if (event.data.byteLength >= 5) {
+              const id = view.getUint8(1);
+              const xRelative = view.getUint16(2, false) / 65535;
+              const yRelative = view.getUint16(4, false) / 65535;
+
+              // Convert to absolute position
+              const position = LiveCursor.relativeToAbsolute(
+                { xRelative, yRelative },
+                viewportSize
+              );
+
+              cursorManagerRef.current.addOrUpdate(id, position);
+              setCursors(cursorManagerRef.current.getAll());
+            }
+            break;
+          }
+        }
       }
-
-      // Extract relative coordinates
-      const relativePos: RelativeCursorPosition = {
-        xRelative: data.xRelative || data.x,
-        yRelative: data.yRelative || data.y,
-      };
-
-      // Convert to absolute position
-      const position = LiveCursor.relativeToAbsolute(relativePos, viewportSize);
-
-      // Update the cursor manager
-      cursorManagerRef.current.addOrUpdate(data.id, position);
-
-      // Update state with all cursors
-      setCursors(cursorManagerRef.current.getAll());
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -99,6 +158,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
       ws.close();
       wsRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, throttledSendPosition, viewportSize]);
 
   return cursors;

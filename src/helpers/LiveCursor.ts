@@ -9,22 +9,22 @@ export interface RelativeCursorPosition {
 }
 
 export class LiveCursor {
-  private cursors: Record<string, CursorPosition> = {};
+  private cursors: Record<number, CursorPosition> = {};
 
   // Add a cursor or update its position
-  addOrUpdate(id: string, position: CursorPosition): void {
+  addOrUpdate(id: number, position: CursorPosition): void {
     this.cursors[id] = position;
   }
 
   // Remove a cursor by ID
-  remove(id: string): void {
+  remove(id: number): void {
     if (this.cursors[id]) {
       delete this.cursors[id];
     }
   }
 
   // Get a specific cursor by ID
-  get(id: string): CursorPosition | undefined {
+  get(id: number): CursorPosition | undefined {
     return this.cursors[id];
   }
 
