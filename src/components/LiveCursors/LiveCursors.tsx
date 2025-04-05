@@ -12,6 +12,25 @@ interface LiveCursorsProps {
   clientId?: string | number | null;
 }
 
+const colorCache: Record<string, string> = {};
+
+function getColorForId(id: number): string {
+  const idStr = id.toString();
+
+  if (colorCache[idStr]) {
+    return colorCache[idStr];
+  }
+
+  const prime = 83;
+  const goldenRatioConjugate = 0.618033988749895;
+  const hue = ((id * prime * goldenRatioConjugate) % 1) * 360;
+  const saturation = 85 + (id % 3) * 5;
+  const lightness = 50 + (id % 5) * 2;
+
+  colorCache[idStr] = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  return colorCache[idStr];
+}
+
 const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
   return (
     <div
@@ -27,9 +46,6 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
       }}
     >
       {Object.entries(cursors).map(([id, pos]) => {
-        // Exclude the current client's cursor from rendering
-        // Also skip cursors at position 0,0
-
         const isCurrentClient = clientId !== undefined && id === clientId + "";
         const hasntMoved = pos.x === 0 && pos.y === 0;
 
@@ -38,20 +54,28 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
         }
 
         return (
-          <div
+          <svg
             key={id}
-            className="cursor"
+            width="30px"
+            height="30px"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
             style={{
               position: "absolute",
               left: pos.x,
               top: pos.y,
-              width: "10px",
-              height: "10px",
-              background: "red",
-              borderRadius: "50%",
               transform: "translate(-50%, -50%)",
             }}
-          />
+          >
+            <path
+              d="M3.1,4.46l7.21,15.92A1.17,1.17,0,0,0,12.5,20l1.26-6.23L20,12.5a1.17,1.17,0,0,0,.39-2.19L4.46,3.1A1,1,0,0,0,3.1,4.46Z"
+              fill={getColorForId(parseInt(id))}
+              stroke="black"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         );
       })}
     </div>
