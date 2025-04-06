@@ -8,10 +8,11 @@ import NotificationsContainer from "./components/Notifications/NotificationsCont
 import NotificationStore from "./stores/NotificationStore";
 import useLiveCursors from "./helpers/useLiveCursors";
 import LiveCursors from "./components/LiveCursors/LiveCursors";
+import { config } from "./config/environment";
 
 function App() {
   const { addNotification } = NotificationStore();
-  const { cursors, clientId } = useLiveCursors("ws://localhost:8080");
+  const { cursors, clientId } = useLiveCursors(config.liveWsUrl);
 
   useEffect(() => {
     printConsoleEasterEggs();
