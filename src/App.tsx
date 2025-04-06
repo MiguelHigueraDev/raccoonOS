@@ -2,18 +2,22 @@ import { Analytics } from "@vercel/analytics/react";
 import "./App.css";
 import Background from "./components/Background/Background";
 import Desktop from "./components/Desktop/Desktop";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { printConsoleEasterEggs } from "./helpers/consoleEasterEgg";
 import NotificationsContainer from "./components/Notifications/NotificationsContainer";
 import NotificationStore from "./stores/NotificationStore";
 import useLiveCursors from "./helpers/useLiveCursors";
 import LiveCursors from "./components/LiveCursors/LiveCursors";
 import { config } from "./config/environment";
+import LiveCursorsToggle from "./components/LiveCursors/LiveCursorsToggle";
 
 function App() {
   const { addNotification } = NotificationStore();
   const { cursors, clientId } = useLiveCursors(config.liveWsUrl);
+  const [showLiveCursors, setShowLiveCursors] = useState(true);
 
+  const areThereAnyCursors =
+    Object.keys(cursors).filter((id) => Number(id) !== clientId).length > 0;
   useEffect(() => {
     printConsoleEasterEggs();
   }, []);
@@ -46,7 +50,13 @@ function App() {
       <Background />
       <Desktop />
       <NotificationsContainer />
-      <LiveCursors cursors={cursors} clientId={clientId} />
+      {showLiveCursors && <LiveCursors cursors={cursors} clientId={clientId} />}
+      {areThereAnyCursors && (
+        <LiveCursorsToggle
+          showLiveCursors={showLiveCursors}
+          setShowLiveCursors={setShowLiveCursors}
+        />
+      )}
     </>
   );
 }
