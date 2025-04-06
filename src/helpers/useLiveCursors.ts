@@ -11,6 +11,8 @@ enum MessageType {
   UserJoined = 0x03,
   UserLeft = 0x04,
   UserMovedCursor = 0x05,
+  UserStartedClicking = 0x06,
+  UserStoppedClicking = 0x07,
 }
 
 enum ConnectionStatus {
@@ -36,6 +38,19 @@ const createCursorPositionMessage = (
   return buffer;
 };
 
+const createCursorClickMessage = (isClicking: boolean): ArrayBuffer => {
+  const buffer = new ArrayBuffer(2);
+  const view = new DataView(buffer);
+
+  view.setUint8(
+    0,
+    isClicking
+      ? MessageType.UserStartedClicking
+      : MessageType.UserStoppedClicking
+  );
+  return buffer;
+};
+
 const THROTTLE_MS = 50;
 
 const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
@@ -47,7 +62,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
   const lastUpdateTimeRef = useRef(0);
   const wsRef = useRef<WebSocket | null>(null);
   const pendingUpdateRef = useRef(false);
-  const positionRef = useRef<CursorPosition>({ x: 0, y: 0 });
+  const positionRef = useRef<CursorPosition>({ x: 0, y: 0, isClicking: false });
   const cursorManagerRef = useRef<LiveCursor>(new LiveCursor());
   const [viewportSize, setViewportSize] = useState({
     width: window.innerWidth,
@@ -129,6 +144,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
                 cursorManagerRef.current.addOrUpdate(id, {
                   x: 0,
                   y: 0,
+                  isClicking: false,
                 });
               }
             }
@@ -136,7 +152,11 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
             break;
           case MessageType.UserJoined: {
             const joinedId = view.getUint8(1);
-            cursorManagerRef.current.addOrUpdate(joinedId, { x: 0, y: 0 });
+            cursorManagerRef.current.addOrUpdate(joinedId, {
+              x: 0,
+              y: 0,
+              isClicking: false,
+            });
             setCursors(cursorManagerRef.current.getAll());
             break;
           }
@@ -158,7 +178,38 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
                 viewportSize
               );
 
-              cursorManagerRef.current.addOrUpdate(id, position);
+              // Preserve clicking state when updating position
+              const currentCursor = cursorManagerRef.current.get(id);
+              const isClicking = currentCursor?.isClicking || false;
+
+              cursorManagerRef.current.addOrUpdate(id, {
+                ...position,
+                isClicking,
+              });
+              setCursors(cursorManagerRef.current.getAll());
+            }
+            break;
+          }
+          case MessageType.UserStartedClicking: {
+            const id = view.getUint8(1);
+            const cursor = cursorManagerRef.current.get(id);
+            if (cursor) {
+              cursorManagerRef.current.addOrUpdate(id, {
+                ...cursor,
+                isClicking: true,
+              });
+              setCursors(cursorManagerRef.current.getAll());
+            }
+            break;
+          }
+          case MessageType.UserStoppedClicking: {
+            const id = view.getUint8(1);
+            const cursor = cursorManagerRef.current.get(id);
+            if (cursor) {
+              cursorManagerRef.current.addOrUpdate(id, {
+                ...cursor,
+                isClicking: false,
+              });
               setCursors(cursorManagerRef.current.getAll());
             }
             break;
@@ -168,8 +219,23 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      positionRef.current = { x: e.clientX, y: e.clientY };
+      positionRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+        isClicking: positionRef.current.isClicking,
+      };
       throttledSendPosition();
+    };
+
+    const handleMouseClick = (e: MouseEvent) => {
+      if (e.button === 0) {
+        const isClicking = e.type === "mousedown";
+        positionRef.current.isClicking = isClicking;
+        if (wsRef.current?.readyState === WebSocket.OPEN) {
+          const binaryMessage = createCursorClickMessage(isClicking);
+          wsRef.current.send(binaryMessage);
+        }
+      }
     };
 
     const handleResize = () => {
@@ -181,10 +247,14 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
+    window.addEventListener("mousedown", handleMouseClick);
+    window.addEventListener("mouseup", handleMouseClick);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousedown", handleMouseClick);
+      window.removeEventListener("mouseup", handleMouseClick);
       pendingUpdateRef.current = false;
       ws.close();
       wsRef.current = null;
