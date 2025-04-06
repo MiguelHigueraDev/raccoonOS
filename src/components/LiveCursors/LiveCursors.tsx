@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 interface CursorPosition {
   x: number;
   y: number;
+  isClicking?: boolean;
 }
 
 interface Cursors {
@@ -17,6 +18,7 @@ interface LiveCursorsProps {
 interface InterpolatedCursor extends CursorPosition {
   targetX: number;
   targetY: number;
+  isClicking: boolean;
 }
 
 interface InterpolatedCursors {
@@ -72,11 +74,14 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
           y: pos.y,
           targetX: pos.x,
           targetY: pos.y,
+          isClicking: pos.isClicking || false,
         };
       } else {
         // Existing cursor - update target position only
         updatedCursors[id].targetX = pos.x;
         updatedCursors[id].targetY = pos.y;
+        // Update clicking state immediately
+        updatedCursors[id].isClicking = pos.isClicking || false;
       }
     });
 
@@ -138,6 +143,9 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
           return null;
         }
 
+        const cursorColor = getColorForId(parseInt(id));
+        const fillColor = pos.isClicking ? "white" : cursorColor;
+
         return (
           <svg
             key={id}
@@ -155,7 +163,7 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
           >
             <path
               d="M3.1,4.46l7.21,15.92A1.17,1.17,0,0,0,12.5,20l1.26-6.23L20,12.5a1.17,1.17,0,0,0,.39-2.19L4.46,3.1A1,1,0,0,0,3.1,4.46Z"
-              fill={getColorForId(parseInt(id))}
+              fill={fillColor}
               stroke="black"
               strokeWidth="2"
               strokeLinecap="round"

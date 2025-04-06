@@ -1,6 +1,7 @@
 export interface CursorPosition {
   x: number;
   y: number;
+  isClicking?: boolean;
 }
 
 export interface RelativeCursorPosition {
