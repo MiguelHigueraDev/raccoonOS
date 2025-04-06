@@ -1,10 +1,9 @@
 .background {
-    position: fixed;
-    background-image: url("/raccoon-bg.webp");
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: rotateY(180deg);
+  position: fixed;
+  background-image: url("/raccoon-bg.webp");
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
