@@ -97,8 +97,8 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
           cursor.x = cursor.targetX;
           cursor.y = cursor.targetY;
         } else {
-          cursor.x = lerp(cursor.x, cursor.targetX, 0.4);
-          cursor.y = lerp(cursor.y, cursor.targetY, 0.4);
+          cursor.x = lerp(cursor.x, cursor.targetX, 0.1);
+          cursor.y = lerp(cursor.y, cursor.targetY, 0.1);
         }
       });
 
@@ -141,8 +141,8 @@ const LiveCursors: React.FC<LiveCursorsProps> = ({ cursors, clientId }) => {
         return (
           <svg
             key={id}
-            width="30px"
-            height="30px"
+            width="20px"
+            height="20px"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
             style={{
