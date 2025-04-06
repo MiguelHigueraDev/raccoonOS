@@ -191,8 +191,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
       setConnectionStatus(ConnectionStatus.Disconnected);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url, throttledSendPosition, viewportSize]);
-
+  }, [url, throttledSendPosition]);
   return { cursors, clientId, connectionStatus };
 };
 
