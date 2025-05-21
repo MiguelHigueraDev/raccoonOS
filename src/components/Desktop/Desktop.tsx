@@ -321,23 +321,80 @@ const Desktop: React.FC = () => {
       isGroupDragging &&
       selectedAppNames.size > 1 &&
       draggedIconInitialPos &&
-      dragStartPositions.size > 0
+      dragStartPositions.size > 0 &&
+      desktopRef.current // Ensure desktopRef is available for boundary calculations
     ) {
-      const deltaX = data.x - draggedIconInitialPos.x;
-      const deltaY = data.y - draggedIconInitialPos.y;
+      const currentRawDeltaX = data.x - draggedIconInitialPos.x;
+      const currentRawDeltaY = data.y - draggedIconInitialPos.y;
+
+      const desktopWidth = desktopRef.current.clientWidth;
+      const desktopHeight = desktopRef.current.clientHeight;
+
+      let collectiveMinDeltaX = -Infinity;
+      let collectiveMaxDeltaX = Infinity;
+      let collectiveMinDeltaY = -Infinity;
+      let collectiveMaxDeltaY = Infinity;
+
+      // Ensure we are clamping the deltas based on the current positions of all selected icons
+      // This is to ensure that the icons do not go out of bounds
+      // and that they respect each other's boundaries
+      selectedAppNames.forEach((name) => {
+        const originalPos = dragStartPositions.get(name);
+        const iconRef = appIconRefs.current.get(name);
+
+        if (originalPos && iconRef) {
+          const iconWidth = iconRef.offsetWidth;
+          const iconHeight = iconRef.offsetHeight;
+
+          // Calculate allowed deltas for this specific icon
+          // Delta to not pass left boundary (x=0)
+          // originalPos.x + deltaX >= 0  => deltaX >= -originalPos.x
+          collectiveMinDeltaX = Math.max(collectiveMinDeltaX, -originalPos.x);
+
+          // Delta to not pass right boundary (x=desktopWidth)
+          // originalPos.x + deltaX + iconWidth <= desktopWidth => deltaX <= desktopWidth - originalPos.x - iconWidth
+          collectiveMaxDeltaX = Math.min(
+            collectiveMaxDeltaX,
+            desktopWidth - originalPos.x - iconWidth
+          );
+
+          // Delta to not pass top boundary (y=0)
+          // originalPos.y + deltaY >= 0 => deltaY >= -originalPos.y
+          collectiveMinDeltaY = Math.max(collectiveMinDeltaY, -originalPos.y);
+
+          // Delta to not pass bottom boundary (y=desktopHeight)
+          // originalPos.y + deltaY + iconHeight <= desktopHeight => deltaY <= desktopHeight - originalPos.y - iconHeight
+          collectiveMaxDeltaY = Math.min(
+            collectiveMaxDeltaY,
+            desktopHeight - originalPos.y - iconHeight
+          );
+        }
+      });
+
+      // Clamp the raw deltas by the collective constraints
+      // Ensure min does not exceed max (can happen if icons are too large or already out of bounds)
+      const finalDeltaX = Math.max(
+        collectiveMinDeltaX,
+        Math.min(currentRawDeltaX, collectiveMaxDeltaX)
+      );
+      const finalDeltaY = Math.max(
+        collectiveMinDeltaY,
+        Math.min(currentRawDeltaY, collectiveMaxDeltaY)
+      );
 
       const newPosState = new Map(iconPositions);
       selectedAppNames.forEach((name) => {
         const originalPos = dragStartPositions.get(name);
         if (originalPos) {
           newPosState.set(name, {
-            x: originalPos.x + deltaX,
-            y: originalPos.y + deltaY,
+            x: originalPos.x + finalDeltaX,
+            y: originalPos.y + finalDeltaY,
           });
         }
       });
       setIconPositions(newPosState);
-    } else {
+    } else if (!isGroupDragging) {
+      // Single icon dragging
       setIconPositions((prev) =>
         new Map(prev).set(appName, { x: data.x, y: data.y })
       );
