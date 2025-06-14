@@ -3,6 +3,7 @@ import { create } from 'zustand';
 type Store = {
   messages: Message[];
   addMessage: (message: Message) => void;
+  updateMessage: (timestamp: number, content: string) => void;
   removeIsTypingMessage: () => void;
 };
 
@@ -23,7 +24,14 @@ export default create<Store>((set) => ({
   ],
   addMessage: (message) =>
     set((state) => ({
-      messages: [...state.messages, { ...message, timestamp: Date.now() }],
+      messages: [...state.messages, { ...message, timestamp: message.timestamp || Date.now() }],
+    })),
+
+  updateMessage: (timestamp, content) =>
+    set((state) => ({
+      messages: state.messages.map((msg) =>
+        msg.timestamp === timestamp ? { ...msg, content } : msg
+      ),
     })),
 
   removeIsTypingMessage: () =>

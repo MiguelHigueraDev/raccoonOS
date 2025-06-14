@@ -47,8 +47,21 @@
   cursor: not-allowed;
 }
 
+.cancelButton {
+  background-color: #ff6b6b !important;
+  color: white !important;
+}
+
+.cancelButton:hover {
+  background-color: #ff5252 !important;
+}
+
 .chatInput {
   width: 100%;
+}
+
+.chatInput.typing {
+  opacity: 0.7;
 }
 
 .message {
