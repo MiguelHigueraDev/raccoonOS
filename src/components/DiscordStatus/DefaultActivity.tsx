@@ -10,16 +10,14 @@ interface DefaultActivityProps {
 }
 
 export const DefaultActivity: React.FC<DefaultActivityProps> = ({ activity }) => {
+  if (!activity) return null;
+  
   return (
     <div className={styles.defaultActivity}>
-      {activity ? (
-        <span className={styles.activityText}>
-          {activity.name}
-          {activity.state && ` - ${activity.state}`}
-        </span>
-      ) : (
-        <span className={styles.activityText}>No activity</span>
-      )}
+      <span className={styles.activityText}>
+        {activity.name}
+        {activity.state && ` - ${activity.state}`}
+      </span>
     </div>
   );
 };
