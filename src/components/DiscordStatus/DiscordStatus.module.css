@@ -1,0 +1,184 @@
+.discordStatus {
+  background: rgba(24, 25, 28, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 300px;
+  max-width: 350px;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    sans-serif;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statusHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #43b581;
+}
+
+.statusDot.online {
+  background-color: #43b581;
+}
+
+.statusDot.idle {
+  background-color: #faa61a;
+}
+
+.statusDot.dnd {
+  background-color: #f04747;
+}
+
+.statusDot.offline {
+  background-color: #747f8d;
+}
+
+.nowPlaying {
+  margin-top: 16px;
+}
+
+.nowPlayingHeader {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.6;
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.trackInfo {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.albumArt {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.trackDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.trackName {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artistName {
+  font-size: 12px;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.albumName {
+  font-size: 11px;
+  opacity: 0.6;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progressContainer {
+  margin-top: 12px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.progressFill {
+  height: 100%;
+  background: #1db954;
+  border-radius: 2px;
+  transition: width 0.1s linear;
+  position: relative;
+}
+
+.progressFill::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.progressBar:hover .progressFill::after {
+  opacity: 1;
+}
+
+.timeInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.defaultActivity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.8;
+}
+
+.activityIcon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+.activityText {
+  font-size: 13px;
+}
+
+.statusTextContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.username {
+  font-size: 11px;
+  opacity: 0.6;
+}

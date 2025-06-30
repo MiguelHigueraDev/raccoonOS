@@ -15,7 +15,7 @@ const LiveCursorsToggle: React.FC<LiveCursorsToggleProps> = ({
         position: "absolute",
         fontSize: "12px",
         bottom: "70px",
-        right: "20px",
+        left: "20px",
         backgroundColor: "black",
         color: "white",
         border: "1px solid white",
