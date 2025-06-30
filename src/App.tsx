@@ -64,7 +64,6 @@ function App() {
           bottom: "70px",
           right: "20px",
           zIndex: 1,
-          userSelect: "none",
         }}
       >
         <DiscordStatus />
