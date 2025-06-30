@@ -69,11 +69,14 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
     height: window.innerHeight,
   });
 
+  const viewportSizeRef = useRef(viewportSize);
+  viewportSizeRef.current = viewportSize;
+
   const normalizePosition = useCallback(
     (x: number, y: number): RelativeCursorPosition => {
-      return LiveCursor.absoluteToRelative({ x, y }, viewportSize);
+      return LiveCursor.absoluteToRelative({ x, y }, viewportSizeRef.current);
     },
-    [viewportSize]
+    []
   );
 
   const throttledSendPosition = useCallback(() => {
@@ -175,7 +178,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
               // Convert to absolute position
               const position = LiveCursor.relativeToAbsolute(
                 { xRelative, yRelative },
-                viewportSize
+                viewportSizeRef.current
               );
 
               // Preserve clicking state when updating position
@@ -261,7 +264,7 @@ const useLiveCursors = (url: string, throttleMs: number = THROTTLE_MS) => {
       setConnectionStatus(ConnectionStatus.Disconnected);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url, throttledSendPosition]);
+  }, [url]);
   return { cursors, clientId, connectionStatus };
 };
 
