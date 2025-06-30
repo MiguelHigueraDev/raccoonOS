@@ -10,6 +10,7 @@ import useLiveCursors from "./helpers/useLiveCursors";
 import LiveCursors from "./components/LiveCursors/LiveCursors";
 import { config } from "./config/environment";
 import LiveCursorsToggle from "./components/LiveCursors/LiveCursorsToggle";
+import { DiscordStatus } from "./components/DiscordStatus/DiscordStatus";
 
 function App() {
   const { addNotification } = NotificationStore();
@@ -57,6 +58,17 @@ function App() {
           setShowLiveCursors={setShowLiveCursors}
         />
       )}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "70px",
+          right: "20px",
+          zIndex: 1,
+          userSelect: "none",
+        }}
+      >
+        <DiscordStatus />
+      </div>
     </>
   );
 }
