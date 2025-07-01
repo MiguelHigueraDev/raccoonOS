@@ -17,7 +17,7 @@ const MusicApplication = ({ winProps }: { winProps: WindowProps }) => {
         zIndex={winProps.zIndex}
         nonResizable
       >
-        <div style={{ padding: 16, height: "95%" }}>
+        <div style={{ padding: 16, height: "calc(100% - 34px)" }}>
           <AudioPlayer trackList={TrackList} />
         </div>
       </Window>

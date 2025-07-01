@@ -13,4 +13,5 @@
   flex-direction: column;
   height: 100%;
   gap: 0;
+  overflow: hidden;
 }

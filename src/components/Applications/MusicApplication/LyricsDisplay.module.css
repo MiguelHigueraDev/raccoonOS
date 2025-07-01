@@ -1,6 +1,7 @@
 .lyricsContainer {
     overflow-y: auto;
-    height: inherit;
+    flex: 1;
+    min-height: 0;
     margin: 0;
     padding: 20px 24px;
     color: #fff;
