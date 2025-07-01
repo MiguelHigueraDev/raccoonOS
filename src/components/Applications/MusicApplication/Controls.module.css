@@ -2,39 +2,92 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 6px;
+    padding: 16px 24px;
     color: #fff;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    margin-bottom: 16px;
 }
 
 .controls button, .volume button {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
-    font: inherit;
     cursor: pointer;
-    padding: 0;
+    padding: 8px;
     margin: 0;
-    list-style-type: none;
-    font-size: 1.5rem;
-    line-height: 2.5rem;
-    font-weight: 600;
-    text-align: start;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
 }
 
-.controls button {
-    margin-top: 3px;
+.controls button:hover, .volume button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+.controls button:active, .volume button:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .volume {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
 }
 
-.volume button {
-    margin-top: 3px;
+
+input[type="range"] {
+    accent-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-input {
-    accent-color: rgb(38, 180, 232);
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-webkit-slider-track {
+    background: rgba(255, 255, 255, 0.15);
+    height: 4px;
+    border-radius: 2px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+input[type="range"]::-moz-range-track {
+    background: rgba(255, 255, 255, 0.15);
+    height: 4px;
+    border-radius: 2px;
+    border: none;
 }

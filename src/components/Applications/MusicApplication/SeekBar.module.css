@@ -1,15 +1,24 @@
 .seekBar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     color: #fff;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    margin-bottom: 16px;
 }
 
 .seekBar input {
     flex-grow: 2;
+    margin: 0 8px;
 }
 
 .seekBar span {
-    font-size: 0.8rem;
-    color: #fff;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    min-width: 40px;
+    text-align: center;
+    font-family: monospace;
 }
