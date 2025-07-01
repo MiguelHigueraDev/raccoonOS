@@ -1,29 +1,53 @@
 .trackInfo {
     display: flex;
+    color: #fff;
+    padding: 24px;
+    gap: 20px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 
 .text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-grow: 2;
+    gap: 4px;
 }
 
 .title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
     margin: 0;
+    color: #fff;
+    line-height: 1.3;
 }
 
 .artist {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0.8;
 }
 
 .trackCoverArt img, .noTrackCoverArt svg {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.noTrackCoverArt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    width: 80px;
+    height: 80px;
 }

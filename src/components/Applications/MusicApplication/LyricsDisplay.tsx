@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./LyricsDisplay.module.css";
 import { Track } from "./TrackList";
 
@@ -18,6 +18,33 @@ const LyricsDisplay: React.FC<LyricsDisplayProps> = ({
   setIsPlaying,
 }) => {
   const currentTimeMs = currentTime * 1000;
+  const activeLyricRef = useRef<HTMLLIElement>(null);
+
+  // Find the currently active lyric index
+  const activeLyricIndex = currentTrack.lyrics!.findIndex((lyric, index) => {
+    const nextLyric = currentTrack.lyrics![index + 1];
+    return (
+      currentTimeMs >= lyric.startTimeMs &&
+      (!nextLyric || currentTimeMs < nextLyric.startTimeMs)
+    );
+  });
+
+  // Auto-scroll to active lyric
+  useEffect(() => {
+    if (
+      activeLyricRef.current &&
+      lyricsContainerRef.current &&
+      activeLyricIndex >= 0
+    ) {
+      const activeLyric = activeLyricRef.current;
+
+      activeLyric.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest",
+      });
+    }
+  }, [activeLyricIndex, lyricsContainerRef]);
 
   const handleLyricClick = (time: number) => {
     handleSeek(time);
@@ -27,10 +54,14 @@ const LyricsDisplay: React.FC<LyricsDisplayProps> = ({
   return (
     <ol className={classes.lyricsContainer} ref={lyricsContainerRef}>
       {currentTrack.lyrics!.map((lyric, index) => {
-        const isActive = currentTimeMs >= lyric.startTimeMs;
+        const isActive = index === activeLyricIndex;
         const className = isActive ? classes.activeLyrics : undefined;
         return (
-          <li key={index} className={className}>
+          <li
+            key={index}
+            className={className}
+            ref={isActive ? activeLyricRef : null}
+          >
             <button onClick={() => handleLyricClick(lyric.startTimeMs / 1000)}>
               {lyric.text}
             </button>

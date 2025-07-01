@@ -2,8 +2,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px solid rgb(160, 28, 151);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
   padding: 16px;
+  color: #fff;
+  transition: all 0.2s ease;
 }
 
 .projectTop {
@@ -12,10 +16,10 @@
 }
 
 .project:hover {
-  box-shadow: rgba(46, 182, 240, 0.4) -5px 5px,
-    rgba(46, 201, 240, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px,
-    rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
-  transform: scale(1.01);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 .image {
@@ -39,6 +43,7 @@
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: bold;
+  color: #fff;
 }
 
 .techStack {
@@ -51,15 +56,18 @@
 .tech {
   padding: 4px 12px;
   user-select: none;
-  background-color: rgb(155, 243, 233);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
-  transition-duration: 100ms;
-  transition-property: color, background-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 12px;
+  transition: all 0.2s ease;
 }
 
 .tech:hover {
-  background-color: rgb(250, 154, 250);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .projectLinks {
@@ -75,15 +83,18 @@
   display: flex;
   gap: 4px;
   align-items: center;
-  background-color: rgb(250, 162, 248);
-  transition-duration: 150ms;
-  transition-property: background-color;
-  transition-timing-function: ease-in-out;
-  padding: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 .projectLinks a:hover {
-  background-color: rgb(250, 98, 250);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }

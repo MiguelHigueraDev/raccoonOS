@@ -7,22 +7,24 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    color: #fff;
 }
 
 .text {
     flex-grow: 2;
+    color: #fff;
 }
 
 .strongText {
     font-weight: bold;
-    color: rgb(220, 28, 204);
+    color: #ff6fff;
     font-style: italic;
     font-size: 1.2rem;
 }
 
 .strongText2 {
     font-weight: bold;
-    color: rgb(28, 156, 220);
+    color: #4db8ff;
     font-style: italic;
 }
 
@@ -41,7 +43,7 @@
 .profilePicture > p{
     font-size: 1.5rem;
     font-weight: bold;
-    color: rgb(220, 28, 204);
+    color: #ff6fff;
     font-style: italic;
 }
 
@@ -64,7 +66,8 @@
 }
 
 .konamiSection:hover {
-    background-color: rgb(255, 23, 228);
+    background-color: rgba(255, 23, 228, 0.2);
+    border: 1px solid rgba(255, 23, 228, 0.5);
 }
 
 .konamiSection span {
@@ -73,10 +76,10 @@
 }
 
 .konamiSection svg, .konamiSection span {
-    color: #e3e3e3;
+    color: #fff;
 }
 
 .timeElapsed {
-    color:rgb(220, 28, 204);
+    color: #ff6fff;
     font-weight: 600;
 }
