@@ -20,40 +20,63 @@
 }
 
 .input input {
-  padding: 8px;
-  background-color: #daa4df3e;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.input input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input input:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .input input:focus,
 .input button:focus {
-  outline: 2px solid #169fc8;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .input button {
-  padding: 2px 6px;
-  background-color: #e0a4e0;
-  color: rgb(0, 0, 0);
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s ease;
 }
 
 .input button:hover {
-  background-color: #f4c5f4;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .input button:disabled {
-  opacity: 50%;
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
 .cancelButton {
-  background-color: #ff6b6b !important;
-  color: white !important;
+  background: rgba(239, 93, 93, 0.2) !important;
+  border-color: rgba(239, 93, 93, 0.5) !important;
+  color: #ff6b6b !important;
 }
 
 .cancelButton:hover {
-  background-color: #ff5252 !important;
+  background: rgba(239, 93, 93, 0.3) !important;
+  border-color: rgba(239, 93, 93, 0.7) !important;
 }
 
 .chatInput {
@@ -67,7 +90,9 @@
 .message {
   font-weight: 400;
   border-radius: 8px;
-  padding: 8px;
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .message img {
@@ -78,13 +103,17 @@
 .aiMessage {
   align-self: flex-start;
   text-align: start;
-  background-color: #d9eaf8;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .selfMessage {
   align-self: flex-end;
   text-align: end;
-  background-color: #fde1fd;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 .selfMessage div {
@@ -92,11 +121,11 @@
 }
 
 .aiMessage span {
-  color: rgb(21, 116, 127);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .selfMessage span {
-  color: rgb(185, 28, 185);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .aiMessage span,

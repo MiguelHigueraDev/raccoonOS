@@ -2,12 +2,14 @@
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 16px;
+    color: #fff;
 }
 
 .window {
     padding: 16px;
     height: calc(100% - 40px);
     overflow-y: scroll;
+    color: #fff;
 }
 
 .gameContainer {
@@ -33,27 +35,38 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 4px;
+    color: #fff;
 }
 
 .gameInfo p {
-    font-size: 16spx;
+    font-size: 16px;
     margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .steamIcon:hover {
     cursor: pointer;
-    color: rgb(243, 74, 246);
+    color: #ff6fff;
 }
 
 .gameUrl {
     display: flex;
     gap: 4px;
-    background-color: rgb(163, 226, 244);
-    width: 188px;
-    padding: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: 240px;
+    padding: 4px 16px;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
 }
 
 .gameUrl:hover {
-    background-color: rgb(250, 154, 250);
-    transition: background-color ease-in 0.1s;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
 }

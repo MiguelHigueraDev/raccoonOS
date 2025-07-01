@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #fff;
 }
 
 .seekBar input {
@@ -10,4 +11,5 @@
 
 .seekBar span {
     font-size: 0.8rem;
+    color: #fff;
 }

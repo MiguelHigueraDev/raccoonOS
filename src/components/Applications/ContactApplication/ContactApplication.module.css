@@ -6,6 +6,7 @@
   padding: 16px;
   height: calc(100% - 42px);
   text-align: center;
+  color: #fff;
 }
 
 .window h1 {
@@ -13,20 +14,23 @@
   font-weight: 700;
   max-width: 600px;
   margin: 0 auto;
+  color: #fff;
 }
 
 .window p {
   font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .window a {
   font-size: 24px;
-  color: rgb(232, 33, 232);
-  transition: color 0.1s ease-in;
+  color: #ff6fff;
+  transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 .window a:hover {
-  color: rgb(54, 167, 186);
+  color: #4db8ff;
   text-decoration: underline;
 }
 
@@ -39,4 +43,11 @@
 .links svg {
   width: 48px;
   height: 48px;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.links svg:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
 }

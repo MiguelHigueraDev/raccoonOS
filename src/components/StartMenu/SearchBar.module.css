@@ -1,24 +1,46 @@
 .searchWrapper {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   gap: 12px;
   width: 100%;
   margin: 12px 0;
   border-radius: 12px;
-  padding: 2px 8px;
-  color: black;
+  padding: 8px 12px;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.2s ease;
+}
+
+.searchWrapper:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.searchWrapper:focus-within {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .searchIcon {
   width: 18px;
   height: 18px;
+  opacity: 0.6;
 }
 
 .searchBar {
   flex-grow: 2;
   outline: none;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.searchBar::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .searchBar:focus {

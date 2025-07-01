@@ -10,11 +10,14 @@
   position: fixed;
   bottom: 62px;
   z-index: 2147483647;
-  background-color: rgba(69, 69, 69, 0.942);
+  background: rgba(24, 25, 28, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   width: 500px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: #fff;
   user-select: none;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .raccoonOsTitle {
@@ -28,21 +31,29 @@
   justify-content: flex-end;
   justify-items: center;
   align-items: center;
-  padding: 10px 0 0 0;
-  background-color: rgba(0, 0, 0, 0.293);
+  background: rgba(30, 31, 34, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 16px;
+  border-radius: 0 0 12px 12px;
 }
 
 .shutdownButton {
   cursor: pointer;
-  padding: 6px;
-  border-radius: 4px;
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
 }
 
 .shutdownButton:hover {
-  background-color: rgba(0, 0, 0, 0.314);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .shutdownButton:active {
-  background-color: rgba(0, 0, 0, 0.514);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(0);
 }

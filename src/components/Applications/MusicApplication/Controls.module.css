@@ -3,12 +3,13 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 6px;
+    color: #fff;
 }
 
 .controls button, .volume button {
     background: none;
     border: none;
-    color: inherit;
+    color: #fff;
     font: inherit;
     cursor: pointer;
     padding: 0;

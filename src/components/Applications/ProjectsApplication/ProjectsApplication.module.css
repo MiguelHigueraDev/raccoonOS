@@ -2,6 +2,7 @@
     padding: 16px;
     height: calc(100% - 40px);
     overflow-y: scroll;
+    color: #fff;
 }
 
 .projectsContainer {

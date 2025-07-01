@@ -1,17 +1,21 @@
 .window {
-    border: 2px solid rgb(174, 19, 164);
-    background-color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(24, 25, 28, 0.95);
+    backdrop-filter: blur(10px);
     user-select: none;
     position: absolute;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .windowHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid rgb(174, 19, 164);
-    background: linear-gradient(to right, rgb(236, 87, 236), cyan);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(30, 31, 34, 0.95);
+    backdrop-filter: blur(10px);
 }
 
 .windowName {
@@ -20,10 +24,12 @@
 }
 
 .windowName div {
-    font-size: 16px;
+    font-size: 14px;
     margin-left: 10px;
     margin-top: 6px;
     height: 100%;
+    color: #fff;
+    font-weight: 500;
 }
 
 .windowIcons {
@@ -37,24 +43,34 @@
     appearance: none;
     padding: 4px;
     margin: 0;
-    border: 2px solid purple;
-    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
     display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
 }
 
 .windowIcons img {
     width: 16px;
     height: 16px;
+    filter: brightness(0) invert(1);
+    transition: all 0.2s ease;
 }
 
 .windowIcons button:last-of-type:hover{
-    background-color: rgb(239, 93, 93);
+    background-color: rgba(239, 93, 93, 0.8);
+    border-color: rgba(239, 93, 93, 1);
+}
+
+.windowIcons button:last-of-type:hover img {
+    filter: brightness(0) invert(1);
 }
 
 .windowIcons button:hover {
     cursor: pointer;
-    background-color: rgb(235, 91, 235);
-    transition: 100ms ease-in-out;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
 }
 
 .minimized {

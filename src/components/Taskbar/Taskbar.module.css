@@ -1,5 +1,7 @@
 .taskbarContainer {
-  background-color: rgba(51, 236, 220, 0.289);
+  background: rgba(24, 25, 28, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: fixed;
   bottom: 0;
   width: 100vw;
@@ -10,4 +12,5 @@
   justify-content: center;
   gap: 2px;
   user-select: none;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.3);
 }

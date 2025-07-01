@@ -4,6 +4,7 @@
     margin: 0;
     margin-top: 10px;
     padding: 0;
+    color: #fff;
 }
 
 .lyricsContainer li {
@@ -13,7 +14,7 @@
 .lyricsContainer button {
     background: none;
     border: none;
-    color: inherit;
+    color: #fff;
     font: inherit;
     cursor: pointer;
     padding: 0;
@@ -24,6 +25,10 @@
     font-weight: 600;
     text-align: start;
 }
+.activeLyrics button {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
 .activeLyrics {
-    color: rgb(220, 10, 168);
+    color: rgba(255, 255, 255, 0.7);
 }
