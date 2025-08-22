@@ -1,72 +1,127 @@
 .gamesTitle {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #fff;
 }
 
 .window {
-    padding: 16px;
-    height: calc(100% - 40px);
-    overflow-y: scroll;
-    color: #fff;
+  padding: 16px;
+  height: calc(100% - 40px);
+  overflow-y: scroll;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-content: start;
+}
+
+@media (min-width: 900px) {
+  .window {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .window {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .gameContainer {
-    display: flex;
-    margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "image title"
+    "image meta1"
+    "image meta2"
+    "image button";
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 6px;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .gameContainer img {
-    width: 324px;
-    height: 151px;
-    cursor: default;
+  width: 32px;
+  height: 32px;
+  cursor: default;
+  border-radius: 6px;
+  object-fit: cover;
+  grid-area: image;
+  align-self: center;
 }
 
 .gameInfo {
-    padding: 8px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-grow: 2;
+  padding: 0;
+  display: contents;
 }
 
 .gameInfo h2 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  grid-area: title;
 }
 
 .gameInfo p {
-    font-size: 16px;
-    margin-bottom: 4px;
-    color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gameInfo p:nth-of-type(1) {
+  grid-area: meta1;
+}
+
+.gameInfo p:nth-of-type(2) {
+  grid-area: meta2;
 }
 
 .steamIcon:hover {
-    cursor: pointer;
-    color: #ff6fff;
+  cursor: pointer;
+  color: #ff6fff;
 }
 
 .gameUrl {
-    display: flex;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    width: 240px;
-    padding: 4px 16px;
-    border-radius: 8px;
-    color: #fff;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    align-items: center;
-    justify-content: center;
-    height: 32px;
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  font-size: 14px;
+  grid-area: button;
+  justify-self: start;
 }
 
 .gameUrl:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.gamesTitle {
+  grid-column: 1 / -1;
+  text-align: center;
 }
