@@ -2,7 +2,6 @@ const SpecialThanks = () => {
   return (
     <ul>
       <li>To my friends and family for their support</li>
-      <li>To iSlammedMyKindle for being an amazing friend and mentor</li>
       <li>
         To all the online developer communities that provided answers to all my
         questions
